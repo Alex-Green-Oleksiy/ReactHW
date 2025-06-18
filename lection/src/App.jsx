@@ -1,37 +1,23 @@
 import React from "react";
+// import { useState } from "react";
 import "./App.scss";
+import UserCardList from "./assets/components/UserCardList";
+import AutoList from "./assets/components/AutoList";
+import Counter from "./assets/components/Counter";
+import Calculator from "./assets/components/Calculator";
+import UserData from "./assets/components/UserData";
+import WishesManager from "./assets/components/Wishes";
 
+// Головний компонент застосунку
 function App() {
-    let a = 10;
-
-
-    function handleClick(){
-        console.log('clicked')
-    }
     return (
-        // <div className="app">
-        //     <h1>Welcome to React</h1>
-        // </div>
-
         <>
-        <button onClick={handleClick}>Click me</button>
-            <div className="frag">{++a}</div>
-            <div>
-                <h1>Hello</h1>
-            </div>
-            <div className="long">{43 + 43}</div>
-            <div>
-                {(function () {
-                    let sum = 10 + 20;
-                    return sum;
-                })()}
-            </div>
-
-            <p>lorem100j ksjdhfksdhksjdhf sdkhdsfk</p>
-
-
-
-
+            <UserCardList />
+            <AutoList />
+            <Counter />
+            <Calculator />
+            <UserData />
+            <WishesManager />
         </>
     );
 }
