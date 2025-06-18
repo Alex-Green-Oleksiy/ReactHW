@@ -1,0 +1,139 @@
+.tabs {
+    width: 100%;
+    margin: 0 auto;
+    background: #00000000;
+
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.tabs-header {
+    display: flex;
+ background: linear-gradient(135deg, rgba(0, 0, 0, 1) 0%, rgba(65, 1, 1, 0.1) 100%);
+    border-bottom: 1px solid var(--border-color);
+    overflow-x: auto;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    padding: 0 16px;
+    max-width: calc(100% - 2rem);
+    margin: 0 auto;
+}
+
+.tabs-header::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+.tab {
+    position: relative;
+    padding: 16px 24px;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--border-color);
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: var(--transition);
+    outline: none;
+    margin: 0 2px;
+    border-radius: 6px 6px 0 0;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tabs-header .tab:hover {
+    color: #fdfdfd;
+    background: rgba(186, 8, 192, 0.171);
+}
+
+.tab.active {
+    color: #f80707;
+    font-weight: 600;
+    /* background: rgba(134, 133, 130, 0.288); */
+    /* border-bottom-color: var(--primary-color); */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.tab:focus-visible {
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3);
+    z-index: 1;
+}
+
+.tab-content {
+    max-width: calc(100% - 2rem);
+    /* padding: 28px 28px 32px; */
+    margin: 0 auto;
+    animation: fadeIn 0.3s ease-out;
+    /* background: rgba(32, 23, 23, 0.484); */
+    border-radius: 0 0 12px 12px;
+}
+
+.tab-description {
+    color: var(--bg-secondary);
+    /* margin-bottom: 24px; */
+    font-size: 15px;
+    line-height: 1.7;
+    padding-bottom: 16px;
+    /* border-bottom: 1px dashed var(--border-color); */
+}
+
+.tab-component {
+    margin-top: 8px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0.7;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Адаптивність */
+@media (max-width: 768px) {
+    .tabs-header {
+        padding: 0 12px;
+    }
+
+    .tab {
+        padding: 14px 16px;
+        font-size: 14px;
+        flex: 1;
+        text-align: center;
+        min-width: max-content;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .tab-content {
+        padding: 20px 16px;
+    }
+
+    .tab-description {
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+}
+
+/* Анімація активної вкладки */
+@keyframes tabActive {
+    0% {
+        transform: scale(0.98);
+        opacity: 0.8;
+    }
+    50% {
+        transform: scale(1.02);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.tab-content {
+    animation: tabActive 0.3s ease-out;
+}

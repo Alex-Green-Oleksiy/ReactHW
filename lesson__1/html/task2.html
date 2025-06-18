@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="uk">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Рекомендації за сезоном</title>
+        <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                text-align: center;
+                background-color: #0a82d882;
+                margin: 0;
+                padding: 20px;
+            }
+            .container {
+                background: white;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                max-width: 400px;
+                margin: auto;
+            }
+            h1,
+            h2 {
+                color: #333;
+            }
+            .season-image {
+                width: 100%;
+                max-width: 400px;
+                height: 250px; 
+                object-fit: cover; 
+                border-radius: 8px;
+                margin: 15px auto; 
+                display: block; 
+                box-shadow: 0 2px 5px rgba(0,0,0,0.2); 
+            }
+            input {
+                width: 100%;
+                padding: 8px;
+                margin-top: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            }
+
+            ul {
+                list-style: none;
+                padding: 0;
+            }
+            li {
+                background: #e3e3e3;
+                padding: 5px;
+                margin: 5px 0;
+                border-radius: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="root"></div>
+        <script type="text/babel">
+            function SeasonRecommendations() {
+                const [month, setMonth] = React.useState(
+                    new Date().getMonth() + 1
+                );
+
+                const seasons = {
+                    winter: {
+                        name: "Зима",
+                        months: [12, 1, 2],
+                        clothing: ["Шапка", "Стрінги", "Рукавиці"],
+                        image: "../img/winter.webp" ,
+                    },
+                    spring: {
+                        name: "Весна",
+                        months: [3, 4, 5],
+                        clothing: ["Легка куртка", "Джинси", "Кросівки"],
+                        image: "../img/spring.webp" ,
+                    },
+                    summer: {
+                        name: "Літо",
+                        months: [6, 7, 8],
+                        clothing: ["Шапка", "Пальто", "Лопата"],
+                        image: "../img/summer.webp" ,
+                    },
+                    autumn: {
+                        name: "Осінь",
+                        months: [9, 10, 11],
+                        clothing: ["Шапка", "Пальто", "Рукавиці"],
+                        image: "../img/fall.webp" ,
+                    },
+                };
+
+                const handleMonthChange = (e) => {
+                    const newMonth = parseInt(e.target.value) || 1;
+                    if (newMonth >= 1 && newMonth <= 12) {
+                        setMonth(newMonth);
+                    }
+                };
+
+                const currentSeason = Object.values(seasons).find((s) =>
+                    s.months.includes(month)
+                );
+
+                return (
+                    <div className="container">
+                        <h1>Оберіть місяць</h1>
+                        <input
+                            type="number"
+                            value={month}
+                            min="1"
+                            max="12"
+                            onChange={handleMonthChange}
+                        />
+                        {currentSeason && (
+                            <div>
+                                <h2>{currentSeason.name}</h2>
+
+                                <img
+                                    src={currentSeason.image}
+                                    alt={currentSeason.name}
+                                    className="season-image"
+                                />
+
+                                <h3>Рекомендований одяг:</h3>
+                                <ul>
+                                    {currentSeason.clothing.map((item, i) => (
+                                        <li key={i}>{item}</li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
+                    </div>
+                );
+            }
+
+            ReactDOM.createRoot(document.getElementById("root")).render(
+                <SeasonRecommendations />
+            );
+        </script>
+    </body>
+</html>

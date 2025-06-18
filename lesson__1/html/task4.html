@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="uk">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Банківський рахунок</title>
+        <style>
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            }
+            
+            body {
+                background-color: #f5f7fa;
+                color: #333;
+                line-height: 1.6;
+                padding: 20px;
+            }
+            
+            .container {
+                max-width: 800px;
+                margin: 0 auto;
+                background: white;
+                padding: 30px;
+                border-radius: 15px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
+            
+            h1 {
+                color: #2c3e50;
+                text-align: center;
+                margin-bottom: 30px;
+                font-size: 2.2em;
+            }
+            
+            .balance {
+                background: linear-gradient(135deg, #3498db, #2c3e50);
+                color: white;
+                padding: 25px;
+                border-radius: 10px;
+                text-align: center;
+                margin-bottom: 30px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+            
+            .balance h2 {
+                font-size: 1.8em;
+                margin-bottom: 10px;
+            }
+            
+            .balance p {
+                font-size: 1.2em;
+                opacity: 0.9;
+            }
+            
+            .operations {
+                background: #f8f9fa;
+                padding: 25px;
+                border-radius: 10px;
+                margin-bottom: 30px;
+            }
+            
+            input[type="number"] {
+                width: 100%;
+                padding: 15px;
+                margin-bottom: 15px;
+                border: 2px solid #ddd;
+                border-radius: 8px;
+                font-size: 16px;
+                transition: border-color 0.3s;
+            }
+            
+            input[type="number"]:focus {
+                border-color: #3498db;
+                outline: none;
+                box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+            }
+            
+            .buttons {
+                display: flex;
+                gap: 15px;
+                margin-bottom: 15px;
+            }
+            
+            button {
+                flex: 1;
+                padding: 12px;
+                border: none;
+                border-radius: 8px;
+                font-size: 16px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+            
+            .deposit-btn {
+                background-color: #2ecc70b0;
+                color: white;
+            }
+            
+            .deposit-btn:hover {
+                background-color: #27ae60;
+                transform: translateY(-2px);
+            }
+            
+            .withdraw-btn {
+                background-color: #e74d3cce;
+                color: white;
+            }
+            
+            .withdraw-btn:hover {
+                background-color: #c0392b;
+                transform: translateY(-2px);
+            }
+            
+            .fee {
+                color: #7f8c8d;
+                text-align: center;
+                font-size: 0.9em;
+            }
+            
+            .history {
+                background: white;
+                border-radius: 10px;
+                overflow: hidden;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            }
+            
+            .history h3 {
+                background: #2c3e50;
+                color: white;
+                padding: 15px 20px;
+                margin: 0;
+                font-size: 1.2em;
+            }
+            
+            .history ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+            
+            .history li {
+                padding: 15px 20px;
+                border-bottom: 1px solid #eee;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                transition: background-color 0.2s;
+            }
+            
+            .history li:hover {
+                background-color: #f8f9fa;
+            }
+            
+            .history li span:first-child {
+                font-weight: 600;
+                width: 120px;
+            }
+            
+            .history li span:nth-child(2) {
+                color: #7f8c8d;
+                font-size: 0.9em;
+                flex: 1;
+                text-align: right;
+                margin-right: 20px;
+            }
+            
+            .green {
+                color: #2ecc71;
+                font-weight: 600;
+                width: 100px;
+                text-align: right;
+            }
+            
+            .red {
+                color: #e74c3c;
+                font-weight: 600;
+                width: 100px;
+                text-align: right;
+            }
+            
+            small {
+                color: #95a5a6;
+                font-size: 0.8em;
+                width: 120px;
+                text-align: right;
+            }
+            
+            @media (max-width: 768px) {
+                .container {
+                    padding: 15px;
+                }
+                
+                .history li {
+                    flex-wrap: wrap;
+                    gap: 10px;
+                }
+                
+                .history li span, 
+                .history li small {
+                    width: 100%;
+                    text-align: left;
+                }
+                
+                .history li span:nth-child(2) {
+                    text-align: left;
+                    margin-right: 0;
+                    margin-bottom: 5px;
+                }
+            }
+        </style>
+        <!-- Підключаємо React -->
+        <script
+            crossorigin
+            src="https://unpkg.com/react@18/umd/react.development.js"
+        ></script>
+        <!-- Підключаємо ReactDOM -->
+        <script
+            crossorigin
+            src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+        ></script>
+        <!-- Babel для підтримки JSX -->
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+       
+    </head>
+    <body>
+        <div id="root"></div>
+
+        <script type="text/babel">
+        function BankAccount() {
+            // Стан для рахунку та суми операції
+            const [balance, setBalance] = React.useState(0); // Початковий баланс 
+            const [amount, setAmount] = React.useState('');
+            const [history, setHistory] = React.useState([]);
+            
+            // Курси валют
+            const rates = {
+                usd: 37.5,
+                eur: 40.2
+            };
+            
+            // Комісія 3%
+            const fee = 0.03;
+            
+            // Функція для конвертації валюти
+            const convert = (uah, currency) => (uah / rates[currency]).toFixed(2);
+            
+            // Функція для поповнення рахунку
+            const deposit = () => {
+                const sum = parseFloat(amount);
+                if (isNaN(sum) || sum <= 0) {
+                    alert('Будь ласка, введіть коректну суму');
+                    return;
+                }
+                
+                const commission = sum * fee;
+                const total = sum - commission;
+                
+                setBalance(prev => prev + total);
+                addToHistory('Поповнення', sum, commission);
+                setAmount('');
+            };
+            
+            // Функція для зняття коштів
+            const withdraw = () => {
+                const sum = parseFloat(amount);
+                if (isNaN(sum) || sum <= 0) {
+                    alert('Будь ласка, введіть коректну суму');
+                    return;
+                }
+                
+                const commission = sum * fee;
+                const total = sum + commission;
+                
+                if (total > balance) {
+                    alert('Недостатньо коштів на рахунку');
+                    return;
+                }
+                
+                setBalance(prev => prev - total);
+                addToHistory('Зняття', sum, commission);
+                setAmount('');
+            };
+            
+            // Додавання операції в історію
+            const addToHistory = (type, sum, commission) => {
+                const newItem = {
+                    id: Date.now(),
+                    type,
+                    sum,
+                    commission,
+                    date: new Date().toLocaleString()
+                };
+                setHistory(prev => [newItem, ...prev]);
+            };
+            
+            return (
+                <div className="container">
+                    <h1>Банківський рахунок</h1>
+                    
+                    <div className="balance">
+                        <h2>Ваш баланс: {balance.toFixed(2)} грн</h2>
+                        <p>${convert(balance, 'usd')} USD • €{convert(balance, 'eur')} EUR</p>
+                    </div>
+                    
+                    <div className="operations">
+                        <input
+                            type="number"
+                            value={amount}
+                            onChange={e => setAmount(e.target.value)}
+                            placeholder="Сума в гривнях"
+                        />
+                        <div className="buttons">
+                            <button className="deposit-btn" onClick={deposit}>
+                                Поповнити
+                            </button>
+                            <button className="withdraw-btn" onClick={withdraw}>
+                                Зняти
+                            </button>
+                        </div>
+                        <p className="fee">Комісія: {fee * 100}%</p>
+                    </div>
+                    
+                    {history.length > 0 && (
+                        <div className="history">
+                            <h3>Історія операцій</h3>
+                            <ul>
+                                {history.map(item => (
+                                    <li key={item.id}>
+                                        <span>{item.type}</span>
+                                        <span>{item.date}</span>
+                                        <span className={item.type === 'Поповнення' ? 'green' : 'red'}>
+                                            {item.type === 'Поповнення' ? '+' : '-'}{item.sum.toFixed(2)} грн
+                                        </span>
+                                        <small>Комісія: {item.commission.toFixed(2)} грн</small>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    )}
+                </div>
+            );
+        }
+        
+       
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<BankAccount />);
+        </script>
+    </body>
+</html>

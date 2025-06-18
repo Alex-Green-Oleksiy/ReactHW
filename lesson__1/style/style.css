@@ -1,0 +1,264 @@
+:root {
+    --react-blue: #61dafb;
+    --react-dark: #20232a;
+    --react-darker: #121418;
+    --react-light: #f8f9fa;
+    --react-gray: #6d6d6d;
+    --accent-color: #ff6b6b;
+    --border-radius: 4px;
+    --box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+    overscroll-behavior: none;
+}
+
+body {
+    font-family: "Roboto", -apple-system, BlinkMacSystemFont,
+        "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+        "Helvetica Neue", sans-serif;
+    line-height: 1.6;
+    color: var(--react-light);
+    background-color: var(--react-darker);
+    padding: 0;
+    margin: 0;
+    min-height: 100vh;
+    text-rendering: optimizeSpeed;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: var(--react-darker);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 2rem 1rem;
+    background: var(--react-dark);
+    border-bottom: 2px solid var(--react-blue);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+h1 {
+    color: var(--react-blue);
+    margin: 0 0 0.5rem 0;
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.tasks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.task-card {
+    background: var(--react-dark);
+    border-radius: var(--border-radius);
+    padding: 1.8rem;
+    box-shadow: var(--box-shadow);
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    border: 1px solid #333;
+    border-top: 4px solid var(--react-blue);
+    position: relative;
+    overflow: hidden;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    height: 100%;
+    will-change: transform, box-shadow;
+}
+
+.task-card:hover {
+    -webkit-transform: translateY(-5px) scale(1.02);
+    -ms-transform: translateY(-5px) scale(1.02);
+    transform: translateY(-5px) scale(1.02);
+    -webkit-box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    border-color: var(--react-blue);
+}
+
+.task-card h2 {
+    color: var(--react-blue);
+    margin: 0 0 1.2rem 0;
+    font-size: 1.5rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 2px solid #333;
+    display: flex;
+    align-items: center;
+}
+
+.task-card p {
+    margin-bottom: 1.2rem;
+    color: #aaa;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    flex-grow: 1;
+}
+
+.task-card ul {
+    padding-left: 0;
+    margin: 0 0 1.5rem 0;
+    flex-grow: 1;
+}
+
+.task-card li {
+    margin-bottom: 0.7rem;
+    position: relative;
+    list-style-type: none;
+    padding-left: 1.8rem;
+    color: #ddd;
+    font-size: 0.95rem;
+}
+
+.task-card li:before {
+    content: "→";
+    color: var(--react-blue);
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    opacity: 0.8;
+}
+
+.task-link {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    margin-top: auto;
+    padding: 0.8rem 1.8rem;
+    background-color: transparent;
+    color: var(--react-blue);
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    border: 2px solid var(--react-blue);
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    width: 100%;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.task-link:hover {
+    color: var(--react-darker);
+    background: var(--react-blue);
+    -webkit-transform: translateY(-2px);
+    -ms-transform: translateY(-2px);
+    transform: translateY(-2px);
+    -webkit-box-shadow: 0 4px 15px rgba(97, 218, 251, 0.3);
+    box-shadow: 0 4px 15px rgba(97, 218, 251, 0.3);
+}
+
+.task-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background-color: var(--react-blue);
+    color: var(--react-darker);
+    border-radius: 4px;
+    margin-right: 12px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    box-shadow: 0 0 0 2px rgba(97, 218, 251, 0.3);
+}
+
+/* Mobile-first media queries */
+@media (min-width: 576px) {
+    /* Small devices (landscape phones, 576px and up) */
+}
+
+@media (min-width: 768px) {
+    /* Medium devices (tablets, 768px and up) */
+    .tasks-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 992px) {
+    /* Large devices (desktops, 992px and up) */
+    .tasks-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 1200px) {
+    /* Extra large devices (large desktops, 1200px and up) */
+    .tasks-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* Fallback for older browsers */
+@media (max-width: 767.98px) {
+    .tasks-grid {
+        display: -ms-grid;
+        display: grid;
+        -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .container {
+        padding: 1.5rem;
+    }
+
+    header {
+        margin-bottom: 2rem;
+        padding: 1.5rem 1rem;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .task-card {
+        padding: 1.5rem;
+    }
+}

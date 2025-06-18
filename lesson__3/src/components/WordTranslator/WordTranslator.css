@@ -1,0 +1,116 @@
+/* Основні стилі */
+.word-translator {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+/* Заголовок */
+h2 {
+  text-align: center;
+  color: #3498db;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+
+/* Сітка карток */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 20px 0;
+  min-height: 200px; /* Забезпечуємо мінімальну висоту для контейнера */
+}
+
+/* Стилі для кнопок-карток */
+.cards button {
+  height: 60px;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: rgba(45, 56, 80, 0.315);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Ховер ефект */
+button:not(:disabled):hover {
+  background-color: #77107a8f;
+}
+
+/* Вимкнені кнопки (знайдені пари) */
+button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Правильна пара */
+button.correct {
+  background-color: #fefdff;
+  border-color: #df0c0c;
+  color: #f10707;
+  cursor: default;
+}
+
+/* Вибрана картка */
+button[data-selected="true"] {
+  background-color: #e0f7fa;
+  border-color: #4db6ac;
+  transform: translateY(-2px);
+}
+
+/* Адаптивність */
+@media (max-width: 768px) {
+  .cards {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 0.8rem;
+  }
+  
+  button {
+    min-height: 70px;
+    font-size: 0.9rem;
+    padding: 0.8rem;
+  }
+  
+  h2 {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  button {
+    height: 50px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .word-translator {
+    padding: 1rem;
+  }
+  
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  button {
+    min-height: 60px;
+    font-size: 0.85rem;
+  }
+}

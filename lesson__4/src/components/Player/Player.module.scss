@@ -1,0 +1,113 @@
+.player {
+    background: #f6f8fa;
+    border: 2px solid #6c8ea3;
+    border-radius: 8px;
+    margin: 0 10px;
+    padding: 15px 10px 20px 10px;
+    min-width: 220px;
+    /* flex: 1 1 0; */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    
+}
+.player.active {
+    background: #eaf1f6;
+    border: 2px solid #7bb274;
+}
+.player h3 {
+    margin-bottom: 10px;
+    font-size: 22px;
+    color: #222;
+    text-align: left;
+    margin-left: 10px;
+}
+.player-numbers {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+.number {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    background: #eaf1f6;
+    border: 1px solid #b6c9d6;
+    border-radius: 4px;
+    font-size: 18px;
+    text-align: center;
+    color: #222;
+}
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+    margin-left: 10px;
+}
+.input-group label {
+    font-size: 18px;
+    color: #222;
+    margin-bottom: 2px;
+}
+.number-input {
+    width: 60px;
+    height: 40px;
+    font-size: 20px;
+    text-align: center;
+    border: 2px solid #333;
+    border-radius: 5px;
+    padding: 5px;
+    margin-left: 10px;
+}
+.move-button {
+    padding: 8px 18px;
+    font-size: 18px;
+    background: #6c8ea3;
+    color: #cd0d0d;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.2s, color 0.2s;
+}
+.move-button:hover:not(:disabled) {
+    background: #7bb274;
+    color: #fff;
+}
+.move-button:disabled {
+    background: #836666;
+    color: #888;
+    cursor: not-allowed;
+}
+.inputError {
+    color: #e57373;
+    font-size: 15px;
+    margin-top: 2px;
+    margin-left: 10px;
+    text-align: left;
+    min-height: 18px;
+    display: block;
+}
+div > button{
+    background: #6c8ea338;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 400;
+    transition: background 0.2s, color 0.2s;
+    &:hover{
+        background: #7bb274b2;
+    }
+}
+div > label > input {
+    margin-top: 10px;
+}

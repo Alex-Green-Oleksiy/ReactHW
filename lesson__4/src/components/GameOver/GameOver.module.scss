@@ -1,0 +1,17 @@
+.gameOver {
+    text-align: center;
+    padding: 20px;
+}
+.gameOverBtn {
+    padding: 10px 20px;
+    font-size: 18px;
+    background: #6c8ea3;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.gameOverBtn:hover {
+    background: #7bb274;
+}

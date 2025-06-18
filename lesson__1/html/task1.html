@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="uk">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Розрахунок для пасажирів (React)</title>
+        <!-- Підключаємо React -->
+        <script
+            crossorigin
+            src="https://unpkg.com/react@18/umd/react.development.js"
+        ></script>
+        <!-- Підключаємо ReactDOM -->
+        <script
+            crossorigin
+            src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+        ></script>
+        <!-- Babel для підтримки JSX -->
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #5a545493;
+                max-width: 600px;
+                margin: 20px auto;
+                padding: 20px;
+                line-height: 1.6;
+            }
+            .container {
+                background-color: #f5f5f5;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+            input[type="number"] {
+                width: 100%;
+                padding: 8px;
+                margin: 8px 0;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                box-sizing: border-box;
+            }
+            button {
+                background-color: #4caf50;
+                color: white;
+                padding: 10px 15px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 16px;
+                margin-top: 10px;
+            }
+            button:hover {
+                background-color: #45a049;
+            }
+            .result {
+                margin-top: 20px;
+                padding: 15px;
+                background-color: #e8f5e9;
+                border-left: 4px solid #4caf50;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="root"></div>
+
+        <script type="text/babel">
+            function PassengersCalculator() {
+                const [passengers, setPassengers] = React.useState(1);
+                const [result, setResult] = React.useState(null);
+
+                const calculate = () => {
+                    if (passengers < 1) {
+                        alert(
+                            "Будь ласка, введіть коректну кількість пасажирів (більше 0)"
+                        );
+                        return;
+                    }
+
+                    const busCapacity = 20;
+                    const busesNeeded = Math.ceil(passengers / busCapacity);
+                    const bottlesNeeded = passengers * 2;
+                    const sandwichesNeeded = passengers * 3;
+
+                    setResult({
+                        buses: busesNeeded,
+                        bottles: bottlesNeeded,
+                        sandwiches: sandwichesNeeded
+                    });
+                };
+
+                return (
+                    <div className="container">
+                        <h2>Розрахунок для пасажирів</h2>
+                        <div>
+                            <label htmlFor="passengers">
+                                Введіть кількість пасажирів:
+                            </label>
+                            <input
+                                type="number"
+                                id="passengers"
+                                min="1"
+                                value={passengers}
+                                onChange={(e) =>
+                                    setPassengers(parseInt(e.target.value) || 0)
+                                }
+                            />
+                        </div>
+                        <button onClick={calculate}>Розрахувати</button>
+
+                        {result && (
+                            <div className="result">
+                                <h3>
+                                    Результати розрахунків для {passengers}{" "}
+                                    пасажирів:
+                                </h3>
+                                <p>
+                                    Потрібно автобусів:{" "}
+                                    <strong>{result.buses}</strong> (по 20 місць
+                                    у кожному)
+                                </p>
+                                <p>
+                                    Потрібно пляшок води:{" "}
+                                    <strong>{result.bottles}</strong> (по 2 на
+                                    пасажира)
+                                </p>
+                                <p>
+                                    Потрібно бутербродів:{" "}
+                                    <strong>{result.sandwiches}</strong> (по 3
+                                    на пасажира)
+                                </p>
+                            </div>
+                        )}
+                    </div>
+                );
+            }
+
+            // Рендеримо компонент у DOM
+            const root = ReactDOM.createRoot(document.getElementById("root"));
+            root.render(<PassengersCalculator />);
+        </script>
+    </body>
+</html>

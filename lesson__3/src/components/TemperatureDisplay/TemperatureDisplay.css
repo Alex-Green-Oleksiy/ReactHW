@@ -1,0 +1,103 @@
+.temperature-container {
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.5s ease;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.temperature-container h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #2c3e50;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.input-group {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 500;
+  font-size: 16px;
+  color: #2c3e50;
+}
+
+.input-group input {
+  width: 200px;
+  padding: 12px 15px;
+  font-size: 18px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+}
+
+/* Стилі для різних температур */
+.cold {
+  background-color: #f8f9fa;
+  color: #0d6efd;
+}
+
+.cool {
+  background-color: #e7f5ff;
+  color: #0c63e4;
+  border-color: #9ec5fe;
+}
+
+.moderate {
+  background-color: #ebfbee;
+  color: #198754;
+  border-color: #a3cfbb;
+}
+
+.hot {
+  background-color: #fff3bf;
+  color: #e67700;
+  border-color: #ffd43b;
+}
+
+.invalid {
+  background-color: #fff5f5;
+  color: #dc3545;
+  border-color: #ffc9c9;
+}
+
+.temperature-display {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+}
+
+.temperature-status {
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+/* Анімація для плавної зміни кольору */
+@keyframes fadeIn {
+  from { opacity: 0.7; }
+  to { opacity: 1; }
+}
+
+.temperature-container {
+  animation: fadeIn 0.5s ease-in-out;
+}
