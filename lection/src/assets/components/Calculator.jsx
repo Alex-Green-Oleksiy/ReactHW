@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import "./App.scss";
 
 // Компонент-калькулятор для двох чисел
 function Calculator() {
