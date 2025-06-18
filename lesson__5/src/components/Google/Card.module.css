@@ -1,0 +1,42 @@
+/* Card Container */
+.card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #2c2c2c; /* Dark background similar to the image */
+  border-radius: 8px; /* Slightly rounded corners */
+  padding: 20px;
+  width: 200px; /* Adjust width as needed */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+  font-family: Arial, sans-serif; /* Example font */
+}
+
+/* Image Wrapper (for circular shape and centering) */
+.card-image-wrapper {
+  width: 100px; /* Adjust size of the circle */
+  height: 100px; /* Adjust size of the circle */
+  border-radius: 50%; /* Makes the container circular */
+  overflow: hidden; /* Hides parts of the image outside the circle */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px; /* Space between image and text */
+  background-color: #4a4a4a; /* A slightly lighter dark background for the circle, similar to the image */
+}
+
+/* Image within the wrapper */
+.card-image {
+  width: 100%; /* Ensure image fills the circular wrapper */
+  height: 100%; /* Ensure image fills the circular wrapper */
+  object-fit: cover; /* Crops the image to fit without distortion */
+}
+
+/* Title/Text */
+.card-title {
+  color: #ffffff; /* White text color */
+  font-size: 1.1em;
+  text-align: center;
+  white-space: nowrap; /* Prevents text from wrapping */
+  overflow: hidden; /* Hides overflowing text */
+  text-overflow: ellipsis; /* Adds "..." for overflowing text */
+}
