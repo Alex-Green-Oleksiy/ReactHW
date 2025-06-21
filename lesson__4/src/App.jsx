@@ -4,6 +4,7 @@ import Player from './components/Player/Player';
 import SecretNumber from './components/SecretNumber/SecretNumber';
 import GameOver from './components/GameOver/GameOver';
 import Messenger from './components/Messenger/Messenger';
+import { getError, isNumberUsed } from './utils';
 
 function App() {
     const secretNumbers = useRef([]);
@@ -33,17 +34,6 @@ function App() {
         setWinner(null);
     };
 
-    const isNumberUsed = (number) =>
-        playerNumbers[0].includes(number) || playerNumbers[1].includes(number);
-
-    const getError = (value) => {
-        if (!value) return '';
-        const number = parseInt(value);
-        if (isNaN(number)) return 'Введіть цифру';
-        if (isNumberUsed(number)) return 'Це число вже було введене!';
-        return '';
-    };
-
     const handleInputChange = (idx, e) => {
         const val = e.target.value.replace(/\D/g, '').slice(0, 1);
         setInputs((inputs) => inputs.map((v, i) => (i === idx ? val : v)));
@@ -52,7 +42,7 @@ function App() {
     const handleMove = (idx) => {
         const value = inputs[idx];
         const number = parseInt(value);
-        if (isNaN(number) || isNumberUsed(number)) return;
+        if (isNaN(number) || isNumberUsed(number, playerNumbers)) return;
         const index = secretNumbers.current.indexOf(number);
         let newGuessedNumbers = guessedNumbers;
         if (index !== -1) {
@@ -82,10 +72,10 @@ function App() {
                             value={inputs[idx]}
                             onChange={(e) => handleInputChange(idx, e)}
                             onMove={() => handleMove(idx)}
-                            disabled={!!getError(inputs[idx]) || gameOver}
+                            disabled={!!getError(inputs[idx], playerNumbers) || gameOver}
                             numbers={playerNumbers[idx]}
                             isActive={currentPlayer === idx && !gameOver}
-                            error={getError(inputs[idx])}
+                            error={getError(inputs[idx], playerNumbers)}
                         />
                     ))}
                 </div>
