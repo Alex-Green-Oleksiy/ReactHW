@@ -35,7 +35,7 @@
     box-shadow: 0 0 0 2px #ffd6d6;
 }
 .info {
-    color: #988f8f;
+    color: #eddfdf;
     font-size: 14px;
     margin-bottom: 8px;
 }
@@ -46,4 +46,8 @@ ul {
 }
 .notfound {
     color: #c00;
+}
+input::placeholder {
+    padding-left: 5px;
+    color: #ffffffa7;
 }
