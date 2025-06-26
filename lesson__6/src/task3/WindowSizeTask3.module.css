@@ -1,0 +1,45 @@
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: #faf7f7;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(200, 0, 0, 0.08);
+    border: 1.5px solid #c00;
+    color: #111;
+    text-align: center;
+}
+.title {
+    color: #111;
+    border-left: 5px solid #c00;
+    padding-left: 0.5em;
+    margin-bottom: 1.2em;
+}
+.sizes {
+    font-size: 24px;
+    margin-bottom: 16px;
+}
+.icon {
+    font-size: 48px;
+}
+.device {
+    margin-top: 8px;
+    color: #888;
+}
+
+@media (max-width: 600px) {
+    .container {
+        max-width: 99vw;
+        padding: 0.7rem;
+    }
+    .title {
+        font-size: 1.1em;
+        padding-left: 0.3em;
+    }
+    .sizes {
+        font-size: 1em;
+    }
+    .icon {
+        font-size: 2em;
+    }
+}

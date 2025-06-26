@@ -1,0 +1,20 @@
+label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1em;
+}
+input {
+    border: 1.5px solid rgb(0, 0, 0);
+    border-left: none;
+    border-radius: 0 4px 4px 0;
+    padding: 6px 10px;
+    color: #111;
+    background: #ffffff00;
+    transition: border 0.2s, box-shadow 0.2s;
+}
+input:focus {
+    outline: none;
+    border-color: rgb(11, 11, 11);
+    box-shadow: 0 0 0 2px #ffd6d6;
+}

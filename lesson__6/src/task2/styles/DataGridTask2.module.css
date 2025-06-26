@@ -1,0 +1,107 @@
+/* Container styles */
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: #faf7f704;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px 0 rgba(44, 62, 80, 0.13),
+        /* темно-синій м'який */ 0 8px 32px 0 rgba(52, 152, 219, 0.1),
+        /* блакитний розмитий */ 0 1.5px 12px 0 rgba(46, 204, 113, 0.08),
+        /* зелений легкий */ 0 0.5px 2px 0 rgba(200, 0, 0, 0.3);
+    border: 1.5px solid rgb(5, 5, 5);
+    color: #111;
+}
+.title {
+    color: #111;
+    border-left: 5px solid rgb(6, 6, 6);
+    padding-left: 0.5em;
+    margin-bottom: 1.2em;
+}
+/* Input styles */
+.input {
+    margin-bottom: 12px;
+    max-width: 100%;
+    width: 100%;
+    padding: 4px;
+    border: 1.5px solid rgb(0, 0, 0);
+    border-radius: 4px;
+    color: #111;
+    background: #ffffff05;
+    transition: border 0.2s, box-shadow 0.2s;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+.input:focus {
+    outline: none;
+    border-color: rgba(204, 0, 0, 0);
+    box-shadow: 0 0 0 2px #ffd6d6;
+}
+/* Table styles */
+.table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    box-sizing: border-box;
+}
+th,
+td {
+    border-bottom: 1px solid rgb(0, 0, 0);
+    padding: 6px 16px;
+    color: #111;
+    box-sizing: border-box;
+    text-align: left;
+    white-space: nowrap;
+    font-size: 1em;
+    width: auto;
+}
+th {
+    background: #908f8f22;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+th:hover {
+    background: rgba(45, 1, 1, 0.306);
+    color: #fff;
+}
+.selected {
+    background: #eef;
+    padding: 8px;
+    border-radius: 4px;
+    margin-top: 16px;
+}
+.info {
+    margin-top: 16px;
+    font-size: 14px;
+    color: #555;
+}
+
+/* ADAPTIVE STYLES */
+@media (max-width: 900px) {
+    .container {
+        max-width: 99vw;
+        padding: 0.7rem;
+    }
+    .title {
+        font-size: 1.1em;
+        padding-left: 0.3em;
+    }
+    .input {
+        font-size: 0.98em;
+        padding: 0.4em;
+    }
+    .table {
+        width: 100%;
+
+        table-layout: fixed;
+    }
+    th,
+    td {
+        white-space: normal;
+        word-break: break-word;
+        overflow-wrap: anywhere;
+        padding: 4px 8px;
+        font-size: 0.98em;
+    }
+}
