@@ -1,15 +1,16 @@
-import styles from "./PaymentRules.module.css";
+import styles from "../../styles/ShopPage.module.css";
 
 export default function PaymentRules() {
     return (
-        <section>
-            <div className={styles.card}>
-                <h2 className={styles.title}>Правила оплати</h2>
+        <div className={styles.container}>
+            <div className={styles.productCard}>
+                <h1 className={styles.title}>Правила оплати</h1>
                 <ul className={styles.list}>
-                    <li>Оплата на карту або післяплата</li>
-                    <li>Повернення товару протягом 14 днів</li>
+                    <li>Оплата онлайн банківською картою</li>
+                    <li>Готівкою при отриманні</li>
+                    <li>Безготівковий розрахунок для юр. осіб</li>
                 </ul>
             </div>
-        </section>
+        </div>
     );
 }

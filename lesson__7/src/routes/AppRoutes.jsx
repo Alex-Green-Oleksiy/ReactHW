@@ -5,6 +5,7 @@ import ShopPage from "../pages/ShopPage/ShopPage";
 import PaymentRules from "../pages/PaymentRules/PaymentRules";
 import Contacts from "../pages/Contacts/Contacts";
 import ProductDetails from "../pages/ShopPage/components/ProductDetails";
+import Page404 from "../pages/ShopPage/components/Page404";
 import frontRoutes from "./frontRoutes";
 
 function AppRoutes() {
@@ -24,6 +25,7 @@ function AppRoutes() {
                     path={frontRoutes.pages.contacts}
                     element={<Contacts />}
                 />
+                <Route path="*" element={<Page404 />} />
             </Route>
         </Routes>
     );

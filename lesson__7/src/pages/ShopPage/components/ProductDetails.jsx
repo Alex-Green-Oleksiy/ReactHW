@@ -1,132 +1,92 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import apiRoutes from "../../../api/apiRoutes";
-import styles from "../ShopPage.module.css";
+import styles from "../../../styles/ShopPage.module.css";
+import LoadingSpinner from "./LoadingSpinner";
 
 export default function ProductDetails() {
     const { id } = useParams();
-    const navigate = useNavigate();
     const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
 
     useEffect(() => {
-        async function fetchProduct() {
-            try {
-                setLoading(true);
-                const response = await fetch(apiRoutes.getProductById(id));
-                if (!response.ok) {
-                    throw new Error("Товар не знайдено");
-                }
-                const data = await response.json();
-                setProduct(data);
-            } catch (err) {
-                setError(true);
-                console.error("Помилка завантаження товару:", err);
-            } finally {
-                setLoading(false);
-            }
-        }
-
-        fetchProduct();
+        fetch(apiRoutes.getProductById(id))
+            .then((res) => {
+                if (!res.ok) throw new Error();
+                return res.json();
+            })
+            .then(setProduct)
+            .catch(() => setError(true))
+            .finally(() => setLoading(false));
     }, [id]);
 
-    if (loading) {
+    if (loading)
         return (
-            <div className={styles.loading}>
-                <div className={styles.spinner}>
-                    {Array.from({ length: 8 }, (_, i) => (
-                        <div key={i} className={styles.wave} />
-                    ))}
-                </div>
-                <span className={styles.loadingText}>Завантаження...</span>
-            </div>
-        );
-    }
-
-    if (error || !product) {
-        return (
-            <div className={styles.card}>
-                <h2 className={styles.title}>Товар не знайдено</h2>
-                <button
-                    onClick={() => navigate("/shop")}
-                    className={styles.productCardBtn}
-                >
-                    Повернутися до магазину
-                </button>
-            </div>
-        );
-    }
-
-    return (
-        <div className={styles.card}>
             <div
                 style={{
+                    minHeight: "100vh",
                     display: "flex",
-                    gap: "32px",
-                    alignItems: "flex-start"
+                    alignItems: "center",
+                    justifyContent: "center",
+                    background: "#181818"
                 }}
             >
-                {product.imageUrl && (
-                    <img
-                        src={product.imageUrl}
-                        alt={product.name}
-                        style={{
-                            width: "400px",
-                            height: "400px",
-                            objectFit: "contain",
-                            borderRadius: "12px",
-                            background: "#f8fafc",
-                            padding: "16px"
-                        }}
-                    />
-                )}
-                <div style={{ flex: 1 }}>
-                    <h1 className={styles.title}>{product.name}</h1>
-                    <div
-                        style={{
-                            fontSize: "32px",
-                            fontWeight: "700",
-                            color: "#059669",
-                            marginBottom: "24px"
-                        }}
-                    >
-                        {product.price} грн
-                    </div>
-                    <div style={{ marginBottom: "24px" }}>
-                        <h3 style={{ fontSize: "18px", marginBottom: "12px" }}>
-                            Опис товару:
-                        </h3>
-                        <p style={{ lineHeight: "1.6", color: "#6b7280" }}>
-                            Це якісний товар з найкращими характеристиками.
-                            Ідеально підходить для повсякденного використання.
-                        </p>
-                    </div>
-                    <div style={{ display: "flex", gap: "16px" }}>
-                        <button
-                            className={styles.productCardBtn}
-                            style={{ flex: 1 }}
-                        >
-                            Купити зараз
-                        </button>
-                        <button
-                            onClick={() => navigate("/shop")}
-                            style={{
-                                padding: "12px 24px",
-                                border: "2px solid #2563eb",
-                                background: "transparent",
-                                color: "#2563eb",
-                                borderRadius: "8px",
-                                fontWeight: "600",
-                                cursor: "pointer",
-                                transition: "all 0.2s"
-                            }}
-                        >
-                            Назад до магазину
-                        </button>
-                    </div>
-                </div>
+                <LoadingSpinner />
             </div>
+        );
+    if (error || !product)
+        return <div className={styles.noProducts}>Товар не знайдено</div>;
+
+    return (
+        <div
+            className={styles.productCard}
+            style={{ maxWidth: 700, margin: "40px auto" }}
+        >
+            {product.imageUrl && (
+                <img
+                    src={product.imageUrl}
+                    alt={product.name}
+                    className={styles.productImage}
+                    style={{
+                        width: 340,
+                        height: 340,
+                        marginBottom: 32,
+                        display: "block",
+                        marginLeft: "auto",
+                        marginRight: "auto"
+                    }}
+                />
+            )}
+            <h1
+                className={styles.title}
+                style={{ fontSize: 40, marginBottom: 24 }}
+            >
+                {product.name}
+            </h1>
+            <div
+                className={styles.productPrice}
+                style={{ fontSize: 32, marginBottom: 32 }}
+            >
+                {product.price} грн
+            </div>
+            <div
+                style={{
+                    textAlign: "center",
+                    marginBottom: 32,
+                    fontSize: 22,
+                    color: "#fff"
+                }}
+            >
+                <b>Справжній вибір для справжніх поціновувачів техніки!</b>
+            </div>
+            <Link
+                to="/shop"
+                className={styles.productCardBtn}
+                style={{ maxWidth: 300, margin: "0 auto" }}
+            >
+                Назад до магазину
+            </Link>
         </div>
     );
 }

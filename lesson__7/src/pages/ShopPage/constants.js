@@ -1,15 +1,15 @@
 export const API_URL = import.meta.env.VITE_API_URL || "/api/products";
 
 export const CATEGORIES = [
-    { value: "tv", label: "Телевізори" },
+    { value: "smartphone", label: "Смартфони" },
     { value: "laptop", label: "Ноутбуки" },
-    { value: "phone", label: "Телефони" },
-    { value: "monitor", label: "Монітори" }
+    { value: "monitor", label: "Монітори" },
+    { value: "tv", label: "Телевізори" }
 ];
 
 export const categoryMap = {
-    tv: ["телевізор", "tv"],
-    laptop: ["ноутбук", "laptop"],
-    phone: ["телефон", "phone", "смартфон"],
-    monitor: ["монітор", "monitor"]
+    smartphone: ["смартфон", "smartphone", "phone", "телефон"],
+    laptop: ["ноутбук", "laptop", "macbook", "ноут"],
+    monitor: ["монітор", "monitor"],
+    tv: ["телевізор", "tv", "телевізор"]
 };

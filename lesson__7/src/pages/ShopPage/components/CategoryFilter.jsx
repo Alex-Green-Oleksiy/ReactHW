@@ -1,4 +1,4 @@
-import styles from "../ShopPage.module.css";
+import styles from "../../../styles/ShopPage.module.css";
 
 export default function CategoryFilter({
     categories,
