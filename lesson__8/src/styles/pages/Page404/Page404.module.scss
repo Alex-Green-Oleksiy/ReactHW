@@ -1,0 +1,78 @@
+/* move to src/pages/Page404/Page404.module.css */
+
+@use "../../mixins.scss" as *;
+
+.page404Container {
+    @include coffee-bg;
+    @include coffee-text;
+    @include brutal-font;
+    min-height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 100;
+    overflow: hidden;
+    background: linear-gradient(135deg, #ffb347 0%, #ff3d00 25%, #ffea00 50%, #00e676 75%, #2979ff 100%);
+    background-size: 200% 200%;
+    animation: rainbow-bg-move 6s ease-in-out infinite alternate;
+    gap: 24px;
+}
+
+.bg404 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 18vw;
+    font-weight: 900;
+    color: #fff;
+    opacity: 0.18;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+    line-height: 1;
+    text-shadow: 0 2px 24px #0008;
+}
+
+.loaderWrapper {
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rainbowLoader {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 10px solid transparent;
+    border-top: 10px solid #ff3d00;
+    border-right: 10px solid #ffea00;
+    border-bottom: 10px solid #00e676;
+    border-left: 10px solid #2979ff;
+    animation: rainbow-spin 1s linear infinite;
+    box-shadow: 0 0 24px 4px #fff8f0;
+}
+
+@keyframes rainbow-spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes rainbow-bg-move {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
+}

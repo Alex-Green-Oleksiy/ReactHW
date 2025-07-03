@@ -1,0 +1,23 @@
+/* move to src/pages/AboutApp/AboutApp.module.css */
+
+@use '../../mixins.scss' as *;
+
+.aboutAppContainer {
+  @include coffee-bg;
+  @include coffee-text;
+  @include brutal-font;
+  max-width: 700px;
+  padding: 10px 20px 20px 20px;
+  box-shadow: inset 10px 10px 20px 5px $coffee-brown;
+  & h2{
+    font-size: 25px;
+    color: $coffee-accent;
+    font-weight: 200;
+  }
+  & p{
+    font-size: 15px;
+    font-weight: 200;
+    color: $coffee-brown-dark;
+    letter-spacing: 1.5px;
+  }
+}

@@ -1,0 +1,16 @@
+version: "3.8"
+services:
+    frontend:
+        build: .
+        ports:
+            - "3000:80"
+        depends_on:
+            - backend
+        restart: unless-stopped
+    backend:
+        build: ./simple_backend
+        ports:
+            - "5001:5001"
+        volumes:
+            - ./simple_backend/products.json:/app/products.json
+        restart: unless-stopped

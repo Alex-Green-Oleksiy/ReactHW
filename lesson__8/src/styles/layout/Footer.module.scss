@@ -1,0 +1,13 @@
+@use "../mixins.scss" as *;
+
+.container {
+    width: 100%;
+    @include coffee-bg($coffee-accent);
+    @include coffee-text($coffee-white);
+    text-align: center;
+    padding: 18px 24px 14px 24px;
+    font-size: 1rem;
+    font-family: "Gilroy", Arial, sans-serif;
+    font-weight: 400;
+
+}

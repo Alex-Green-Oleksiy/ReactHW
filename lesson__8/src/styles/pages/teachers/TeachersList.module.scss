@@ -1,0 +1,84 @@
+@use "../../mixins.scss" as *;
+
+.teachersActions {
+    display: flex;
+    flex-direction: row;
+    gap: 18px;
+    margin-bottom: 24px;
+    justify-content: space-between;
+}
+
+.teachersActions button {
+    @include coffee-btn;
+    @include accent-font;
+    border-radius: 8px;
+    font-size: 1rem;
+    flex-shrink: 1;
+    min-width: 240px;
+    text-align: center;
+}
+
+.teachersActions button:disabled {
+    background: #bdbdbd;
+    color: #fff;
+    cursor: not-allowed;
+}
+
+@media (max-width: 600px) {
+    .teachersActions {
+        flex-direction: column;
+        gap: 10px;
+        align-items: stretch;
+    }
+    .teachersActions button {
+        min-width: 0;
+        width: 100%;
+    }
+}
+
+.teachersListContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 5px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.teachersFlex {
+    display: flex;
+    flex-direction: column;
+    gap: 24px 18px;
+    width: 100%;
+    justify-items: center;
+    margin-bottom: 32px;
+}
+
+.goToMeetingBtn {
+    @include coffee-btn;
+    @include accent-font;
+    border-radius: 8px;
+    font-size: 1rem;
+    margin-top: 18px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.goToMeetingBtn:disabled {
+    background: #bdbdbd;
+    color: $coffee-bg;
+    cursor: not-allowed;
+}
+
+.listContainer {
+    border-radius: 8px;
+    border: none;
+    @include coffee-bg;
+}
+h1 {
+    font-size: 25px;
+    font-weight: 700;
+    color: $coffee-accent-dark;
+    margin-bottom: 20px;
+}

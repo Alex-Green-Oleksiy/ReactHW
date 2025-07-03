@@ -1,0 +1,35 @@
+/* move to src/pages/AboutDev/AboutDev.module.css */
+
+@use "../../mixins.scss" as *;
+
+.aboutDevContainer {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 32px 24px;
+    background: $coffee-bg;
+    border-radius: 18px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: $coffee-brown-dark;
+    @include coffee-bg;
+    @include coffee-text;
+    @include brutal-font;
+}
+
+.aboutDevContainer h2 {
+    margin-bottom: 16px;
+    font-size: 2rem;
+    font-weight: 400;
+    color: $coffee-accent-dark;
+}
+
+.aboutDevContainer p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: $coffee-accent-dark;
+    font-weight: 200;
+}
+
+.aboutDevContainer button {
+    margin-bottom: 10px;
+}

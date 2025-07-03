@@ -1,0 +1,46 @@
+/* move to src/pages/Home/Home.module.css */
+
+@use "../../mixins.scss" as *;
+
+.homeContainer {
+    @include coffee-bg;
+    @include coffee-text;
+    @include brutal-font;
+    padding: 20px;
+    max-width: 700px;
+    border-radius: 12px;
+    & h1{
+        font-size: 25px;
+        color: $coffee-accent;
+        letter-spacing: 1.9px;
+        margin-bottom: 10px;
+    }
+    & p{
+        font-size: 18px;
+        font-weight: 400;
+        margin-bottom: 15px;
+    }
+    & .homeCard{
+        & .homeActions{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            gap: 10px;
+            & button{
+                background-color: $coffee-accent-dark;
+                color: $coffee-bg;
+                padding: 5px 10px;
+                font-weight: 200;
+                letter-spacing: 1.7px;
+                flex-grow: 1;
+                border-radius: 8px;transition: all 0.4s;
+                &:hover{
+                    background-color: $coffee-accent;
+                    color: $coffee-black;
+                    transition: all 0.4s;
+                }
+            }
+        }
+    }
+    
+}

@@ -1,0 +1,57 @@
+@use "./styles/reset.scss";
+@use "./styles/fonts.scss";
+@use "./styles/mixins.scss";
+
+/* Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body,
+#root {
+    height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #f5eee6;
+    color: #4b2e19;
+    line-height: 1.6;
+    transition: background 0.3s;
+    overflow-x: hidden;
+}
+
+button,
+input,
+textarea,
+select {
+    font-family: inherit;
+}
+
+a {
+    color: #6f4e37;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+a:hover {
+    color: #bfa084;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    background: #e6ded7;
+}
+::-webkit-scrollbar-thumb {
+    background: #bfa084;
+    border-radius: 4px;
+}
+
+@media (max-width: 600px) {
+    body {
+        font-size: 15px;
+    }
+}

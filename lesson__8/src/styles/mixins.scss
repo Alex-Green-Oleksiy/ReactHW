@@ -1,0 +1,168 @@
+@use "./fonts.scss" as *;
+// Мінімальна ширина сторінки
+$minWidth: 320;
+// Ширина полотна (макету)
+$maxWidth: 1920;
+// Ширина обмежуючого контейнера (0 = немає обмеження)
+$maxWidthContainer: 1170;
+// Загальний відступ у контейнера
+// (30 = по 15px ліворуч і праворуч, 0 = немає відступу)
+$containerPadding: 30;
+// Ширина спрацьовування першого брейкпоінту
+$containerWidth: $maxWidthContainer + $containerPadding;
+// Брейк-поїнти
+$pc: toEm($containerWidth); // ПК, ноутбуки, деякі планшети у горизонтальному положенні
+$tablet: toEm(991.98); // Планшети, деякі телефони в горизонтальному положенні
+$mobile: toEm(767.98); // Телефони L
+$mobileSmall: toEm(479.98); // Телефони S
+// Тип адаптива:
+// 1 = чуйність (у контейнера немає брейкпоінтів),
+// 2 = по брейк-поїнт (контейнер змінює свою ширину по брейк-поїнт)
+$responsiveType: 1;
+//Percent
+@function percent($px, $from: 100) {
+    $result: math.div($px, $from) * 100%;
+    @return $result;
+}
+//REM
+@function toRem($px, $current: 16) {
+    $result: math.div($px, $current) + rem;
+    @return $result;
+}
+//EM
+@function toEm($px, $current: 16) {
+    $result: math.div($px, $current) + em;
+    @return $result;
+}
+// Адаптивна властивість (clamp)
+@mixin adaptiveValue($property, $startSize, $minSize, $keepSize: 0, $widthFrom: $containerWidth, $widthTo: $minWidth) {
+    @if ($startSize==0) {
+        $startSize: 0.000001;
+    }
+    @if ($minSize==0) {
+        $minSize: 0.000001;
+    }
+    // Для calc();
+    $addSize: math.div($startSize - $minSize, 16);
+    @if ($widthFrom == $containerWidth and $maxWidthContainer == 0) {
+        $widthFrom: $maxWidth;
+    }
+    // Брейк-поїнти в EM
+    $widthFromMedia: toEm($widthFrom);
+    $widthToMedia: toEm($widthTo);
+    // Формула плаваючого значення
+    // Источник: https://css-tricks.com/linearly-scale-font-size-with-css-clamp-based-on-the-viewport/
+    $slope: math.div(($startSize - $minSize), ($widthFrom - $widthTo));
+    $yIntersection: -$widthTo * $slope + $minSize;
+    @if ($yIntersection==0) {
+        $yIntersection: 0.000001;
+    }
+    $flyValue: #{toRem($yIntersection)}" + " #{$slope * 100}vw;
+    // Отримання значення властивості
+    $propertyValue: #{"clamp(" toRem($minSize) "," $flyValue "," toRem($startSize) ")"};
+    // Якщо негативні значення
+    @if ($minSize > $startSize) {
+        $propertyValue: #{"clamp(" toRem($startSize) "," $flyValue "," toRem($minSize) ")"};
+    }
+    // Встановлюємо значення за замовчуванням
+    @if $keepSize != 1 and $keepSize != 3 {
+        @media (min-width: $widthFromMedia) {
+            #{$property}: toRem($startSize);
+        }
+    }
+    // Адаптуємо розмір у проміжку між зазначеними ширинами в'юпорту
+    @media (min-width: $widthToMedia) and (max-width: $widthFromMedia) {
+        #{$property}: $propertyValue;
+        // Якщо підтримується clamp();
+        //@supports (#{$property}: $propertyValue) {
+        //	#{$property}: $propertyValue;
+        //}
+        // Якщо не підтримується clamp();
+        //@supports not (#{$property}: $propertyValue) {
+        //	#{$property}: calc(#{toRem($minSize)} + #{$addSize} * (100vw - #{toRem($widthTo)}) / #{math.div($widthFrom, 16) - math.div($widthTo, 16)});
+        //}
+    }
+    @if $keepSize != 1 and $keepSize != 2 {
+        @media (max-width: $widthToMedia) {
+            #{$property}: toRem($minSize);
+        }
+    }
+}
+
+// Coffee color palette
+$coffee-bg: #f3e9e2;
+$coffee-bg-dark: #d7ccc8;
+$coffee-brown: #795548;
+$coffee-brown-dark: #3e2723;
+$coffee-cream: #d7ccc8;
+$coffee-accent: #a1887f;
+$coffee-accent-dark: #6d4c41;
+$coffee-white: #fff8f0;
+$coffee-black: #2d1b0e;
+
+// Text colors
+$coffee-text: $coffee-brown-dark;
+$coffee-text-light: $coffee-brown;
+$coffee-text-invert: $coffee-white;
+
+// Button colors
+$coffee-btn-bg: $coffee-brown;
+$coffee-btn-bg-hover: $coffee-accent-dark;
+$coffee-btn-text: $coffee-white;
+$coffee-btn-border: $coffee-accent;
+
+// Mixin for background
+@mixin coffee-bg($color: $coffee-bg) {
+    background-color: $color;
+}
+
+// Mixin for text color
+@mixin coffee-text($color: $coffee-text) {
+    color: $color;
+}
+
+// Mixin for button style
+@mixin coffee-btn {
+    background: $coffee-btn-bg;
+    color: $coffee-btn-text;
+    border: 1.5px solid $coffee-btn-border;
+    border-radius: 6px;
+    padding: 0.5em 1.5em;
+    font-family: $brutal-font, "Gilroy", Arial, sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    transition:
+        background 0.2s,
+        color 0.2s,
+        border 0.2s;
+    cursor: pointer;
+    &:hover,
+    &:focus {
+        background: $coffee-btn-bg-hover;
+        color: $coffee-btn-text;
+        border-color: $coffee-brown-dark;
+    }
+}
+
+// Brutal font-face (example: Bebas Neue, Anton, or Impact)
+$brutal-font: "Bebas Neue", "Anton", Impact, Arial, sans-serif;
+
+@mixin brutal-font {
+    font-family: $brutal-font;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+// Міксин для прописного акцентного шрифту
+@mixin accent-font {
+    font-family: $accent-font;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+// Example usage:
+// .header-title { @include brutal-font; @include coffee-text($coffee-brown); }
+// .main-bg { @include coffee-bg; }
+// .btn { @include coffee-btn; }

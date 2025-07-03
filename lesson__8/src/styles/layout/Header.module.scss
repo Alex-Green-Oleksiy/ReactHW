@@ -1,0 +1,44 @@
+@use "../mixins.scss" as *;
+
+.container {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    background:$coffee-accent-dark;
+    color: $coffee-white;
+    padding: 18px 24px 14px 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    // border-bottom: 2px solid #bfa084;
+    font-size: 1.1rem;
+    font-family: "Segoe UI", Arial, sans-serif;
+    box-shadow: 0 2px 12px rgba(111, 78, 55, 0.08);
+    position: relative;
+}
+
+.container a {
+    color: $coffee-white;
+    padding: 6px 18px;
+    border-radius: 8px;
+    transition:
+        background 0.2s,
+        color 0.2s;
+}
+
+.container a:hover,
+.container .active {
+    background: $coffee-accent;
+    color:$coffee-black;
+}
+
+@media (max-width: 600px) {
+    .container {
+        gap: 10px;
+        font-size: 0.98rem;
+        flex-wrap: wrap;
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+}

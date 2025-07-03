@@ -1,0 +1,20 @@
+@use "../../mixins.scss" as *;
+
+.detailContainer {
+    max-width: 600px;
+    margin: 10px auto;
+    padding: 32px 24px;
+    @include coffee-bg($coffee-white);
+    border-radius: 18px;
+    box-shadow: 0 4px 24px rgba($coffee-brown, 0.1);
+    @include brutal-font;
+    @include coffee-text($coffee-brown-dark);
+    border: 1px solid $coffee-cream;
+}
+
+@media (max-width: 600px) {
+    .detailContainer {
+        padding: 14px 6px;
+        max-width: 98vw;
+    }
+}

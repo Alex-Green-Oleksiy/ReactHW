@@ -1,0 +1,13 @@
+@use "../../mixins.scss" as *;
+@use "../../fonts.scss" as *;
+
+.goHomeBtn {
+    @include coffee-btn;
+    @include accent-font;
+    font-size: 1rem;
+    font-family: $accent-font;
+    font-weight: 600;
+    border-radius: 8px;
+    margin: 24px auto 10px auto;
+    display: block;
+}

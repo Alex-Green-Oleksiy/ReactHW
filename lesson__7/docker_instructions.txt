@@ -1,0 +1,93 @@
+ІНСТРУКЦІЯ: Як залити фронтенд і бекенд у Docker
+
+1. Підготуйте структуру проєкту
+--------------------------------
+project-root/
+│
+├── src/                # фронтенд (React, Vite)
+├── simple_backend/     # бекенд (Node.js, Express)
+├── public/
+├── Dockerfile          # для фронтенду
+├── docker-compose.yml  # для обох сервісів
+├── nginx.conf          # для SPA fallback (якщо потрібно)
+└── ...інші файли
+
+2. Створіть Dockerfile для фронтенду (React/Vite)
+-------------------------------------------------
+# Dockerfile (у корені):
+FROM node:20-alpine AS build
+WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm ci
+COPY . .
+RUN npm run build
+
+FROM nginx:alpine
+COPY --from=build /app/dist /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
+
+# nginx.conf (у корені):
+server {
+  listen 80;
+  server_name localhost;
+  root /usr/share/nginx/html;
+  index index.html;
+  location / {
+    try_files $uri $uri/ /index.html;
+  }
+}
+
+3. Створіть Dockerfile для бекенду (Node.js/Express)
+-----------------------------------------------------
+# simple_backend/Dockerfile:
+FROM node:20-alpine
+WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm ci
+COPY . .
+EXPOSE 5001
+CMD ["npm", "start"]
+
+4. Створіть docker-compose.yml
+------------------------------
+# docker-compose.yml (у корені):
+version: '3.8'
+services:
+  frontend:
+    build: .
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+  backend:
+    build: ./simple_backend
+    ports:
+      - "5001:5001"
+    volumes:
+      - ./simple_backend/products.json:/app/products.json
+    restart: unless-stopped
+
+5. Запуск проєкту
+------------------
+Відкрийте термінал у корені проєкту та запустіть:
+docker compose up --build
+
+Фронтенд: http://localhost:3000
+Бекенд:   http://localhost:5001
+
+6. Оновлення коду
+------------------
+Після змін у коді зупиніть контейнери (Ctrl+C) і знову запустіть:
+docker compose up --build
+
+7. Зупинка контейнерів
+----------------------
+docker compose down
+
+Додатково:
+- Не зберігайте node_modules у репозиторії.
+- Для production-режиму не потрібно копіювати локальні node_modules у контейнер.
+- Для інших мов/фреймворків принцип схожий: створюєте Dockerfile, описуєте залежності, налаштовуєте docker-compose. 
