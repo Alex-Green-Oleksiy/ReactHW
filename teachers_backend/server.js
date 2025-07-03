@@ -5,7 +5,10 @@ const fs = require('fs').promises // Використовуємо promises API �
 const path = require('path') // Для роботи зі шляхами до файлів
 
 const app = express()
-const PORT = process.env.PORT || 5000
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
 const DATA_FILE = path.join(__dirname, 'teachers.json') // Шлях до файлу даних
 
 // Middleware
