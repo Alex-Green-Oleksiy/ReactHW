@@ -13,7 +13,7 @@
     font-size: 1rem;
     border-radius: 8px;
     border: none;
- 
+
     background: $coffee-accent-dark;
     color: $coffee-bg-dark;
     cursor: pointer;
@@ -27,8 +27,15 @@
     color: $coffee-black;
 }
 
+.meetingBackBtnWrapper button:disabled {
+    background: #bdbdbd;
+    color: #fff;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
 .meetingTitle {
-    color:$coffee-black;
+    color: $coffee-black;
     font-size: 2rem;
     font-weight: 500;
     color: $coffee-accent;
@@ -36,7 +43,6 @@
     text-align: center;
     letter-spacing: 7px;
 }
-
 
 @media (max-width: 600px) {
     .meetingBackBtnWrapper {
@@ -53,7 +59,7 @@
     @include brutal-font;
     padding: 10px;
     border-radius: 15px;
-    & h2{
+    & h2 {
         color: $coffee-accent-dark;
         letter-spacing: 5px;
         font-weight: 200;

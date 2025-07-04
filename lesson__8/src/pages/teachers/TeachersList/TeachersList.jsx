@@ -101,7 +101,7 @@ function TeachersList() {
                     className={styles.goToMeetingBtn}
                     onClick={() => goToMeeting()}
                 >
-                    Go to meeting
+                    На збори
                 </button>
             </div>
         </div>

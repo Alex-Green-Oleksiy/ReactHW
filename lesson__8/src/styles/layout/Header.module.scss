@@ -1,10 +1,10 @@
 @use "../mixins.scss" as *;
 
 .container {
-    width: 100%;
-    min-width: 0;
+    // width: 100%;
+    // min-width: 0;
     box-sizing: border-box;
-    background:$coffee-accent-dark;
+    background: $coffee-accent-dark;
     color: $coffee-white;
     padding: 18px 24px 14px 24px;
     display: flex;
@@ -30,7 +30,7 @@
 .container a:hover,
 .container .active {
     background: $coffee-accent;
-    color:$coffee-black;
+    color: $coffee-black;
 }
 
 @media (max-width: 600px) {
@@ -41,4 +41,13 @@
         padding-left: 8px;
         padding-right: 8px;
     }
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
 }

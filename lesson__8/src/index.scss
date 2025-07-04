@@ -50,6 +50,12 @@ a:hover {
     border-radius: 4px;
 }
 
+html,
+body {
+    background: transparent;
+    overflow-y: hidden;
+}
+
 @media (max-width: 600px) {
     body {
         font-size: 15px;

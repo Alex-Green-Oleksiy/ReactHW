@@ -6,7 +6,13 @@ function TeacherCard({ teacher, onSelect, isSelected, onDelete, hideActions }) {
     const navigate = useNavigate();
     return (
         <div className={styles.cardContainer}>
-            <div className={styles.container}>
+            <div
+                className={
+                    isSelected
+                        ? `${styles.container} ${styles.selected}`
+                        : styles.container
+                }
+            >
                 <div className={styles.content}>
                     <div className={styles.section1}>
                         <img src={teacher.photo} alt="photo" />

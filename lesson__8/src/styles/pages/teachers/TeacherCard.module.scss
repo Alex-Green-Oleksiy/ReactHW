@@ -5,7 +5,7 @@
     flex-direction: column;
     background: $coffee-bg-dark;
     border-radius: 16px;
-    box-shadow: 0 4px 24px rgba(111, 78, 55, 0.1);
+    // box-shadow: 0 4px 24px rgba(111, 78, 55, 0.1);
     padding: 20px 24px;
     margin-bottom: 24px;
     /* width: 320px; */
@@ -26,7 +26,7 @@
     border: 2px solid $coffee-accent; /* світло-зелений */
     border-radius: 8px;
     padding: 10px 16px;
-    background-color:$coffee-accent;
+    background-color: $coffee-accent;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
     min-width: 420px;
     font-family: sans-serif;
@@ -94,7 +94,6 @@
     justify-content: space-between;
     gap: 12px;
     margin-top: 10px;
-    
 }
 
 .actions .editBtn,
@@ -106,14 +105,13 @@
     border-radius: 8px;
     padding: 7px 18px;
     flex-grow: 1;
-    
 }
 
 .actions .deleteBtn {
     background: $coffee-white;
     color: $coffee-black;
     border: 1px solid $coffee-brown;
-    
+
     &:hover {
         background: $coffee-accent-dark;
     }
@@ -137,6 +135,25 @@
     }
 }
 
+@media (max-width: 460px) {
+    .content {
+        padding: 0px 6px;
+
+        min-width: 220px;
+    }
+    .container {
+        padding: 5px 4px;
+        margin-bottom: 4px;
+        /* width: 320px; */
+        /* min-width: 0; */
+        // max-width: 100%;
+    }
+    .actions {
+        flex-direction: column;
+        gap: 8px;
+    }
+}
+
 .cardContainer {
     @include coffee-bg($coffee-white);
     border-radius: 16px;
@@ -157,8 +174,9 @@
 }
 
 .selected {
-    border: 2px solid $coffee-accent;
-    border-radius: 8px;
+    border: 2.5px solid $coffee-accent-dark;
+    background: #fffbe6;
+    box-shadow: 0 0 0 3px rgba($coffee-accent, 0.15);
 }
 
 .avatar {
