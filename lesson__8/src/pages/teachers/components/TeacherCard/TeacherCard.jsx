@@ -12,7 +12,7 @@ function TeacherCard({ teacher, onSelect, isSelected, onDelete, hideActions }) {
                         <img src={teacher.photo} alt="photo" />
                         <div>
                             <div>{teacher.name}</div>
-                            <div>Subject:{teacher.subject}</div>
+                            <div>Предмет:{teacher.subject}</div>
                         </div>
                     </div>
                     {!hideActions && (
