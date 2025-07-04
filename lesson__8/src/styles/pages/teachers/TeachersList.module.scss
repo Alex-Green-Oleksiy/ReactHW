@@ -82,3 +82,21 @@ h1 {
     color: $coffee-accent-dark;
     margin-bottom: 20px;
 }
+
+.fixedWidthBtn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.countInput {
+    width: 2.5em;
+    min-width: 2.5em;
+    text-align: center;
+    border: none;
+    background: transparent;
+    font-weight: bold;
+    font-family: monospace;
+    pointer-events: none;
+    font-size: 1em;
+    padding: 0;
+}

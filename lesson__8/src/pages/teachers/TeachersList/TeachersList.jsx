@@ -84,10 +84,15 @@ function TeachersList() {
                 <button
                     onClick={() => goToMeeting()}
                     disabled={selectedTeachersId.length === 0}
+                    className={styles.fixedWidthBtn}
                 >
-                    {`Викликати ${selectedTeachersId.length} вчител${
-                        selectedTeachersId.length === 1 ? "я" : "ів"
-                    } на збори`}
+                    Кількість на зборах :
+                    <input
+                        type="text"
+                        value={selectedTeachersId.length}
+                        readOnly
+                        className={styles.countInput}
+                    />
                 </button>
             </div>
             {content}
