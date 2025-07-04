@@ -1,6 +1,6 @@
 import { BrowserRouter } from "react-router-dom";
 import "./styles/components/App.module.scss";
-import AppRoutes from "./routes/AppRoutes";
+import AppRoutes from "@/routes/AppRoutes";
 
 function App() {
     return (

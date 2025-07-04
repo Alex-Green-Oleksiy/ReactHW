@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import TeacherCard from "../teachers/components/TeacherCard/TeacherCard";
-import styles from "../../styles/pages/Meeting/Meeting.module.scss";
+import TeacherCard from "@/pages/teachers/components/TeacherCard/TeacherCard";
+import styles from "@/styles/pages/Meeting/Meeting.module.scss";
 
 function Meeting() {
     const { state } = useLocation();

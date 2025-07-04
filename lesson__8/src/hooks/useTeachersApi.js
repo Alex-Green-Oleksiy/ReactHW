@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import apiRoutes from "../api/apiRoutes";
+import apiRoutes from "@/api/apiRoutes";
 import axios from "axios";
 
 const useTeachersApi = () => {

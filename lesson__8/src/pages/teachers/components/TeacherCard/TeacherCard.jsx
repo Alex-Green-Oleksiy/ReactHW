@@ -1,6 +1,6 @@
-import styles from "../../../../styles/pages/teachers/TeacherCard.module.scss";
+import styles from "@/styles/pages/teachers/TeacherCard.module.scss";
 import { useNavigate } from "react-router-dom";
-import frontRoutes from "../../../../routes/frontRoutes";
+import frontRoutes from "@/routes/frontRoutes";
 
 function TeacherCard({ teacher, onSelect, isSelected, onDelete, hideActions }) {
     const navigate = useNavigate();
@@ -22,7 +22,7 @@ function TeacherCard({ teacher, onSelect, isSelected, onDelete, hideActions }) {
                                     <button
                                         onClick={() => onSelect(teacher.id)}
                                     >
-                                        {isSelected ? "Обрано" : "Необрано"}
+                                        {isSelected ? "Обрано" : "Обрати"}
                                     </button>
                                 ) : null}
                             </div>

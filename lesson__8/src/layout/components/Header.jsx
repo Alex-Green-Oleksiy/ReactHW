@@ -1,6 +1,6 @@
 import { NavLink } from "react-router";
-import styles from "../../styles/layout/Header.module.scss";
-import frontRoutes from "../../routes/frontRoutes";
+import styles from "@/styles/layout/Header.module.scss";
+import frontRoutes from "@/routes/frontRoutes";
 function Header() {
     return (
         <header className={styles.container}>

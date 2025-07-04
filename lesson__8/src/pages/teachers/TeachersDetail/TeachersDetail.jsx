@@ -1,4 +1,4 @@
-import styles from "../../../styles/pages/teachers/TeachersDetail.module.scss";
+import styles from "@/styles/pages/teachers/TeachersDetail.module.scss";
 
 function TeachersDetail() {
     return (

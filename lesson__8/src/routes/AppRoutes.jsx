@@ -1,15 +1,15 @@
 import { Route, Routes } from "react-router-dom";
-import MainLayout from "../layout/Layout";
-import SimpleLayout from "../layout/SimpleLayout";
-import frontRoutes from "./frontRoutes";
-import Home from "../pages/Home/Home";
-import TeachersList from "../pages/teachers/TeachersList/TeachersList";
-import TeachersForm from "../pages/teachers/TeachersForm/TeachersForm";
-import TeachersDetail from "../pages/teachers/TeachersDetail/TeachersDetail";
-import Meeting from "../pages/Meeting/Meeting";
-import AboutApp from "../pages/AboutApp/AboutApp";
-import AboutDev from "../pages/AboutDev/AboutDev";
-import Page404 from "../pages/Page404/Page404";
+import MainLayout from "@/layout/Layout";
+import SimpleLayout from "@/layout/SimpleLayout";
+import frontRoutes from "@/routes/frontRoutes";
+import Home from "@/pages/Home/Home";
+import TeachersList from "@/pages/teachers/TeachersList/TeachersList";
+import TeachersForm from "@/pages/teachers/TeachersForm/TeachersForm";
+import TeachersDetail from "@/pages/teachers/TeachersDetail/TeachersDetail";
+import Meeting from "@/pages/Meeting/Meeting";
+import AboutApp from "@/pages/AboutApp/AboutApp";
+import AboutDev from "@/pages/AboutDev/AboutDev";
+import Page404 from "@/pages/Page404/Page404";
 
 function AppRoutes() {
     return (

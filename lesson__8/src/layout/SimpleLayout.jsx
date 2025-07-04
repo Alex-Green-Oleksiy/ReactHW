@@ -1,8 +1,8 @@
 import { Outlet, useLocation } from "react-router";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import GoHomeButton from "../components/shared/GoHomeButton";
-import styles from "../styles/layout/MainLayout.module.scss";
+import Header from "@/layout/components/Header";
+import Footer from "@/layout/components/Footer";
+import GoHomeButton from "@/components/shared/GoHomeButton";
+import styles from "@/styles/layout/MainLayout.module.scss";
 
 function SimpleLayout() {
     const location = useLocation();

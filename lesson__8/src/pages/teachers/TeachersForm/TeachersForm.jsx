@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
-import useTeachersApi from "../../../hooks/useTeachersApi";
-import styles from "../../../styles/pages/teachers/TeachersForm.module.scss";
+import useTeachersApi from "@/hooks/useTeachersApi";
+import styles from "@/styles/pages/teachers/TeachersForm.module.scss";
 
 function TeachersForm() {
     const navigate = useNavigate();

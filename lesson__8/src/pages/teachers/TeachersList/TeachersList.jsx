@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import frontRoutes from "../../../routes/frontRoutes";
-import useTeachersApi from "../../../hooks/useTeachersApi";
+import frontRoutes from "@/routes/frontRoutes";
+import useTeachersApi from "@/hooks/useTeachersApi";
 import { useEffect, useState } from "react";
-import TeacherCard from "../components/TeacherCard/TeacherCard";
-import styles from "../../../styles/pages/teachers/TeachersList.module.scss";
+import TeacherCard from "@/pages/teachers/components/TeacherCard/TeacherCard";
+import styles from "@/styles/pages/teachers/TeachersList.module.scss";
 
 function TeachersList() {
     const navigate = useNavigate();

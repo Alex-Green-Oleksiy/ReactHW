@@ -1,4 +1,4 @@
-import styles from "../../styles/pages/AboutApp/AboutApp.module.scss";
+import styles from "@/styles/pages/AboutApp/AboutApp.module.scss";
 
 function AboutApp() {
     return (
@@ -7,7 +7,6 @@ function AboutApp() {
             <p>
                 Цей додаток дозволяє керувати списком вчителів, додавати,
                 редагувати, видаляти їх, а також формувати список для зборів.
-                
             </p>
         </div>
     );
