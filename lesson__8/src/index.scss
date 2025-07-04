@@ -22,7 +22,7 @@ body {
     color: #4b2e19;
     line-height: 1.6;
     transition: background 0.3s;
-    overflow-x: hidden;
+    // overflow-x: hidden;
 }
 
 button,
@@ -50,10 +50,17 @@ a:hover {
     border-radius: 4px;
 }
 
-html,
-body {
+html, body {
     background: transparent;
-    overflow-y: hidden;
+    overflow-y: scroll;
+    scrollbar-width: none; 
+    -ms-overflow-style: none; 
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    width: 0 !important;
+    background: transparent;
 }
 
 @media (max-width: 600px) {
