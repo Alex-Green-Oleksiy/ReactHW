@@ -1,0 +1,18 @@
+.button {
+    /* background: linear-gradient(90deg, var(--accent), var(--accent-light)); */
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 6px 18px;
+    margin-left: 18px;
+    font-size: 1rem;
+    cursor: pointer;
+    /* box-shadow: 0 2px 8px rgba(43, 124, 255, 0.12); */
+    transition: background 0.3s, transform 0.2s;
+}
+.button:hover,
+.button:focus {
+    /* background: linear-gradient(90deg, var(--accent-light), var(--accent)); */
+    /* transform: scale(1.08) rotate(-2deg); */
+    outline: none;
+}

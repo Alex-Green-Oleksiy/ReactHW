@@ -1,0 +1,40 @@
+.themeToggleWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    box-shadow: none;
+    padding: 0;
+    cursor: pointer;
+    border-radius: 50%;
+    outline: none;
+    transition: background 0.2s, box-shadow 0.2s;
+    overflow: hidden;
+}
+.themeToggleWrapper:focus,
+.themeToggleWrapper:hover {
+    background: var(--accent-light, #e0e0e000);
+    border-radius: 50%;
+    outline: none;
+    box-shadow: 0 0 0 3px var(--accent-light, #a3c8ff);
+}
+.themeToggleSlider {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background: transparent ;
+    transition: background 0.3s;
+}
+.themeToggleSlider:hover {
+    background: transparent ;
+}
+.themeToggleSlider,
+.themeToggleSlider span,
+.themeToggleSlider > * {
+    background: transparent ;
+    box-shadow: none ;
+}

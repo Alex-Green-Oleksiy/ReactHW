@@ -1,0 +1,64 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Pacifico&family=Satisfy&family=Great+Vibes&display=swap");
+
+:root {
+    /* Світла тема */
+    --bg: #f5f7fa;
+    --card-bg: #fff;
+    --text-main-light: #2d3142;
+    --heading-light: #3e5c76;
+    --accent: #ffb400;
+    --accent-light: #ffe29a;
+    --accent-bg: #e3eafc;
+    --selection: #ffe29a;
+}
+
+body {
+    font-family: "Satisfy", "Dancing Script", "Pacifico", "Great Vibes", cursive,
+        sans-serif;
+}
+
+body.light {
+    --bg: #f5f7fa;
+    --card-bg: #fff;
+    --text-main: var(--text-main-light);
+    --heading: var(--heading-light);
+    --accent: #ffb400;
+    --accent-light: #ffe29a;
+    --accent-bg: #e3eafc;
+    --selection: #ffe29a;
+    color: var(--text-main);
+    background: var(--bg);
+    transition: background 0.3s, color 0.3s;
+}
+
+body.dark {
+    --bg: #232946;
+    --card-bg: #1a1a2e;
+    --text-main: #eebd89;
+    --heading: #ffd803;
+    --accent: #ffb400;
+    --accent-light: #232946;
+    --accent-bg: #393e46;
+    --selection: #ffd803;
+    color: var(--text-main);
+    background: var(--bg);
+    transition: background 0.3s, color 0.3s;
+}
+
+h1,
+h2,
+h3,
+.h2,
+.h3 {
+    font-family: "Dancing Script", "Pacifico", "Satisfy", "Great Vibes", cursive;
+    letter-spacing: 1px;
+    color: var(--heading);
+    font-weight: 200;
+}
+body.dark h1,
+body.dark h2,
+body.dark h3,
+body.dark .h2,
+body.dark .h3 {
+    color: var(--heading);
+}

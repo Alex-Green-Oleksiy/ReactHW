@@ -1,0 +1,26 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 12px 24px;
+    background: var(--card-bg);
+    border-radius: 0 0 16px 16px;
+    box-shadow: 0 2px 8px rgba(43, 124, 255, 0.06);
+    font-size: 1.1rem;
+    animation: navFade 0.7s;
+}
+
+.navbar a {
+    color: var(--accent);
+    text-decoration: none;
+    padding: 6px 14px;
+    border-radius: 8px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.navbar a.active,
+.navbar a.active:hover {
+    background: var(--accent);
+    color: var(--bg);
+}
+
