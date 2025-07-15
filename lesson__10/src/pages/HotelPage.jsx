@@ -1,9 +1,8 @@
 import React from "react";
-import { useTheme } from "@/context/ThemeContext";
-import { useTravel } from "@/context/TravelContext";
+import { useTheme } from "@/context/useTheme";
+import { useTravel } from "@/context/useTravel";
 import styles from "@/styles/pages/HotelPage.module.css";
 import { HOTELS } from "@/data/travelData";
-import Button from "@/components/Button";
 
 const HotelPage = () => {
     const { theme } = useTheme();

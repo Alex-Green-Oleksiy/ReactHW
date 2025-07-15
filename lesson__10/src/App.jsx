@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import { TravelProvider } from "@/context/TravelContext";
+import { TravelProvider } from "@/context/TravelProvider";
 import BusPage from "@/pages/BusPage";
 import HotelPage from "@/pages/HotelPage";
 import SummaryPage from "@/pages/SummaryPage";

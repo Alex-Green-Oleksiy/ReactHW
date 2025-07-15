@@ -1,6 +1,6 @@
 import React from "react";
-import { useTheme } from "@/context/ThemeContext";
-import { useTravel } from "@/context/TravelContext";
+import { useTheme } from "@/context/useTheme";
+import { useTravel } from "@/context/useTravel";
 import styles from "@/styles/pages/SummaryPage.module.css";
 import Button from "@/components/Button";
 import { BUSES, HOTELS } from "@/data/travelData";
@@ -26,8 +26,9 @@ const SummaryPage = () => {
                             <li>Не вибрано жодного автобуса</li>
                             <li>
                                 <Button
-                                className={styles.removeBtn} 
-                                onClick={() => navigate("/")}>
+                                    className={styles.removeBtn}
+                                    onClick={() => navigate("/")}
+                                >
                                     Перейти до вибору автобусів
                                 </Button>
                             </li>
@@ -55,8 +56,10 @@ const SummaryPage = () => {
                         <>
                             <li>Не вибрано жодного готелю</li>
                             <li>
-                                <Button className={styles.removeBtn}
-                                 onClick={() => navigate("/hotels")}>
+                                <Button
+                                    className={styles.removeBtn}
+                                    onClick={() => navigate("/hotels")}
+                                >
                                     Перейти до вибору готелів
                                 </Button>
                             </li>

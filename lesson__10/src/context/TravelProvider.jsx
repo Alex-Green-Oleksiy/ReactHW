@@ -1,6 +1,5 @@
-import React, { createContext, useContext, useReducer } from "react";
-
-const TravelContext = createContext();
+import React, { useReducer } from "react";
+import { TravelContext } from "./TravelContext.js";
 
 // Початковий стан для useReducer
 const initialState = {
@@ -8,7 +7,7 @@ const initialState = {
     selectedHotels: []
 };
 
-// Редуктор для керування вибором
+// для керування вибором
 function travelReducer(state, action) {
     switch (action.type) {
         case "TOGGLE_BUS":
@@ -45,10 +44,10 @@ function travelReducer(state, action) {
 }
 
 export const TravelProvider = ({ children }) => {
-    // Використовуємо useReducer замість useState
+    //useReducer 
     const [state, dispatch] = useReducer(travelReducer, initialState);
 
-    // Функції-диспатчери для зручності
+    // Функції-диспатчери 
     const toggleBus = (busId) => dispatch({ type: "TOGGLE_BUS", id: busId });
     const toggleHotel = (hotelId) =>
         dispatch({ type: "TOGGLE_HOTEL", id: hotelId });
@@ -71,5 +70,3 @@ export const TravelProvider = ({ children }) => {
         </TravelContext.Provider>
     );
 };
-
-export const useTravel = () => useContext(TravelContext);
