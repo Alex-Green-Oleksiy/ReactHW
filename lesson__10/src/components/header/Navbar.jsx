@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import ThemeSwitcher from "@/components/ThemeSwitcher";
-import styles from "@/styles/components/Navbar.module.css";
+import ThemeSwitcher from "@/components/header/ThemeSwitcher";
+import styles from "./Navbar.module.css";
 
 // Глобальний компонент навігації
 const Navbar = () => (

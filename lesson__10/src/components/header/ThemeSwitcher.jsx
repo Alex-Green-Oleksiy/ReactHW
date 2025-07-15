@@ -1,6 +1,6 @@
 import React from "react";
 import { useTheme } from "@/context/useTheme";
-import styles from "@/styles/components/ThemeSwitcher.module.css";
+import styles from "./ThemeSwitcher.module.css";
 
 // SVG-іконка сонця
 const SunIcon = () => (

@@ -1,22 +1,16 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import { TravelProvider } from "@/context/TravelProvider";
-import BusPage from "@/pages/BusPage";
-import HotelPage from "@/pages/HotelPage";
-import SummaryPage from "@/pages/SummaryPage";
+import { BrowserRouter as Router } from "react-router-dom";
+import { TravelProvider } from "@/providers/TravelProvider";
+import AppRoutes from "@/routes/routes";
 import "@/styles/App.css";
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/header/Navbar";
 
 function App() {
     return (
         <TravelProvider>
             <Router>
                 <Navbar />
-                <Routes>
-                    <Route path="/" element={<BusPage />} />
-                    <Route path="/hotels" element={<HotelPage />} />
-                    <Route path="/summary" element={<SummaryPage />} />
-                </Routes>
+                <AppRoutes />
             </Router>
         </TravelProvider>
     );

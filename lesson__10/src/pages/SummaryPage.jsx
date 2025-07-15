@@ -2,7 +2,7 @@ import React from "react";
 import { useTheme } from "@/context/useTheme";
 import { useTravel } from "@/context/useTravel";
 import styles from "@/styles/pages/SummaryPage.module.css";
-import Button from "@/components/Button";
+import Button from "@/components/ui/Button";
 import { BUSES, HOTELS } from "@/data/travelData";
 import { useNavigate } from "react-router-dom";
 

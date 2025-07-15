@@ -1,5 +1,5 @@
 import React, { useReducer } from "react";
-import { TravelContext } from "./TravelContext.js";
+import { TravelContext } from "../context/TravelContext.js";
 
 // Початковий стан для useReducer
 const initialState = {
@@ -44,10 +44,10 @@ function travelReducer(state, action) {
 }
 
 export const TravelProvider = ({ children }) => {
-    //useReducer 
+    //useReducer
     const [state, dispatch] = useReducer(travelReducer, initialState);
 
-    // Функції-диспатчери 
+    // Функції-диспатчери
     const toggleBus = (busId) => dispatch({ type: "TOGGLE_BUS", id: busId });
     const toggleHotel = (hotelId) =>
         dispatch({ type: "TOGGLE_HOTEL", id: hotelId });

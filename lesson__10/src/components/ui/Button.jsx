@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "@/styles/components/Button.module.css";
+import styles from "./Button.module.css";
 
 // Глобальна кнопка з кастомним стилем
 const Button = ({ children, onClick, type = "button", ...props }) => (
