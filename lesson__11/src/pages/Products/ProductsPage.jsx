@@ -1,7 +1,7 @@
 import React from "react";
-import ProductAdd from "@/components/ui/ProductAdd";
-import ProductFilter from "@/components/ui/ProductFilter";
-import ProductList from "@/components/ProductList";
+import ProductAdd from "./ProductAdd";
+import ProductFilter from "./ProductFilter";
+import ProductList from "./ProductList";
 
 const ProductsSection = () => (
     <section>

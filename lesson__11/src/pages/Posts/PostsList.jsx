@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPosts } from "@/redux/slices/postsSlice";
-import styles from "@/styles/PostsList.module.scss";
-import Loader from "@/components/Loader";
+import styles from "./PostsList.module.scss";
+import Loader from "./Loader";
 
 // Компонент для відображення списку постів з API
 const PostsList = () => {

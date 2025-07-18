@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { createSelector } from "reselect";
 
 const initialState = {
     items: [
@@ -35,4 +36,17 @@ const productsSlice = createSlice({
 });
 
 export const { addProduct, setFilter } = productsSlice.actions;
+
+// Селектори
+const selectProducts = (state) => state.products.items;
+const selectFilter = (state) => state.products.filter;
+
+export const selectFilteredProducts = createSelector(
+    [selectProducts, selectFilter],
+    (items, filter) =>
+        items.filter((item) =>
+            item.name.toLowerCase().includes(filter.toLowerCase())
+        )
+);
+
 export default productsSlice.reducer;

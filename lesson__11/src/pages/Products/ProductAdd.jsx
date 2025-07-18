@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addProduct } from "@/redux/slices/productsSlice";
-import styles from "@/styles/ProductAdd.module.scss";
+import styles from "./ProductAdd.module.scss";
 
 const ProductAdd = () => {
     const [value, setValue] = useState("");

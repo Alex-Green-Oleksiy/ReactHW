@@ -1,16 +1,11 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import styles from "@/styles/ProductList.module.scss";
+import { selectFilteredProducts } from "@/redux/slices/productsSlice";
+import styles from "./ProductList.module.scss";
 
 // Компонент для відображення списку товарів з фільтрацією
 const ProductList = () => {
-    const items = useSelector((state) => state.products.items);
-    const filter = useSelector((state) => state.products.filter);
-
-    // Фільтрація товарів за назвою
-    const filteredItems = items.filter((item) =>
-        item.name.toLowerCase().includes(filter.toLowerCase())
-    );
+    const filteredItems = useSelector(selectFilteredProducts);
 
     return (
         <div>

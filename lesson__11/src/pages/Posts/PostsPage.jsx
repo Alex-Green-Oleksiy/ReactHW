@@ -1,5 +1,5 @@
 import React from "react";
-import PostsList from "@/components/PostsList";
+import PostsList from "./PostsList";
 
 const PostsSection = () => (
     <section>

@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setFilter } from "@/redux/slices/productsSlice";
-import styles from "@/styles/ProductFilter.module.scss";
+import styles from "./ProductFilter.module.scss";
 
 const ProductFilter = () => {
     const dispatch = useDispatch();
