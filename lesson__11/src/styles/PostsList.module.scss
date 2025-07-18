@@ -1,0 +1,34 @@
+@use "@/styles/variables.scss" as *;
+
+.title {
+    color: $color-accent-dark;
+    margin-bottom: 10px;
+}
+
+.list {
+    list-style: none;
+    padding: 0;
+    background: $color-bg;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba($color-accent-dark, 0.04);
+}
+
+.item {
+    padding: 8px 0 8px 12px;
+    border-bottom: 1px solid $color-surface;
+    color: $color-text;
+}
+
+.item:last-child {
+    border-bottom: none;
+}
+
+.loading {
+    color: $color-muted;
+    margin-bottom: 8px;
+}
+
+.error {
+    color: #b71c1c;
+    margin-bottom: 8px;
+}

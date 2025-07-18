@@ -1,0 +1,20 @@
+@use "@/styles/variables.scss" as *;
+
+.header {
+    background: $color-bg;
+    padding: 0px 0 10px 0;
+    text-align: center;
+    border-radius: 12px;
+    box-shadow:
+        0 2px 8px rgba($color-accent-dark, 0.06),
+        inset 0 2px 12px #00000075;
+    margin-bottom: 18px;
+}
+
+.logo {
+    font-size: 2rem;
+    color: $color-accent-dark;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
