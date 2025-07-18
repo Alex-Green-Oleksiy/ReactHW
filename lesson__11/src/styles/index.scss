@@ -25,11 +25,31 @@ a:hover {
 }
 
 body {
-    margin: 0 auto;
-    min-width: 320px;
     min-height: 100vh;
-    background: $color-surface;
-    color: $color-text;
+    margin: 0;
+    font-family: "Montserrat", Arial, sans-serif;
+    background: linear-gradient(
+        -45deg,
+        $color-accent-dark,
+        $color-accent,
+        $color-surface,
+        $color-accent,
+        $color-accent-dark
+    );
+    background-size: 400% 400%;
+    animation: gradientBG 12s ease-in-out infinite;
+}
+
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 h1 {
@@ -59,7 +79,7 @@ button:focus,
 button:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;
 }
-button:active{
+button:active {
     border-color: $color-accent-dark;
 }
 
