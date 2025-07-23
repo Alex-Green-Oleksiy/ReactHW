@@ -61,6 +61,9 @@ const PostForm = ({
                 <option value={12}>12</option>
             </select>
         </div>
+        <button type="submit" className={styles.button}>
+            Додати пост
+        </button>
     </form>
 );
 
