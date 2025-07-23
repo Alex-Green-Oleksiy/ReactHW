@@ -1,0 +1,82 @@
+.infinitePage {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 32px 10px;
+    background: #181c24;
+    border-radius: 16px;
+    box-shadow: 0 2px 16px #0008;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE 10+ */
+}
+.infinitePage::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    background: transparent;
+}
+
+.postsList {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.postCard {
+    background: #232837;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px #0004;
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border: 1px solid #2d3344;
+}
+
+.postTitle {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #f3f6fa;
+}
+
+.postBody {
+    color: #bfc7d5;
+}
+
+.postFooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.95rem;
+    color: #8fa2c7;
+}
+
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    background: none;
+    pointer-events: none;
+}
+
+.spinner {
+    border: 4px solid #041a57;
+    border-top: 4px solid #c2089a;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

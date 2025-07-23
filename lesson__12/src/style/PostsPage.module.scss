@@ -1,0 +1,203 @@
+.postsPage {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 5px 5px;
+    background: #181c24;
+    border-radius: 16px;
+    box-shadow: 0 2px 16px #0008;
+}
+h2 {
+    text-align: center;
+    color: #166ee0;
+}
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background: #232837;
+    padding: 24px 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px #0004;
+    margin-bottom: 32px;
+    label {
+        color: #bfc7d5;
+        font-size: 1rem;
+        font-weight: 500;
+        margin-bottom: 2px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+}
+
+.input,
+.textarea {
+    padding: 10px;
+    border: 1px solid #2d3344;
+    border-radius: 6px;
+    font-size: 1rem;
+    background: #181c24;
+    color: #f3f6fa;
+    resize: vertical;
+}
+
+.button {
+    position: relative;
+    background: rgba(79, 140, 255, 0.22);
+    color: #fff;
+    border: 2px solid rgba(255, 255, 255, 0.22);
+    border-radius: 14px;
+    padding: 14px 28px;
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+    font-size: 1.15rem;
+    letter-spacing: 0.5px;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 12px 36px 0 rgba(31, 38, 135, 0.25), 0 2px 8px #0002;
+    transition: background 0.4s, color 0.4s, border 0.4s, box-shadow 0.4s,
+        transform 0.25s;
+    overflow: hidden;
+    z-index: 1;
+    outline: none;
+    &:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+            120deg,
+            rgba(255, 255, 255, 0.22) 0%,
+            rgba(255, 255, 255, 0.08) 100%
+        );
+        border-radius: inherit;
+        z-index: 0;
+        pointer-events: none;
+        opacity: 0.7;
+    }
+    &:after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 0;
+        height: 0;
+        background: rgba(79, 140, 255, 0.25);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        transition: width 0.5s cubic-bezier(0.4, 2, 0.6, 1),
+            height 0.5s cubic-bezier(0.4, 2, 0.6, 1), opacity 0.5s;
+        z-index: 1;
+        opacity: 0.5;
+    }
+    &:active:after {
+        width: 220%;
+        height: 600%;
+        opacity: 0;
+        transition: width 0.5s cubic-bezier(0.4, 2, 0.6, 1),
+            height 0.5s cubic-bezier(0.4, 2, 0.6, 1), opacity 0.5s;
+    }
+    &:hover {
+        background: rgba(79, 140, 255, 0.38);
+        color: #fff;
+        border: 2px solid #4f8cff;
+        box-shadow: 0 20px 56px 0 rgba(31, 38, 135, 0.32), 0 4px 16px #0003;
+        transform: translateY(-3px) scale(1.03);
+    }
+    > * {
+        position: relative;
+        z-index: 2;
+    }
+}
+
+.postsList {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-left: 0px;
+}
+
+.postCard {
+    background: #232837;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px #0004;
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border: 1px solid #2d3344;
+}
+
+.postTitle {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #f3f6fa;
+}
+
+.postBody {
+    color: #bfc7d5;
+}
+
+.postFooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.95rem;
+    color: #8fa2c7;
+}
+
+.deleteBtn {
+    background: #ff4d4f;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    &:hover {
+        background: #d9363e;
+    }
+}
+
+.postStats {
+    display: flex;
+    gap: 24px;
+    font-size: 1.05rem;
+    color: #8fa2c7;
+    margin: 6px 0 2px 0;
+}
+
+.pagination {
+    display: flex;
+    gap: 8px;
+    margin-top: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.pageBtn {
+    background: #232837;
+    border: 1px solid #2d3344;
+    border-radius: 5px;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-weight: 500;
+    color: #bfc7d5;
+    transition: background 0.2s, border 0.2s;
+    &.active {
+        background: #4f8cff;
+        color: #fff;
+        border: 1px solid #4f8cff;
+    }
+    &:hover:not(.active):not(:disabled) {
+        background: #181c24;
+    }
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+}

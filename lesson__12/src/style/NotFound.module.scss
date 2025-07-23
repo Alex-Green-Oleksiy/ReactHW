@@ -1,0 +1,47 @@
+.notFound {
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #232837 60%, #4f8cff 100%);
+    border-radius: 18px;
+    box-shadow: 0 4px 32px #0006;
+    margin: 40px auto;
+    max-width: 420px;
+    padding: 48px 24px;
+    color: #fff;
+}
+
+.notFound h1 {
+    font-size: 5rem;
+    font-weight: 900;
+    margin-bottom: 12px;
+    letter-spacing: 2px;
+    color: #ff4d4f;
+    text-shadow: 0 2px 12px #0008;
+}
+
+.notFound p {
+    font-size: 1.5rem;
+    margin-bottom: 24px;
+    color: #fff;
+}
+
+.homeLink {
+    display: inline-block;
+    background: #4f8cff;
+    color: #fff;
+    padding: 12px 32px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 2px 8px #0003;
+    transition: background 0.2s, color 0.2s;
+}
+
+.homeLink:hover {
+    background: #232837;
+    color: #4f8cff;
+}
