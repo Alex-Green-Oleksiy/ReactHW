@@ -80,7 +80,7 @@ function PostsPage() {
 
     return (
         <div className={styles.postsPage}>
-            <h2>Пости (Пагінація по кнопках)</h2>
+            <h2>Ну, якось так.</h2>
             <PostForm
                 title={title}
                 setTitle={setTitle}

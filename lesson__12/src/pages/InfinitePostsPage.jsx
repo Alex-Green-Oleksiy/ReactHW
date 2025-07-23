@@ -41,7 +41,7 @@ function InfinitePostsPage() {
 
     useEffect(() => {
         loadPosts(page);
-        // eslint-disable-next-line
+        // eslint-disable-next-line     
     }, [page]);
 
     const handleObserver = useCallback(
