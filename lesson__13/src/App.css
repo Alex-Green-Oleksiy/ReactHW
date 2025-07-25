@@ -123,14 +123,14 @@ min-height: 100%;
 .main-menu__link:hover {
     color: var(--color-link-hover);
     background: var(--color-accent2);
-    text-shadow: 0 2px 16px var(--color-accent2);
-    box-shadow: 0 0 16px 0 var(--color-accent2);
+    text-shadow: 0 2px 10px var(--color-accent2);
+    box-shadow: 0 0 7px 0 var(--color-accent2);
     animation: menuLinkPulse 0.7s;
 }
 .main-menu__link--active {
     color: #fff;
     background: var(--color-accent);
-    text-shadow: 0 2px 16px var(--color-accent2);
+    text-shadow: 0 2px 10px var(--color-accent2);
     box-shadow: 0 0 24px 0 var(--color-accent), 0 1.5px 0 var(--color-accent2);
     animation: menuLinkActivePulse 1.2s infinite alternate;
 }
@@ -238,7 +238,7 @@ min-height: 100%;
 .post-list__item {
     background: var(--color-card);
     border-radius: 16px;
-    box-shadow: 0 0 24px 0 var(--color-accent2), 0 1.5px 0 var(--color-accent);
+    box-shadow: 0 0 10px 0 var(--color-accent2), 0 1.5px 0 var(--color-accent);
     border: 2px solid var(--color-border);
     margin-bottom: 2em;
     padding: 1.5em 2em;
@@ -251,7 +251,7 @@ min-height: 100%;
     gap: 1em;
 }
 .post-list__item:hover {
-    box-shadow: 0 0 48px 0 var(--color-accent2), 0 1.5px 0 var(--color-accent);
+    box-shadow: 0 0 14px 0 var(--color-accent2), 0 1.5px 0 var(--color-accent);
     border-color: var(--color-accent2);
     background: var(--color-bg-alt);
 }
@@ -292,7 +292,7 @@ min-height: 100%;
     width: 100vw;
     z-index: 100;
     background: rgba(30, 32, 40, 0.72);
-    box-shadow: 0 8px 32px 0 var(--color-accent2), 0 2px 0 var(--color-accent);
+    box-shadow: 0 2px 10px  var(--color-accent2), 0 2px 0 var(--color-accent);
     border-bottom: 2px solid var(--color-accent2);
     backdrop-filter: blur(16px) saturate(180%);
     -webkit-backdrop-filter: blur(16px) saturate(180%);

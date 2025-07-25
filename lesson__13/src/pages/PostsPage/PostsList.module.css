@@ -3,12 +3,14 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(40px, auto));
     justify-content: center;
-    gap: 8px;
+    gap: 15px;
     flex-wrap: wrap;
+    max-width: 700px;
+    margin: 0 auto;
 }
 
 .paginationBtn {
-    min-width: 40px;
+    width: 50px;
     min-height: 40px;
     font-size: 18px;
     border-radius: 8px;
@@ -25,6 +27,7 @@
 .paginationBtn:hover:not(:disabled) {
     background: #e3f0fa;
     border-color: #3498db;
+    color: #352f2f;
 }
 
 .active {
