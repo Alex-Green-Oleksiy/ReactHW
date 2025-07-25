@@ -1,147 +1,187 @@
 :root {
-  --color-bg: #18181b;
-  --color-bg-alt: #23232a;
-  --color-fg: #f1f1f1;
-  --color-accent: #ff0055;
-  --color-accent2: #00ffe7;
-  --color-card: #23232a;
-  --color-border: #33334d;
-  --color-btn: #23232a;
-  --color-btn-hover: #ff0055;
-  --color-btn-text: #f1f1f1;
-  --color-link: #00ffe7;
-  --color-link-hover: #ff0055;
-  --shadow-brutal: 0 4px 32px 0 #ff005533, 0 1.5px 0 #00ffe7;
-  --transition-main: 0.3s cubic-bezier(.77,0,.18,1);
-  font-family: 'JetBrains Mono', 'Fira Mono', 'Consolas', monospace;
-  background: var(--color-bg);
-  color: var(--color-fg);
+    --color-bg: #18181b;
+    --color-bg-alt: #23232a;
+    --color-fg: #f1f1f1;
+    --color-accent: #ff0055;
+    --color-accent2: #00ffe7;
+    --color-card: #23232a;
+    --color-border: #33334d;
+    --color-btn: #23232a;
+    --color-btn-hover: #ff0055;
+    --color-btn-text: #f1f1f1;
+    --color-link: #00ffe7;
+    --color-link-hover: #ff0055;
+    --shadow-brutal: 0 4px 32px 0 #ff005533, 0 1.5px 0 #00ffe7;
+    --transition-main: 0.3s cubic-bezier(0.77, 0, 0.18, 1);
+    font-family: "JetBrains Mono", "Fira Mono", "Consolas", monospace;
+    background: var(--color-bg);
+    color: var(--color-fg);
 }
 
-html, body {
-  background: var(--color-bg);
-  color: var(--color-fg);
-  min-height: 100vh;
-  margin: 0;
-  padding: 0;
-  transition: background var(--transition-main), color var(--transition-main);
+html,
+body,
+#root {
+    height: 100%;
 }
 
 body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  min-height: 100vh;
-  background: var(--color-bg);
-  font-size: 18px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+#root > div {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+footer {
+    flex-shrink: 0;
+}
+
+html,
+body {
+    background: var(--color-bg);
+    color: var(--color-fg);
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    transition: background var(--transition-main), color var(--transition-main);
 }
 
 ::-webkit-scrollbar {
-  width: 12px;
-  background: var(--color-bg-alt);
+    width: 12px;
+    background: var(--color-bg-alt);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-accent);
-  border-radius: 8px;
-  border: 2px solid var(--color-bg-alt);
+    background: var(--color-accent);
+    border-radius: 8px;
+    border: 2px solid var(--color-bg-alt);
 }
 
-h1, h2, h3, h4, h5, h6 {
-  color: var(--color-accent2);
-  text-shadow: 0 2px 8px #000a, 0 1px 0 var(--color-accent);
-  letter-spacing: 1px;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--color-accent2);
+    text-shadow: 0 2px 8px #000a, 0 1px 0 var(--color-accent);
+    letter-spacing: 1px;
 }
 
 a {
-  color: var(--color-link);
-  text-decoration: none;
-  font-weight: bold;
-  transition: color var(--transition-main), text-shadow var(--transition-main);
-  text-shadow: 0 1px 8px #000a;
+    color: var(--color-link);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color var(--transition-main), text-shadow var(--transition-main);
+    text-shadow: 0 1px 8px #000a;
 }
 a:hover {
-  color: var(--color-link-hover);
-  text-shadow: 0 2px 16px var(--color-accent2);
+    color: var(--color-link-hover);
+    text-shadow: 0 2px 16px var(--color-accent2);
 }
 
 button {
-  background: var(--color-btn);
-  color: var(--color-btn-text);
-  border: 2px solid var(--color-border);
-  border-radius: 12px;
-  box-shadow: var(--shadow-brutal);
-  font-size: 1.1em;
-  font-family: inherit;
-  font-weight: 700;
-  padding: 0.7em 1.5em;
-  margin: 0.3em;
-  cursor: pointer;
-  transition: background var(--transition-main), color var(--transition-main), box-shadow var(--transition-main), border-color var(--transition-main);
-  outline: none;
-  position: relative;
-  z-index: 1;
-  overflow: hidden;
+    background: var(--color-btn);
+    color: var(--color-btn-text);
+    border: 2px solid var(--color-border);
+    border-radius: 12px;
+    box-shadow: var(--shadow-brutal);
+    font-size: 1.1em;
+    font-family: inherit;
+    font-weight: 700;
+    padding: 0.7em 1.5em;
+    margin: 0.3em;
+    cursor: pointer;
+    transition: background var(--transition-main), color var(--transition-main),
+        box-shadow var(--transition-main), border-color var(--transition-main);
+    outline: none;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
 }
-button:hover, button:focus {
-  background: var(--color-btn-hover);
-  color: #fff;
-  border-color: var(--color-accent2);
-  box-shadow: 0 0 24px 0 var(--color-accent2), 0 1.5px 0 var(--color-accent);
-  animation: btnPulse 0.7s;
+button:hover,
+button:focus {
+    background: var(--color-btn-hover);
+    color: #fff;
+    border-color: var(--color-accent2);
+    box-shadow: 0 0 24px 0 var(--color-accent2), 0 1.5px 0 var(--color-accent);
+    animation: btnPulse 0.7s;
 }
 @keyframes btnPulse {
-  0% { box-shadow: var(--shadow-brutal); }
-  50% { box-shadow: 0 0 32px 8px var(--color-accent2); }
-  100% { box-shadow: var(--shadow-brutal); }
+    0% {
+        box-shadow: var(--shadow-brutal);
+    }
+    50% {
+        box-shadow: 0 0 32px 8px var(--color-accent2);
+    }
+    100% {
+        box-shadow: var(--shadow-brutal);
+    }
 }
 
-input, textarea, select {
-  background: var(--color-bg-alt);
-  color: var(--color-fg);
-  border: 2px solid var(--color-border);
-  border-radius: 8px;
-  padding: 0.7em 1em;
-  font-size: 1em;
-  margin: 0.3em 0;
-  transition: border-color var(--transition-main), box-shadow var(--transition-main);
-  box-shadow: 0 1px 8px #000a;
+input,
+textarea,
+select {
+    background: var(--color-bg-alt);
+    color: var(--color-fg);
+    border: 2px solid var(--color-border);
+    border-radius: 8px;
+    padding: 0.7em 1em;
+    font-size: 1em;
+    margin: 0.3em 0;
+    transition: border-color var(--transition-main),
+        box-shadow var(--transition-main);
+    box-shadow: 0 1px 8px #000a;
 }
-input:focus, textarea:focus, select:focus {
-  border-color: var(--color-accent2);
-  box-shadow: 0 0 16px 0 var(--color-accent2);
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--color-accent2);
+    box-shadow: 0 0 16px 0 var(--color-accent2);
 }
 
-.card, .main-card, .post-card {
-  background: var(--color-card);
-  border-radius: 18px;
-  box-shadow: var(--shadow-brutal);
-  padding: 2em;
-  margin: 1.5em 0;
-  border: 2px solid var(--color-border);
-  transition: box-shadow var(--transition-main), border-color var(--transition-main);
+.card,
+.main-card,
+.post-card {
+    background: var(--color-card);
+    border-radius: 18px;
+    box-shadow: var(--shadow-brutal);
+    padding: 2em;
+    margin: 1.5em 0;
+    border: 2px solid var(--color-border);
+    transition: box-shadow var(--transition-main),
+        border-color var(--transition-main);
 }
-.card:hover, .main-card:hover, .post-card:hover {
-  box-shadow: 0 0 32px 0 var(--color-accent2), 0 1.5px 0 var(--color-accent);
-  border-color: var(--color-accent2);
+.card:hover,
+.main-card:hover,
+.post-card:hover {
+    box-shadow: 0 0 32px 0 var(--color-accent2), 0 1.5px 0 var(--color-accent);
+    border-color: var(--color-accent2);
 }
 
 hr {
-  border: none;
-  border-top: 2px solid var(--color-border);
-  margin: 2em 0;
+    border: none;
+    border-top: 2px solid var(--color-border);
+    margin: 2em 0;
 }
 
 /* Remove light theme overrides */
 @media (prefers-color-scheme: light) {
-  :root {
-    color: var(--color-fg);
-    background: var(--color-bg);
-  }
-  a:hover {
-    color: var(--color-link-hover);
-  }
-  button {
-    background: var(--color-btn);
-  }
+    :root {
+        color: var(--color-fg);
+        background: var(--color-bg);
+    }
+    a:hover {
+        color: var(--color-link-hover);
+    }
+    button {
+        background: var(--color-btn);
+    }
 }

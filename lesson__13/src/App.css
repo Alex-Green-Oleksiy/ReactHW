@@ -12,13 +12,9 @@
     max-width: 100%;
     width: 100vw;
     margin: 0 auto;
-
+min-height: 100%;
     text-align: center;
-    background: var(--color-bg-alt);
-    border-radius: 32px;
-    box-shadow: 0 0 64px 0 var(--color-accent2), 0 2px 0 var(--color-accent);
-    transition: background var(--transition-main),
-        box-shadow var(--transition-main);
+   
 }
 
 .logo {
@@ -319,7 +315,7 @@
     line-height: 1.1;
 }
 main{
-    margin-top: 120px;
+    margin-top: 160px;
     padding: 20px;
 }
 @media (max-width: 740px) {
