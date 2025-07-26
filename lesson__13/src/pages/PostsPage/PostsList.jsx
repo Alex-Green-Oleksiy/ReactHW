@@ -7,27 +7,98 @@ import {
 } from "../../api/postsApi";
 import { useNavigate } from "react-router";
 import styles from "./PostsList.module.css";
+import ErrorMessage from "@/components/ErrorMessage";
+import LoadingSpinner from "@/components/LoadingSpinner";
 
 const PostsList = ({ onSelect }) => {
     const [page, setPage] = useState(1);
-    const { data, isLoading, isError, isFetching } = useGetPostsPQuery({
+    const [actionError, setActionError] = useState("");
+
+    const { data, isLoading, isError, error, isFetching } = useGetPostsPQuery({
         page,
         limit: 5
     });
 
-    const [deletePost] = useDeletePostMutation();
-    const [likePost] = useLikePostMutation();
-    const [dislikePost] = useDislikePostMutation();
+    const [deletePost, { isLoading: isDeleting }] = useDeletePostMutation();
+    const [likePost, { isLoading: isLiking }] = useLikePostMutation();
+    const [dislikePost, { isLoading: isDisliking }] = useDislikePostMutation();
 
     const navigate = useNavigate();
 
-    if (isLoading) return <p>Завантаження...</p>;
-    if (isError) return <p>Помилка завантаження постів</p>;
+    const handleLike = async (postId) => {
+        try {
+            setActionError("");
+            await likePost(postId).unwrap();
+        } catch (err) {
+            console.error("Помилка лайку:", err);
+            setActionError("Не вдалося поставити лайк");
+        }
+    };
+
+    const handleDislike = async (postId) => {
+        try {
+            setActionError("");
+            await dislikePost(postId).unwrap();
+        } catch (err) {
+            console.error("Помилка дизлайку:", err);
+            setActionError("Не вдалося поставити дизлайк");
+        }
+    };
+
+    const handleDelete = async (postId) => {
+        if (!window.confirm("Видалити пост?")) return;
+
+        try {
+            setActionError("");
+            await deletePost(postId).unwrap();
+        } catch (err) {
+            console.error("Помилка видалення:", err);
+            setActionError("Не вдалося видалити пост");
+        }
+    };
+
+    // Очищення помилки при зміні сторінки
+    React.useEffect(() => {
+        setActionError("");
+    }, [page]);
+
+    if (isLoading) {
+        return <LoadingSpinner message="Завантаження постів..." />;
+    }
+
+    if (isError) {
+        return (
+            <ErrorMessage
+                title="Помилка завантаження постів"
+                message="Не вдалося завантажити список постів"
+                error={error}
+                onRetry={() => window.location.reload()}
+            />
+        );
+    }
+
+    if (!data || !data.items || data.items.length === 0) {
+        return (
+            <div className="card post-card--empty">
+                <h3>Пости не знайдено</h3>
+                <p>На цій сторінці немає постів</p>
+            </div>
+        );
+    }
 
     const { items, totalPages, remaining } = data;
+    const isActionLoading = isLiking || isDisliking || isDeleting;
 
     return (
         <div>
+            {actionError && (
+                <ErrorMessage
+                    title="Помилка дії"
+                    message={actionError}
+                    onClose={() => setActionError("")}
+                />
+            )}
+
             <ul className="post-list">
                 {items.map((post) => (
                     <li className="post-list__item" key={post.id}>
@@ -36,46 +107,69 @@ const PostsList = ({ onSelect }) => {
                             <span className="post-list__likes">
                                 {post.likesNumber}
                             </span>
-                            <button onClick={() => likePost(post.id)}>
+                            <button
+                                onClick={() => handleLike(post.id)}
+                                disabled={isActionLoading}
+                                style={{ opacity: isActionLoading ? 0.7 : 1 }}
+                            >
                                 👍
                             </button>
                             <span className="post-list__dislikes">
                                 {post.dislikesNumber}
                             </span>
-                            <button onClick={() => dislikePost(post.id)}>
+                            <button
+                                onClick={() => handleDislike(post.id)}
+                                disabled={isActionLoading}
+                                style={{ opacity: isActionLoading ? 0.7 : 1 }}
+                            >
                                 👎
                             </button>
-                            <button onClick={() => onSelect(post.id)}>
+                            <button
+                                onClick={() => onSelect(post.id)}
+                                disabled={isActionLoading}
+                            >
                                 Деталі
                             </button>
                             <button
                                 onClick={() =>
                                     navigate(`/posts/edit/${post.id}`)
                                 }
+                                disabled={isActionLoading}
                             >
                                 Редагувати
                             </button>
                             <button
-                                onClick={() => {
-                                    if (window.confirm("Видалити пост?"))
-                                        deletePost(post.id);
+                                onClick={() => handleDelete(post.id)}
+                                disabled={isActionLoading}
+                                style={{
+                                    opacity: isActionLoading ? 0.7 : 1,
+                                    color: isDeleting
+                                        ? "var(--color-accent)"
+                                        : "inherit"
                                 }}
                             >
-                                Видалити
+                                {isDeleting ? "Видалення..." : "Видалити"}
                             </button>
                         </div>
                     </li>
                 ))}
             </ul>
-            {isFetching && <p>Оновлення...</p>}
+
+            {isFetching && (
+                <LoadingSpinner
+                    message="Оновлення..."
+                    size="small"
+                    showSpinner={false}
+                />
+            )}
+
             <hr />
             <div className={styles.pagination}>
                 <button
                     className={styles.paginationBtn}
                     onClick={() => setPage((p) => Math.max(p - 1, 1))}
-                    disabled={page === 1}
+                    disabled={page === 1 || isFetching}
                 >
-                    {/* ◀ */}
                     &#x25C0;
                 </button>
                 {[...Array(totalPages)].map((_, i) => (
@@ -87,6 +181,7 @@ const PostsList = ({ onSelect }) => {
                                 : styles.paginationBtn
                         }
                         onClick={() => setPage(i + 1)}
+                        disabled={isFetching}
                     >
                         {i + 1}
                     </button>
@@ -94,9 +189,8 @@ const PostsList = ({ onSelect }) => {
                 <button
                     className={styles.paginationBtn}
                     onClick={() => setPage((p) => (remaining > 0 ? p + 1 : p))}
-                    disabled={remaining === 0}
+                    disabled={remaining === 0 || isFetching}
                 >
-                    {/* ▶ */}
                     &#x25B6;
                 </button>
             </div>

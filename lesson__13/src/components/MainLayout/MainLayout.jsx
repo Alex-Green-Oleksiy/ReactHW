@@ -4,28 +4,15 @@ import MainMenu from "./MainMenu";
 
 const MainLayout = () => {
     return (
-        <div
-            style={{
-                display: "flex",
-                minHeight: "100vh",
-                flexDirection: "column"
-            }}
-        >
+        <div className="main-layout">
             <header className="main-header">
                 <h1>React + RTK Query додаток</h1>
                 <MainMenu />
             </header>
-            <main >
+            <main className="main-content">
                 <Outlet />
             </main>
-            <footer
-                style={{
-                    background: "#282c34",
-                    padding: "10px",
-                    color: "white",
-                    textAlign: "center"
-                }}
-            >
+            <footer className="main-footer">
                 © React RTK Query App
             </footer>
         </div>
