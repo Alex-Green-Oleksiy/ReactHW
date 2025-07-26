@@ -111,7 +111,7 @@ button:focus {
     background: var(--color-btn-hover);
     color: #fff;
     border-color: var(--color-accent2);
-    box-shadow: 0 0 24px 0 var(--color-accent2), 0 1.5px 0 var(--color-accent);
+    box-shadow: 0 0 8px 0 var(--color-accent2), 0 1.5px 0 var(--color-accent);
     animation: btnPulse 0.7s;
 }
 @keyframes btnPulse {
@@ -119,7 +119,7 @@ button:focus {
         box-shadow: var(--shadow-brutal);
     }
     50% {
-        box-shadow: 0 0 32px 8px var(--color-accent2);
+        box-shadow: 0 0 14px 8px var(--color-accent2);
     }
     100% {
         box-shadow: var(--shadow-brutal);
