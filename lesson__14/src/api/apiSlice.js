@@ -7,6 +7,8 @@ export const apiSlice = createApi({
         baseUrl: "https://backend-t5q7.onrender.com/",
         prepareHeaders: (headers) => {
             headers.set("Content-Type", "application/json");
+            // Якщо потрібен API ключ, розкоментуйте наступний рядок:
+            // headers.set("Authorization", `Bearer ${process.env.REACT_APP_API_KEY}`);
             return headers;
         }
     }),
