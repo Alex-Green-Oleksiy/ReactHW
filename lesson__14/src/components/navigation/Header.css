@@ -29,26 +29,29 @@
 
 /* Мобільна навігація */
 .mobile-nav {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background-color: var(--bg-primary);
-    border-bottom: 1px solid var(--border-light);
-    box-shadow: var(--shadow-md);
-    transform: translateY(-100%);
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    max-height: calc(100vh - 70px);
-    overflow-y: auto;
+    position: absolute !important;
+    top: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+    background-color: var(--bg-primary) !important;
+    border-bottom: 1px solid var(--border-light) !important;
+    box-shadow: var(--shadow-md) !important;
+    max-height: calc(100vh - 70px) !important;
+    overflow-y: auto !important;
+    z-index: 99 !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transform: translateY(-20px) !important;
+    transition: all 0.3s ease !important;
+    min-height: 200px !important;
 }
 
 .mobile-nav.open {
-    transform: translateY(0);
-    opacity: 1;
-    visibility: visible;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) !important;
+    background-color: var(--bg-primary) !important;
+    border-bottom: 1px solid var(--border-light) !important;
 }
 
 /* Responsive */
@@ -69,7 +72,12 @@
 
     /* Показуємо мобільне меню */
     .mobile-nav {
-        display: block;
+        display: block !important;
+    }
+
+    /* Приховуємо десктопне меню на мобільних */
+    .nav:not(.mobile-nav) {
+        display: none !important;
     }
 
     /* Блокуємо скрол на body коли меню відкрите */

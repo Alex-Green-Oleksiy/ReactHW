@@ -1,39 +1,36 @@
+.mobileMenu {
+    position: fixed;
+    top: 60px; /* Висота хедера */
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--bg-primary);
+    z-index: 99;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-20px);
+    transition: all 0.3s ease;
+    overflow-y: auto;
+}
+
+.mobileMenu.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
 .nav {
     display: flex;
-    gap: 0.5rem;
-    align-items: center;
-}
-
-.nav-link {
-    color: var(--text-secondary);
-    text-decoration: none;
-    padding: 0.75rem 1rem;
-    border-radius: var(--radius-md);
-    transition: all 0.2s ease;
-    font-weight: 500;
-    font-size: 0.875rem;
-}
-
-.nav-link:hover {
-    color: var(--text-primary);
-    background-color: var(--bg-tertiary);
-}
-
-.nav-link.active {
-    color: var(--accent-primary);
-    background-color: var(--accent-primary-light);
-}
-
-/* Мобільна навігація */
-.nav.mobile-nav {
     flex-direction: column;
     padding: 1rem;
     gap: 0;
     width: 100%;
     background-color: var(--bg-primary);
+    min-height: calc(100vh - 60px);
+    justify-content: flex-start;
 }
 
-.nav.mobile-nav .nav-link {
+.navLink {
     padding: 1rem;
     border-radius: var(--radius-md);
     font-size: 1rem;
@@ -47,19 +44,25 @@
     text-decoration: none;
 }
 
-.nav.mobile-nav .nav-link:hover {
+.navLink:hover {
     background-color: var(--bg-tertiary);
     color: var(--text-primary);
 }
 
-.nav.mobile-nav .nav-link:last-child {
+.navLink:last-child {
     border-bottom: none;
 }
 
-.mobile-theme-toggle {
+.themeToggle {
     display: flex;
     justify-content: center;
     padding: 1rem;
     border-top: 1px solid var(--border-light);
     margin-top: 0.5rem;
+}
+
+@media (max-width: 767px) {
+    .mobileMenu {
+        display: block;
+    }
 }

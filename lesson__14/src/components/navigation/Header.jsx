@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import BurgerMenu from "@/components/navigation/BurgerMenu";
 import Navigation from "@/components/navigation/Navigation";
+import MobileMenu from "@/components/navigation/MobileMenu";
 import "@/components/navigation/Header.css";
 
 const Header = () => {
@@ -58,9 +59,7 @@ const Header = () => {
             </div>
 
             {/* мобільне меню */}
-            <div className={`mobile-nav ${isMenuOpen ? "open" : ""}`}>
-                <Navigation isMobile={true} onLinkClick={closeMenu} />
-            </div>
+            <MobileMenu isOpen={isMenuOpen} onLinkClick={closeMenu} />
         </header>
     );
 };
