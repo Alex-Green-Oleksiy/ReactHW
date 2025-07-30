@@ -4,7 +4,7 @@ import { apiRoutes } from "./apiRoutes";
 export const apiSlice = createApi({
     reducerPath: "api",
     baseQuery: fetchBaseQuery({
-        baseUrl: "http://localhost:3001/",
+        baseUrl: "https://backend-t5q7.onrender.com/",
         prepareHeaders: (headers) => {
             headers.set("Content-Type", "application/json");
             return headers;

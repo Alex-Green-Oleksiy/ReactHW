@@ -1,6 +1,6 @@
 // конфігурація API
 export const API_CONFIG = {
-    BASE_URL: "http://localhost:3001",
+    BASE_URL: "https://backend-t5q7.onrender.com",
     TIMEOUT: 10000
 };
 

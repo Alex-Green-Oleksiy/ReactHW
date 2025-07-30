@@ -43,6 +43,7 @@
     display: flex;
     align-items: center;
     gap: 0.75rem;
+    
 }
 
 .status-label {
@@ -99,4 +100,13 @@
     .info-grid {
         grid-template-columns: 1fr;
     }
+}
+.appointment-details-grid {
+    color: black;
+}
+h2{
+    color: black;
+}
+.btn{
+    margin-bottom: 1rem;
 }
