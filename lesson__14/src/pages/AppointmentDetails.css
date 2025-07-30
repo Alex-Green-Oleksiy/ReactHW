@@ -1,0 +1,102 @@
+.appointment-details-page {
+    padding: 1rem;
+}
+
+.appointment-info-card {
+    background: white;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.appointment-info-card h2 {
+    color: #333;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #667eea;
+    padding-bottom: 0.5rem;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.info-item label {
+    font-weight: 600;
+    color: #333;
+    font-size: 0.9rem;
+}
+
+.info-item span {
+    color: #666;
+    font-size: 1rem;
+}
+
+.status-change-section {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.status-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    white-space: nowrap;
+}
+
+.status-select {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border-medium);
+    border-radius: var(--radius-md);
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-width: 140px;
+}
+
+.status-select:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 2px var(--accent-primary-light);
+}
+
+.status-select.status-scheduled {
+    background-color: var(--info-light);
+    color: var(--info-primary);
+    border-color: var(--info-primary);
+}
+
+.status-select.status-active {
+    background-color: var(--success-light);
+    color: var(--success-primary);
+    border-color: var(--success-primary);
+}
+
+.status-select.status-completed {
+    background-color: var(--accent-primary-light);
+    color: var(--accent-primary);
+    border-color: var(--accent-primary);
+}
+
+.status-select.status-cancelled {
+    background-color: var(--danger-light);
+    color: var(--danger-primary);
+    border-color: var(--danger-primary);
+}
+
+@media (max-width: 768px) {
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+}

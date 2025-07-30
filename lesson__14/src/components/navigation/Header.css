@@ -1,0 +1,92 @@
+.header {
+    background-color: var(--bg-primary);
+    border-bottom: 1px solid var(--border-light);
+    box-shadow: var(--shadow-sm);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Мобільна навігація */
+.mobile-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--bg-primary);
+    border-bottom: 1px solid var(--border-light);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    max-height: calc(100vh - 70px);
+    overflow-y: auto;
+}
+
+.mobile-nav.open {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Responsive */
+@media (max-width: 767px) {
+    .header-content {
+        padding: 0 0.75rem;
+        height: 60px;
+    }
+
+    .logo {
+        font-size: 1.25rem;
+    }
+
+    /* Ховаємо десктопне меню */
+    .desktop-nav {
+        display: none;
+    }
+
+    /* Показуємо мобільне меню */
+    .mobile-nav {
+        display: block;
+    }
+
+    /* Блокуємо скрол на body коли меню відкрите */
+    body.menu-open {
+        overflow: hidden;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-content {
+        flex-direction: row;
+        height: auto;
+        padding: 1rem 0.75rem;
+        gap: 1rem;
+    }
+
+    .mobile-nav {
+        max-height: calc(100vh - 60px);
+    }
+}

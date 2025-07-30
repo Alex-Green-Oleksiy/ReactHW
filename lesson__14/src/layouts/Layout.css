@@ -1,0 +1,75 @@
+.layout {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg-secondary);
+}
+
+.main {
+    flex: 1;
+    padding: 2rem 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Responsive */
+@media (max-width: 767px) {
+    .header-content {
+        padding: 0 0.75rem;
+        height: 60px;
+    }
+
+    .logo {
+        font-size: 1.25rem;
+    }
+
+    /* Показуємо бургер-меню */
+    .burger-menu {
+        display: flex;
+    }
+
+    /* Ховаємо десктопне меню */
+    .desktop-nav {
+        display: none;
+    }
+
+    /* Показуємо мобільне меню */
+    .mobile-nav {
+        display: block;
+    }
+
+    .main {
+        padding: 1.5rem 0;
+    }
+
+    .container {
+        padding: 0 0.75rem;
+    }
+
+    /* Блокуємо скрол на body коли меню відкрите */
+    body.menu-open {
+        overflow: hidden;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-content {
+        flex-direction: row;
+        height: auto;
+        padding: 1rem 0.75rem;
+        gap: 1rem;
+    }
+
+    .mobile-nav .nav-link {
+        padding: 0.75rem;
+        font-size: 0.875rem;
+    }
+
+    .mobile-nav {
+        max-height: calc(100vh - 60px);
+    }
+}

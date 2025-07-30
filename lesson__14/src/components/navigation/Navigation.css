@@ -1,0 +1,60 @@
+.nav {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.nav-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-md);
+    transition: all 0.2s ease;
+    font-weight: 500;
+    font-size: 0.875rem;
+}
+
+.nav-link:hover {
+    color: var(--text-primary);
+    background-color: var(--bg-tertiary);
+}
+
+.nav-link.active {
+    color: var(--accent-primary);
+    background-color: var(--accent-primary-light);
+}
+
+/* Мобільна навігація */
+.nav.mobile-nav {
+    flex-direction: column;
+    padding: 1rem;
+    gap: 0;
+}
+
+.nav.mobile-nav .nav-link {
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    font-weight: 500;
+    border-bottom: 1px solid var(--border-light);
+    transition: all 0.2s ease;
+    display: block;
+    text-align: left;
+}
+
+.nav.mobile-nav .nav-link:hover {
+    background-color: var(--bg-tertiary);
+    color: var(--text-primary);
+}
+
+.nav.mobile-nav .nav-link:last-child {
+    border-bottom: none;
+}
+
+.mobile-theme-toggle {
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    border-top: 1px solid var(--border-light);
+    margin-top: 0.5rem;
+} 

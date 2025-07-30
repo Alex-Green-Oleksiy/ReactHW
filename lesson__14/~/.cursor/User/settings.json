@@ -1,0 +1,6 @@
+{
+    "discord.enabled": false,
+    "wakatime.enabled": false,
+    "customRichPresence.enabled": false,
+    "discordRichPresence.enabled": false
+}
