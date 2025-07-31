@@ -1,15 +1,23 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import ThemeToggle from "@/components/ThemeToggle";
 import { NAVIGATION_LINKS } from "@/constants/navigation";
 import "@/components/navigation/Navigation.css";
 
 const Navigation = ({ isMobile = false, onLinkClick }) => {
     const navLinks = NAVIGATION_LINKS;
+    const location = useLocation();
 
     const handleClick = () => {
         if (onLinkClick) {
             onLinkClick();
         }
+    };
+
+    const isActiveLink = (path) => {
+        if (path === "/") {
+            return location.pathname === "/";
+        }
+        return location.pathname.startsWith(path);
     };
 
     return (
@@ -18,7 +26,9 @@ const Navigation = ({ isMobile = false, onLinkClick }) => {
                 <Link
                     key={link.path}
                     to={link.path}
-                    className="nav-link"
+                    className={`nav-link ${
+                        isActiveLink(link.path) ? "active" : ""
+                    }`}
                     onClick={handleClick}
                 >
                     {link.label}

@@ -42,11 +42,35 @@
     color: var(--text-primary);
     background-color: transparent;
     text-decoration: none;
+    position: relative;
 }
 
 .navLink:hover {
     background-color: var(--bg-tertiary);
     color: var(--text-primary);
+}
+
+.navLink.active {
+    background-color: transparent;
+    color: var(--text-primary);
+}
+
+.navLink.active::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--text-primary);
+    transition: all 0.3s ease;
+    animation: underlineExpandMobile 0.3s ease forwards;
+}
+
+@keyframes underlineExpandMobile {
+    to {
+        width: 100%;
+    }
 }
 
 .navLink:last-child {
