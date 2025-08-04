@@ -1,6 +1,5 @@
 import { Link } from "react-router";
 import styles from "@/pages/PageNotFound.module.css";
-
 export default function PageNotFound() {
     return (
         <div className={styles.container}>

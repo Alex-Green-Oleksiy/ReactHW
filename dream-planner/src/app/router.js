@@ -2,15 +2,11 @@ import { createBrowserRouter } from "react-router";
 import { MainLayout } from "@/widgets";
 import { HomePage, DreamsPage, DreamEditPage, PageNotFound } from "@/pages";
 import DreamsLyricsPage from "@/pages/DreamsLyricsPage";
-
-// Конфігурація маршрутів додатку
-// Кожен маршрут має path (шлях) та Component (компонент для рендерингу)
 export const routes = [
     {
         path: "/", // Головний маршрут
         Component: MainLayout, // Основний макет, який містить навігацію та футер
         children: [
-            // Дочірні маршрути рендеряться всередині MainLayout
             {
                 index: true, // Це головна сторінка (коли path = "/")
                 Component: HomePage,
@@ -47,6 +43,4 @@ export const routes = [
         ]
     }
 ];
-
-// Створюємо роутер для браузера
 export const router = createBrowserRouter(routes);

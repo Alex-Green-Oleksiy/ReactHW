@@ -13,32 +13,25 @@
     background: linear-gradient(135deg, #da450b75, #2b262888);
     color: white;
     box-shadow: 0 10px 30px rgba(255, 166, 107, 0.3);
-    
     transition: all 0.5s ease;
 }
-
 .addButton:hover {
     box-shadow: 0 8px 25px rgba(175, 96, 6, 0.336);
     background: linear-gradient(135deg,#2b262888, #da450b75);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    
     color: #fcfcfc;
     transition: all 0.5s ease;
 }
-
 .addButtonIcon {
     width: 1.5rem;
     height: 1.5rem;
 }
-
-/* Responsive design */
 @media (max-width: 768px) {
     .addButton {
         padding: 0.875rem 1.5rem;
         font-size: 1rem;
     }
-
     .addButtonIcon {
         width: 1.25rem;
         height: 1.25rem;

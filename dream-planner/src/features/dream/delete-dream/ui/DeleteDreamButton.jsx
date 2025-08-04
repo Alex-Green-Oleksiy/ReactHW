@@ -1,16 +1,13 @@
 import { useDeleteDream } from "@/features/dream/delete-dream/model/useDeleteDream";
 import styles from "@/features/dream/delete-dream/ui/DeleteDreamButton.module.css";
-
 export const DeleteDreamButton = ({ dreamId, className, onDeleted }) => {
     const { handleDeleteDream, isLoading } = useDeleteDream();
-
     const handleClick = async () => {
         const success = await handleDeleteDream(dreamId);
         if (success && onDeleted) {
             onDeleted(dreamId);
         }
     };
-
     return (
         <button
             onClick={handleClick}

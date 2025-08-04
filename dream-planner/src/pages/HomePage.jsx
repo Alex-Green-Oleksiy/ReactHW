@@ -1,7 +1,5 @@
 import { Link } from "react-router";
 import styles from "@/pages/HomePage.module.css";
-
-// Компоненти іконок - виносимо SVG в окремі компоненти для перевикористання
 const EditIcon = ({ className }) => (
     <svg
         className={className}
@@ -17,7 +15,6 @@ const EditIcon = ({ className }) => (
         />
     </svg>
 );
-
 const UserGroupIcon = ({ className }) => (
     <svg
         className={className}
@@ -33,7 +30,6 @@ const UserGroupIcon = ({ className }) => (
         />
     </svg>
 );
-
 const PlusIcon = ({ className }) => (
     <svg
         className={className}
@@ -49,7 +45,6 @@ const PlusIcon = ({ className }) => (
         />
     </svg>
 );
-
 const StarIcon = ({ className }) => (
     <svg
         className={className}
@@ -65,21 +60,15 @@ const StarIcon = ({ className }) => (
         />
     </svg>
 );
-
-// Головна сторінка додатку
 export default function HomePage() {
     return (
         <div className={styles.homePage}>
-            {/* Головний блок з заголовком та описом */}
             <div className={styles.hero}>
                 <h1 className={styles.title}>🌟 Планувальник мрій</h1>
                 <p className={styles.subtitle}>
                     Мрій, доки живий, і нехай в тебе збудеться все!!!
                 </p>
-
-                {/* Блок з особливостями додатку */}
                 <div className={styles.features}>
-                    {/* Перша особливість */}
                     <div className={styles.feature}>
                         <EditIcon className={styles.featureIcon} />
                         <h3 className={styles.featureTitle}>
@@ -89,8 +78,6 @@ export default function HomePage() {
                             Опиши свою мрію, ні в чому себе не обмежуй!
                         </p>
                     </div>
-
-                    {/* Друга особливість */}
                     <div className={styles.feature}>
                         <UserGroupIcon className={styles.featureIcon} />
                         <h3 className={styles.featureTitle}>Ти не один</h3>
@@ -100,19 +87,15 @@ export default function HomePage() {
                         </p>
                     </div>
                 </div>
-
-                {/* Блок з кнопками дій */}
                 <div className={styles.ctaSection}>
                     <p className={styles.description}>
-                        Створи свою першу мрію та почни її реалізовувати!
+                        Зберись тряпка, і почни реалізовувати свої мрії!
                     </p>
                     <div className={styles.buttonGroup}>
-                        {/* Кнопка для перегляду існуючих мрій */}
                         <Link to="/dreams" className={styles.ctaButton}>
                             <PlusIcon className={styles.ctaButtonIcon} />
                             Переглянути мрії
                         </Link>
-                        {/* Кнопка для додавання нової мрії */}
                         <Link
                             to="/dreams/add"
                             className={styles.secondaryButton}

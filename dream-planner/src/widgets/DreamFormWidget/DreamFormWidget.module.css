@@ -4,11 +4,9 @@
   align-items: center;
   height: 10rem;
 }
-
 .loadingContent {
   text-align: center;
 }
-
 .spinner {
   animation: spin 1s linear infinite;
   border-radius: 50%;
@@ -17,13 +15,10 @@
   border-bottom: 2px solid var(--color-primary);
   margin: 0 auto 1rem;
 }
-
 .loadingText {
   font-size: 1.125rem;
   color: var(--color-text-secondary);
 }
-
-
 @keyframes spin {
   from {
     transform: rotate(0deg);

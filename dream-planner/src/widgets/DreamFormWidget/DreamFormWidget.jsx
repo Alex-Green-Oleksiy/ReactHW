@@ -1,13 +1,8 @@
 import { DreamForm, useDreamForm } from "@/features/dream";
 import { useAddDream, useEditDream } from "@/features/dream";
 import styles from "@/widgets/DreamFormWidget/DreamFormWidget.module.css";
-
 export const DreamFormWidget = ({ dreamId }) => {
-    // Якщо dreamId немає - це нова мрія, якщо є - редагуємо існуючу
     const isNew = !dreamId;
-
-    // Отримуємо дані та функції для редагування мрії
-    // useEditDream повертає стан форми та функцію для збереження
     const {
         description: editDescription,
         setDescription: setEditDescription,
@@ -19,9 +14,6 @@ export const DreamFormWidget = ({ dreamId }) => {
         isUpdating,
         editDream
     } = useEditDream(dreamId);
-
-    // Отримуємо дані та функції для додавання нової мрії
-    // useDreamForm повертає порожній стан форми
     const {
         description: addDescription,
         setDescription: setAddDescription,
@@ -30,12 +22,7 @@ export const DreamFormWidget = ({ dreamId }) => {
         friend: addFriend,
         setFriend: setAddFriend
     } = useDreamForm();
-
-    // Отримуємо функцію для додавання мрії в базу даних
     const { addDream, isLoading: isAdding } = useAddDream();
-
-    // Вибір, які дані та обробники використовувати залежно від режиму
-    // Якщо нова мрія - використовуємо add-функції, якщо редагуємо - edit-функції
     const formData = isNew 
         ? {
             description: addDescription,
@@ -55,25 +42,18 @@ export const DreamFormWidget = ({ dreamId }) => {
             setFriend: setEditFriend,
             isLoading: isUpdating || isLoadingDream
         };
-
-    // Обробник відправки форми
     const handleSubmit = async (e) => {
         e.preventDefault(); // Запобігаємо перезавантаженню сторінки
-        
         if (isNew) {
-            // Додаємо нову мрію
             await addDream({
                 description: formData.description,
                 targetYear: +formData.targetYear, // + перетворює рядок в число
                 friend: formData.friend
             });
         } else {
-            // Оновлюємо існуючу мрію
             await editDream();
         }
     };
-
-    // Показуємо завантаження, поки завантажуємо дані мрії для редагування
     if (!isNew && isLoadingDream) {
         return (
             <div className={styles.loadingContainer}>
@@ -86,8 +66,6 @@ export const DreamFormWidget = ({ dreamId }) => {
             </div>
         );
     }
-
-    // Рендеримо форму з відповідними даними та обробниками
     return (
         <DreamForm
             isNew={isNew}

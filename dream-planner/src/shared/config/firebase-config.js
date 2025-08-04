@@ -1,8 +1,5 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore/lite";
-
-// Конфігурація Firebase
-// Всі ці значення беруться з змінних середовища (.env файл)
 const firebaseConfig = {
     apiKey: import.meta.env.VITE_FIREBASE_API_KEY, // Ключ API для доступу до Firebase
     authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN, // Домен для авторизації
@@ -11,12 +8,24 @@ const firebaseConfig = {
     messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID, // ID для повідомлень
     appId: import.meta.env.VITE_FIREBASE_APP_ID // Унікальний ID додатку
 };
-
-// Ініціалізуємо Firebase додаток
+if (import.meta.env.DEV) {
+    console.log("Firebase Config:", {
+        apiKey: firebaseConfig.apiKey ? "✅ Завантажено" : "❌ Відсутній",
+        authDomain: firebaseConfig.authDomain ? "✅ Завантажено" : "❌ Відсутній",
+        projectId: firebaseConfig.projectId ? "✅ Завантажено" : "❌ Відсутній",
+        storageBucket: firebaseConfig.storageBucket
+            ? "✅ Завантажено"
+            : "❌ Відсутній",
+        messagingSenderId: firebaseConfig.messagingSenderId
+            ? "✅ Завантажено"
+            : "❌ Відсутній",
+        appId: firebaseConfig.appId ? "✅ Завантажено" : "❌ Відсутній"
+    });
+}
 const app = initializeApp(firebaseConfig);
-
-// Отримуємо екземпляр Firestore (база даних)
-// Використовуємо lite версію для зменшення розміру бандла
 const db = getFirestore(app);
-
+if (import.meta.env.DEV) {
+    console.log("✅ Firebase успішно ініціалізовано!");
+    console.log("✅ Firestore підключено!");
+}
 export default db;

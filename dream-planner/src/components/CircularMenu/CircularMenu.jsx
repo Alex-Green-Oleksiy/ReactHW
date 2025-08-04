@@ -2,9 +2,6 @@ import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router';
 import { routes } from '@/app/router';
 import styles from './CircularMenu.module.css';
-
-// Функція для отримання пунктів меню з роутера
-// Фільтруємо тільки ті роути, які мають мета-інформацію з label
 const getMenuItems = () => {
     return routes[0].children
         .filter((r) => r?.meta?.label)
@@ -14,37 +11,23 @@ const getMenuItems = () => {
             label: r.meta.label
         }));
 };
-
-// Компонент кругового меню для десктопної версії
 export default function CircularMenu() {
-    // Стан для відкриття/закриття меню
     const [isOpen, setIsOpen] = useState(false);
-    // Текст на кнопці toggle (Menu/Close)
     const [toggleText, setToggleText] = useState('Menu');
-
-    // Функція для перемикання стану меню
     const toggleMenu = () => {
         setIsOpen(!isOpen);
         setToggleText(isOpen ? 'Menu' : 'Close');
     };
-
-    // useEffect для автоматичного відкриття меню через 800ms після завантаження
     useEffect(() => {
         const timer = setTimeout(() => {
             setIsOpen(true);
             setToggleText('Close');
         }, 800);
-
-        // Очищаємо таймер при розмонтуванні компонента
         return () => clearTimeout(timer);
     }, []);
-
-    // Отримуємо список пунктів меню
     const menuItems = getMenuItems();
-
     return (
         <>
-            {/* Логотип додатку */}
             <div className={styles.logoContainer}>
                 <NavLink to="/" className={styles.logo}>
                     <svg
@@ -63,10 +46,7 @@ export default function CircularMenu() {
                     <span className={styles.logoText}>Планувальник мрій</span>
                 </NavLink>
             </div>
-
-            {/* Кругове меню з пунктами навігації */}
             <nav className={`${styles.nav} ${isOpen ? styles.open : ''} ${styles.topRight}`}>
-                {/* Рендеримо кожен пункт меню як окреме посилання */}
                 {menuItems.map((item) => (
                     <NavLink
                         key={item.id}
@@ -76,7 +56,6 @@ export default function CircularMenu() {
                         <div>{item.label}</div>
                     </NavLink>
                 ))}
-                {/* Кнопка для відкриття/закриття меню */}
                 <a
                     className={`${styles.disc} ${styles[`l${menuItems.length + 1}`]} ${styles.toggle}`}
                     onClick={toggleMenu}

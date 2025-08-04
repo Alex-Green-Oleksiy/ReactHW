@@ -1,7 +1,6 @@
 import React from 'react';
 import { backgroundImage } from '@/assets/images';
 import styles from './BackgroundImage.module.css';
-
 const BackgroundImage = () => {
     return (
         <div 
@@ -12,5 +11,4 @@ const BackgroundImage = () => {
         />
     );
 };
-
 export default BackgroundImage; 

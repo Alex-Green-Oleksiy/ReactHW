@@ -3,8 +3,6 @@
     margin: 0 auto;
     padding: 2rem 1rem;
 }
-
-/* Responsive design */
 @media (max-width: 768px) {
     .container {
         padding: 1.5rem 1rem;

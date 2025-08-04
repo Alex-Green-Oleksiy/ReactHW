@@ -1,9 +1,6 @@
 import { Fragment } from "react";
 import styles from "@/entities/dream/ui/DreamCard.module.css";
-
-// Компонент картки мрії - відображає інформацію про одну мрію
 export function DreamCard({ dream, actions }) {
-    // Функція для форматування дати в українському форматі
     const formatDate = (dateString) => {
         return new Date(dateString).toLocaleDateString("uk-UA", {
             year: "numeric",
@@ -11,19 +8,13 @@ export function DreamCard({ dream, actions }) {
             day: "numeric"
         });
     };
-
     return (
         <div className={styles.dreamCard}>
-            {/* Основний контент картки */}
             <div className={styles.content}>
-                {/* Заголовок з описом мрії */}
                 <h3 className={styles.title} title={dream.description}>
                     {dream.description}
                 </h3>
-
-                {/* Детальна інформація про мрію */}
                 <div className={styles.details}>
-                    {/* Цільовий рік */}
                     <div className={styles.detailItem}>
                         <svg
                             className={styles.icon}
@@ -42,8 +33,6 @@ export function DreamCard({ dream, actions }) {
                             Цільовий рік: {dream.targetYear}
                         </span>
                     </div>
-
-                    {/* Інформація про друга (показуємо тільки якщо є) */}
                     {dream.friend && (
                         <div className={styles.detailItem}>
                             <svg
@@ -65,17 +54,11 @@ export function DreamCard({ dream, actions }) {
                         </div>
                     )}
                 </div>
-
-                {/* Дата створення мрії */}
                 <div className={styles.createdAt}>
                     Створено: {formatDate(dream.createdAt)}
                 </div>
             </div>
-
-            {/* Блок з кнопками дій (редагування, видалення) */}
             <div className={styles.actions}>
-                {/* Рендеримо дії, передані через пропси */}
-                {/* Fragment дозволяє рендерити кілька елементів без додаткового div */}
                 {actions &&
                     actions.map((action, index) => (
                         <Fragment key={index}>{action}</Fragment>

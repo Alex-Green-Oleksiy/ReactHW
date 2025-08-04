@@ -1,5 +1,4 @@
 .form {
-    /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
     border-radius: 1.5rem;
     padding: 2rem;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
@@ -7,7 +6,6 @@
     position: relative;
     overflow: hidden;
 }
-
 .form::before {
     content: "";
     position: absolute;
@@ -15,16 +13,13 @@
     left: 0;
     right: 0;
     bottom: 0;
-    /* background: rgba(255, 255, 255, 0.95); */
     border-radius: 1.5rem;
     z-index: 1;
 }
-
 .formContent {
     position: relative;
     z-index: 2;
 }
-
 .title {
     font-size: 2rem;
     font-weight: 700;
@@ -36,19 +31,19 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
-
 .formGroup {
     margin-bottom: 1.5rem;
 }
-
 .label {
     display: block;
     font-size: 1rem;
     font-weight: 600;
-    color: #0c0c0c;
+    color: #000000;
     margin-bottom: 0.5rem;
 }
-
+.formGroup input::placeholder, .formGroup textarea::placeholder {
+    color: #f8f8f8;
+}
 .input,
 .textarea,
 .select {
@@ -58,13 +53,12 @@
     border: 2px solid #e785054b;
     border-radius: 0.75rem;
     background: rgba(255, 254, 253, 0);
-    color: #0f0e0e;
-    backdrop-filter: blur(0px);
+    color: #e45f06;
+    backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(0px);
     transition: all 0.3s ease;
     font-family: inherit;
 }
-
 .input:focus,
 .textarea:focus,
 .select:focus {
@@ -76,23 +70,19 @@
     -webkit-backdrop-filter: blur(20px);
     transform: translateY(-1px);
 }
-
 .textarea {
     min-height: 120px;
     resize: vertical;
 }
-
 .select {
     cursor: pointer;
 }
-
 .buttonGroup {
     display: flex;
     gap: 1rem;
     margin-top: 2rem;
     flex-wrap: wrap;
 }
-
 .submitButton {
     flex: 1;
     min-width: 200px;
@@ -112,19 +102,16 @@
     color: white;
     box-shadow: 0 4px 15px rgba(211, 127, 1, 0.185);
 }
-
 .submitButton:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(184, 116, 39, 0.4);
 }
-
 .submitButton:disabled {
     opacity: 0.6;
     cursor: not-allowed;
     transform: none;
     box-shadow: 0 4px 15px rgba(255, 107, 157, 0.2);
 }
-
 .cancelButton {
     flex: 1;
     min-width: 200px;
@@ -143,19 +130,16 @@
     background: transparent;
     color: #fafafa;
 }
-
 .cancelButton:hover {
-    background: #4ecdc4;
+    background: #4ecdc534;
     color: white;
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(78, 205, 196, 0.3);
 }
-
 .loadingButton {
     opacity: 0.7;
     cursor: not-allowed;
 }
-
 .loadingSpinner {
     width: 1.25rem;
     height: 1.25rem;
@@ -164,13 +148,11 @@
     border-radius: 50%;
     animation: spin 1s linear infinite;
 }
-
 @keyframes spin {
     to {
         transform: rotate(360deg);
     }
 }
-
 .error {
     color: #e53e3e;
     font-size: 0.875rem;
@@ -180,7 +162,6 @@
     border-radius: 0.5rem;
     border-left: 3px solid #e53e3e;
 }
-
 .success {
     color: #38a169;
     font-size: 0.875rem;
@@ -190,22 +171,17 @@
     border-radius: 0.5rem;
     border-left: 3px solid #38a169;
 }
-
-/* Responsive design */
 @media (max-width: 768px) {
     .form {
         padding: 1.5rem;
         margin: 1rem;
     }
-
     .title {
         font-size: 1.5rem;
     }
-
     .buttonGroup {
         flex-direction: column;
     }
-
     .submitButton,
     .cancelButton {
         width: 100%;

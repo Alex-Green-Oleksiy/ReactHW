@@ -2,22 +2,17 @@ import { DreamCard } from "@/entities/dream";
 import { EditDreamLink, DeleteDreamButton } from "@/features/dream";
 import { Pagination } from "@/widgets/DreamListWidget/ui";
 import styles from "@/widgets/DreamListWidget/ui/DreamList.module.css";
-
-// Компонент для відображення списку мрій з пагінацією
-export const DreamList = ({ dreams, page, setPage, hasMore, isLoading }) => {
+export const DreamList = ({ dreams, page, setPage, hasMore, isLoading, totalPages = 1 }) => {
     return (
         <div className={styles.dreamList}>
-            {/* Показуємо спінер завантаження, поки дані завантажуються */}
             {isLoading ? (
                 <div className={styles.loadingState}>
                     <div className={styles.loadingSpinner}></div>
                     <p className={styles.loadingText}>Завантаження мрій...</p>
                 </div>
             ) : (
-                // Основний контент - список мрій або повідомлення про порожній список
                 <div className={styles.grid}>
                     {dreams.length === 0 ? (
-                        // Показуємо це повідомлення, якщо мрій немає
                         <div className={styles.emptyState}>
                             <svg
                                 className={styles.emptyIcon}
@@ -41,12 +36,10 @@ export const DreamList = ({ dreams, page, setPage, hasMore, isLoading }) => {
                             </p>
                         </div>
                     ) : (
-                        // Рендеримо кожну мрію як окрему картку
                         dreams.map((dream) => (
                             <DreamCard
                                 key={dream.id} // Унікальний ключ для React
                                 dream={dream}
-                                // Передаємо масив дій (кнопки редагування та видалення)
                                 actions={[
                                     <EditDreamLink
                                         dreamId={dream.id}
@@ -62,14 +55,13 @@ export const DreamList = ({ dreams, page, setPage, hasMore, isLoading }) => {
                     )}
                 </div>
             )}
-
-            {/* Показуємо пагінацію тільки якщо є мрії */}
             {dreams.length > 0 && (
                 <div className={styles.paginationContainer}>
                     <Pagination
                         page={page}
                         setPage={setPage}
                         hasMore={hasMore}
+                        totalPages={totalPages}
                     />
                 </div>
             )}

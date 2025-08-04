@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./DreamsLyricsPage.module.css";
-
 const DreamsLyricsPage = () => {
     return (
         <div className={styles.container}>
@@ -23,7 +22,6 @@ const DreamsLyricsPage = () => {
                         віками.
                     </p>
                     <p>Ти знаєш, авжеж, що посієш те і пожнеш.</p>
-                   
                     <p>Ти мрій, просто мрій, доки мрія прийде,</p>
                     <p>мрій, доки збудеться все.</p>
                     <p>
@@ -38,5 +36,4 @@ const DreamsLyricsPage = () => {
         </div>
     );
 };
-
 export default DreamsLyricsPage;
