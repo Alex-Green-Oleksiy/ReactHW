@@ -1,7 +1,31 @@
-* {
+/* CSS Reset and Normalization */
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+body {
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+/* Ensure consistent font rendering across browsers */
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 .font-alegreya {
     font-family: "Alegreya Sans", sans-serif;
@@ -81,6 +105,33 @@ body {
     min-height: 100vh;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "kern" 1;
+    font-kerning: normal;
+}
+
+/* Ensure consistent spacing and sizing */
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+/* Prevent layout shifts */
+input,
+button,
+textarea,
+select {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
 }
 h1,
 h2,
@@ -396,6 +447,33 @@ select:focus {
         font-size: var(--font-size-xl);
     }
 }
+
+/* Additional responsive breakpoints */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 var(--space-xs);
+    }
+    h1 {
+        font-size: var(--font-size-2xl);
+    }
+    h2 {
+        font-size: var(--font-size-xl);
+    }
+    .p-8 {
+        padding: var(--space-md);
+    }
+    .p-6 {
+        padding: var(--space-sm);
+    }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    body {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}
 .fade-in {
     animation: fadeIn 0.5s ease-in-out;
 }
@@ -435,24 +513,24 @@ body.mobile-menu-open {
     height: 100%;
 }
 html {
-    scrollbar-width: none; 
-    -ms-overflow-style: none; 
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 html::-webkit-scrollbar {
     width: 0;
     height: 0;
 }
 body {
-    scrollbar-width: none; 
-    -ms-overflow-style: none; 
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 body::-webkit-scrollbar {
     width: 0;
     height: 0;
 }
 * {
-    scrollbar-width: none; 
-    -ms-overflow-style: none; 
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 *::-webkit-scrollbar {
     width: 0;
