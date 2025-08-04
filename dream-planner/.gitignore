@@ -52,9 +52,11 @@ public
 .storybook-out
 tmp/
 temp/
+
 .vercel
 .firebase/
 firebase-debug.log
 firestore-debug.log
 ui-debug.log
 .local
+.md
