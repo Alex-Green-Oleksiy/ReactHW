@@ -1,0 +1,124 @@
+.mobileMenuContainer {
+    display: none;
+}
+
+/* Бургер кнопка */
+.burgerButton {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    width: 3rem;
+    height: 3rem;
+    background: rgba(255, 255, 255, 0.247);
+    backdrop-filter: blur(10px);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1002;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.25rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.burgerButton:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+}
+
+.burgerButton span {
+    width: 1.5rem;
+    height: 2px;
+    background: #2d3748;
+    transition: all 0.3s ease;
+    transform-origin: center;
+}
+
+.burgerButton.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.burgerButton.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.burgerButton.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* Мобільне меню */
+.mobileMenu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.034);
+    backdrop-filter: blur(15px);
+    z-index: 1001;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 80px));
+}
+
+.mobileMenu.open {
+    transform: translateX(0);
+}
+
+.mobileNav {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    text-align: center;
+    width: 100%;
+    max-width: 300px;
+    padding: 2rem;
+}
+
+.mobileLink {
+    font-family: var(--font-alegreya);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #2d3748;
+    text-decoration: none;
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0);
+    backdrop-filter: blur(0px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transform: translateX(-100%);
+    animation: slideIn 0.5s ease forwards;
+}
+
+.mobileLink:hover {
+    background: rgba(129, 125, 126, 0.1);
+    color: #53514e;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 107, 157, 0.2);
+}
+
+.mobileLink.active {
+    background: linear-gradient(135deg, #3634343a, #e6830249);
+    color: white;
+    box-shadow: 0 8px 25px rgba(233, 134, 4, 0.151);
+}
+
+@keyframes slideIn {
+    to {
+        transform: translateX(0);
+    }
+}
+
+/* Показуємо мобільне меню тільки на мобільних пристроях */
+@media (max-width: 768px) {
+    .mobileMenuContainer {
+        display: block;
+    }
+} 
