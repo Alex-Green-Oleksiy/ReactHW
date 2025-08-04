@@ -11,6 +11,26 @@
   box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
   position: relative;
   overflow: hidden;
+  white-space: nowrap;
+  text-align: center;
+}
+
+/* Адаптивність для планшетів */
+@media (max-width: 768px) {
+  .addButton {
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+  }
+}
+
+/* Адаптивність для мобільних */
+@media (max-width: 480px) {
+  .addButton {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.9rem;
+    width: 100%;
+    max-width: 250px;
+  }
 }
 
 .addButton::before {

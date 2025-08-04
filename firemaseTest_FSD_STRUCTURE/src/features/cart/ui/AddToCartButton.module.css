@@ -11,6 +11,25 @@
   box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
   position: relative;
   overflow: hidden;
+  white-space: nowrap;
+  text-align: center;
+}
+
+/* Адаптивність для планшетів */
+@media (max-width: 768px) {
+  .addToCartButton {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* Адаптивність для мобільних */
+@media (max-width: 480px) {
+  .addToCartButton {
+    padding: 0.75rem 1rem;
+    font-size: 0.75rem;
+    width: 100%;
+  }
 }
 
 .addToCartButton::before {
