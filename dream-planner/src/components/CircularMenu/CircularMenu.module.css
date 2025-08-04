@@ -19,8 +19,8 @@
     height: calc(var(--size) * var(--items) * 1.7);
     user-select: none;
     transform: translate3d(
-        calc(var(--size) * 0.5),
-        calc(-1 * var(--size) * 0.5),
+        calc(var(--size) * 0.2),
+        calc(-1 * var(--size) * 0.2),
         0
     );
     transition: transform var(--transition) var(--bounce);
@@ -30,8 +30,8 @@
     transform: translate3d(0, 0, 0);
 }
 .nav.topRight {
-    top: calc(-1 * var(--size) * (var(--items) - 4));
-    right: calc(-1 * var(--size) * (var(--items) - 4));
+    top: calc(-1 * var(--size) * (var(--items) - 2.5));
+    right: calc(-1 * var(--size) * (var(--items) - 2.5));
     z-index: 1000;
 }
 .logoContainer {
@@ -41,7 +41,7 @@
     z-index: 1001;
 }
 .logo {
-    display: block;
+    display: flex;
     align-items: center;
     gap: 0.75rem;
     text-decoration: none;
@@ -79,8 +79,8 @@
     text-align: center;
     cursor: pointer;
     font: calc(var(--size) * 0.4) var(--font-alegreya);
-    line-height: calc(var(--size) * 0.8);
-    padding-top: calc(var(--size) * 0.2);
+    line-height: 5px;
+    padding-top:10px;
     border-radius: calc(var(--size) * var(--items));
     pointer-events: none;
     opacity: 0;
@@ -89,7 +89,7 @@
         opacity var(--transition);
     text-decoration: none;
     color: #ffffff;
-    font-weight: 400;
+    font-weight: 300;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 .disc div {

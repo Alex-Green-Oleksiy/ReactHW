@@ -1,6 +1,26 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore/lite";
 
+// Firebase конфігурація з fallback на змінні середовища
+const firebaseConfig = {
+    apiKey:
+        import.meta.env.VITE_FIREBASE_API_KEY ||
+        "AIzaSyBG_7ylcdh_wjOfUNNZD_Xh4lyu9fvrLHU",
+    authDomain:
+        import.meta.env.VITE_FIREBASE_AUTH_DOMAIN ||
+        "dream-planner-60776.firebaseapp.com",
+    projectId:
+        import.meta.env.VITE_FIREBASE_PROJECT_ID || "dream-planner-60776",
+    storageBucket:
+        import.meta.env.VITE_FIREBASE_STORAGE_BUCKET ||
+        "dream-planner-60776.firebasestorage.app",
+    messagingSenderId:
+        import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "529813336237",
+    appId:
+        import.meta.env.VITE_FIREBASE_APP_ID ||
+        "1:529813336237:web:a42aabea933755fde09624"
+};
+
 // Перевірка наявності змінних середовища
 const requiredEnvVars = {
     VITE_FIREBASE_API_KEY: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -18,18 +38,16 @@ const missingVars = Object.entries(requiredEnvVars)
     .map(([key]) => key);
 
 if (missingVars.length > 0) {
-    console.error("❌ Відсутні змінні середовища Firebase:", missingVars);
-    console.error("Переконайтеся, що всі змінні налаштовані в Vercel");
+    console.warn(
+        "⚠️ Використовуються fallback значення Firebase. Відсутні змінні середовища:",
+        missingVars
+    );
+    console.info(
+        "💡 Для продакшну налаштуйте змінні середовища в Vercel Dashboard"
+    );
+} else {
+    console.log("✅ Всі Firebase змінні середовища налаштовані");
 }
-
-const firebaseConfig = {
-    apiKey: requiredEnvVars.VITE_FIREBASE_API_KEY,
-    authDomain: requiredEnvVars.VITE_FIREBASE_AUTH_DOMAIN,
-    projectId: requiredEnvVars.VITE_FIREBASE_PROJECT_ID,
-    storageBucket: requiredEnvVars.VITE_FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: requiredEnvVars.VITE_FIREBASE_MESSAGING_SENDER_ID,
-    appId: requiredEnvVars.VITE_FIREBASE_APP_ID
-};
 if (import.meta.env.DEV) {
     console.log("Firebase Config:", {
         apiKey: firebaseConfig.apiKey ? "✅ Завантажено" : "❌ Відсутній",

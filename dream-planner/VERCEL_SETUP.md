@@ -80,18 +80,31 @@ vercel env add VITE_FIREBASE_APP_ID
 5. Виберіть веб-додаток або створіть новий
 6. Скопіюйте конфігурацію
 
-## Приклад конфігурації
+## Ваша Firebase конфігурація
 
 ```javascript
 const firebaseConfig = {
     apiKey: "AIzaSyBG_7ylcdh_wjOfUNNZD_Xh4lyu9fvrLHU",
     authDomain: "dream-planner-60776.firebaseapp.com",
     projectId: "dream-planner-60776",
-    storageBucket: "dream-planner-60776.appspot.com",
+    storageBucket: "dream-planner-60776.firebasestorage.app",
     messagingSenderId: "529813336237",
     appId: "1:529813336237:web:a42aabea933755fde09624"
 };
 ```
+
+## Змінні середовища для Vercel
+
+Скопіюйте ці значення в Vercel Dashboard:
+
+| Name                                | Value                                       |
+| ----------------------------------- | ------------------------------------------- |
+| `VITE_FIREBASE_API_KEY`             | `AIzaSyBG_7ylcdh_wjOfUNNZD_Xh4lyu9fvrLHU`   |
+| `VITE_FIREBASE_AUTH_DOMAIN`         | `dream-planner-60776.firebaseapp.com`       |
+| `VITE_FIREBASE_PROJECT_ID`          | `dream-planner-60776`                       |
+| `VITE_FIREBASE_STORAGE_BUCKET`      | `dream-planner-60776.firebasestorage.app`   |
+| `VITE_FIREBASE_MESSAGING_SENDER_ID` | `529813336237`                              |
+| `VITE_FIREBASE_APP_ID`              | `1:529813336237:web:a42aabea933755fde09624` |
 
 ## Важливо
 
