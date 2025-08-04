@@ -57,8 +57,8 @@
 max-width: 300px;
     padding: 2rem;
     background: rgba(189, 109, 5, 0.116);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
     border-radius: 1.5rem;
     border: 1px solid rgba(255, 255, 255, 0.3);
     transition: all 0.3s ease;
@@ -84,7 +84,7 @@ max-width: 300px;
     font-weight: 600;
 }
 .featureText {
-    color: #d0d4da;
+    color: #030303;
     line-height: 1.6;
 }
 .ctaSection {
