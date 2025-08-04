@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { clearCart } from "@/features/cart";
 import { useState } from "react";
+import styles from './CartPage.module.css';
 
 export default function CartPage() {
     const cart = useSelector((s) => s.cart);
@@ -18,62 +19,60 @@ export default function CartPage() {
     };
 
     return (
-        <div className="container">
-            <div className="text-center mb-8">
-                <h2 className="text-3xl font-bold mb-4 text-gradient">🛒 Your Shopping Cart</h2>
-                <p className="text-gray-600">Review your items and complete your purchase</p>
+        <div className={styles.cartPage}>
+            <div className={styles.cartHeader}>
+                <h2 className={styles.cartTitle}>🛒 Your Shopping Cart</h2>
+                <p className={styles.cartSubtitle}>Review your items and complete your purchase</p>
             </div>
             
             {cart.length === 0 ? (
-                <div className="text-center py-12">
-                    <div className="text-6xl mb-4">🛍️</div>
-                    <h3 className="text-2xl font-semibold mb-2">Your cart is empty</h3>
-                    <p className="text-gray-600 mb-6">Add some products to get started!</p>
-                    <a 
-                        href="/products" 
-                        className="inline-block bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300"
-                    >
+                <div className={styles.emptyCart}>
+                    <div className={styles.emptyCartIcon}>🛍️</div>
+                    <h3 className={styles.emptyCartMessage}>Your cart is empty</h3>
+                    <p className={styles.emptyCartMessage}>Add some products to get started!</p>
+                    <a href="/products" className={styles.browseButton}>
                         Browse Products
                     </a>
                 </div>
             ) : (
-                <div className="space-y-4">
+                <div className={styles.cartItems}>
                     {cart.map((item) => (
-                        <div key={item.id} className="cart-item">
-                            <div className="flex justify-between items-center p-4">
-                                <div className="flex-1">
-                                    <h3 className="text-lg font-semibold">{item.title}</h3>
-                                    <p className="text-gray-600">Quantity: {item.count}</p>
+                        <div key={item.id} className={styles.cartItem}>
+                            <div className={styles.itemInfo}>
+                                <h3 className={styles.itemTitle}>{item.title}</h3>
+                                <p className={styles.itemPrice}>Quantity: {item.count}</p>
+                            </div>
+                            <div className={styles.itemActions}>
+                                <div className={styles.quantityControl}>
+                                    <button className={styles.quantityButton}>-</button>
+                                    <span className={styles.quantity}>{item.count}</span>
+                                    <button className={styles.quantityButton}>+</button>
                                 </div>
-                                <div className="text-right">
-                                    <p className="text-lg font-bold text-blue-600">${(item.price * item.count).toFixed(2)}</p>
-                                    <p className="text-sm text-gray-500">${item.price.toFixed(2)} each</p>
+                                <div className={styles.itemPrice}>
+                                    ${(item.price * item.count).toFixed(2)}
                                 </div>
+                                <button className={styles.removeButton}>Remove</button>
                             </div>
                         </div>
                     ))}
                     
-                    <div className="cart-summary">
-                        <div className="flex justify-between items-center p-6">
-                            <h3 className="text-2xl font-bold">Total:</h3>
-                            <span className="text-3xl font-bold text-gradient">${total.toFixed(2)}</span>
-                        </div>
+                    <div className={styles.cartSummary}>
+                        <h3 className={styles.summaryTitle}>Order Summary</h3>
+                        <div className={styles.totalPrice}>Total: ${total.toFixed(2)}</div>
                         
-                        <div className="text-center p-6">
-                            <button
-                                onClick={handleOrder}
-                                className="order-button"
-                                disabled={ordered}
-                            >
-                                {ordered ? 'Processing...' : 'Place Order'}
-                            </button>
-                        </div>
+                        <button
+                            onClick={handleOrder}
+                            className={styles.orderButton}
+                            disabled={ordered}
+                        >
+                            {ordered ? 'Processing...' : 'Place Order'}
+                        </button>
                     </div>
                 </div>
             )}
             
             {ordered && (
-                <div className="success-message">
+                <div className={styles.successMessage}>
                     <div className="text-center p-6">
                         <div className="text-4xl mb-2">✅</div>
                         <h3 className="text-xl font-semibold mb-2">Order placed successfully!</h3>

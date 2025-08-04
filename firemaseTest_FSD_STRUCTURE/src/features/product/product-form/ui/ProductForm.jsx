@@ -1,37 +1,60 @@
+import styles from './ProductForm.module.css';
+
 export const ProductForm = ({
-  title, // Поточне значення заголовка
-  onTitleChange, // Обробник зміни заголовка
-  price, // Поточне значення ціни
-  onPriceChange, // Обробник зміни ціни
-  onSubmit, // Обробник подачі форми
-  isNew, // Прапор, що вказує, чи це нова форма (для заголовка "Add" / "Edit")
-  isSubmitting, // Прапор, що вказує, чи відбувається процес подачі форми (для деактивації полів/кнопки)
+  title,
+  onTitleChange,
+  price,
+  onPriceChange,
+  onSubmit,
+  isNew,
+  isSubmitting,
 }) => {
   return (
-    <form onSubmit={onSubmit} className="space-y-4 max-w-md">
-      <h2 className="text-xl">{isNew ? 'Add' : 'Edit'} Product</h2>
-      <input
-        value={title}
-        onChange={onTitleChange}
-        placeholder="Title"
-        className="border p-2 w-full"
-        disabled={isSubmitting} // Деактивуємо поля під час сабміту
-      />
-      <input
-        value={price}
-        onChange={onPriceChange}
-        placeholder="Price"
-        type="number"
-        className="border p-2 w-full"
-        disabled={isSubmitting}
-      />
-      <button
-        type="submit"
-        className="bg-blue-500 text-white px-4 py-2"
-        disabled={isSubmitting}
-      >
-        {isSubmitting ? 'Saving...' : 'Save'}
-      </button>
+    <form onSubmit={onSubmit} className={styles.productForm}>
+      <h2 className={styles.formTitle}>
+        {isNew ? 'Add New' : 'Edit'} Product
+      </h2>
+      
+      <div className={styles.formGroup}>
+        <label className={styles.formLabel}>Product Title</label>
+        <input
+          value={title}
+          onChange={onTitleChange}
+          placeholder="Enter product title..."
+          className={styles.formInput}
+          disabled={isSubmitting}
+          required
+        />
+      </div>
+      
+      <div className={styles.formGroup}>
+        <label className={styles.formLabel}>Price</label>
+        <input
+          value={price}
+          onChange={onPriceChange}
+          placeholder="Enter price..."
+          type="number"
+          step="0.01"
+          min="0"
+          className={styles.formInput}
+          disabled={isSubmitting}
+          required
+        />
+      </div>
+      
+      <div className={styles.formActions}>
+        <button
+          type="submit"
+          className={styles.submitButton}
+          disabled={isSubmitting}
+        >
+          {isSubmitting ? 'Saving...' : 'Save Product'}
+        </button>
+        
+        <a href="/products" className={styles.cancelButton}>
+          Cancel
+        </a>
+      </div>
     </form>
   )
 }

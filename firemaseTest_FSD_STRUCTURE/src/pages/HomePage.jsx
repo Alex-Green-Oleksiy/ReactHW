@@ -1,16 +1,33 @@
+import styles from './HomePage.module.css';
+
 export default function HomePage() {
     return (
-        <div className="container text-center">
-            <div className="mb-5">
-                <h1 className="text-4xl font-bold mb-4 text-gradient">
+        <div className={styles.homepage}>
+            <div className={styles.hero}>
+                <h1 className={styles.title}>
                     Welcome to Firebase Shop! 🛍️
                 </h1>
-                <p className="text-xl text-gray-600 mb-8">
-                    Discover amazing products with real-time Firebase
-                    integration
+                <p className={styles.subtitle}>
+                    Discover amazing products with real-time Firebase integration
                 </p>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8"></div>
-                <a href="/products" className="browse-products-link">
+                <div className={styles.featuresGrid}>
+                    <div className={styles.featureCard}>
+                        <div className={styles.featureIcon}>🔥</div>
+                        <h3 className={styles.featureTitle}>Firebase Powered</h3>
+                        <p className={styles.featureDescription}>Real-time data synchronization</p>
+                    </div>
+                    <div className={styles.featureCard}>
+                        <div className={styles.featureIcon}>⚡</div>
+                        <h3 className={styles.featureTitle}>Lightning Fast</h3>
+                        <p className={styles.featureDescription}>Optimized performance</p>
+                    </div>
+                    <div className={styles.featureCard}>
+                        <div className={styles.featureIcon}>🎨</div>
+                        <h3 className={styles.featureTitle}>Modern Design</h3>
+                        <p className={styles.featureDescription}>Beautiful UI/UX</p>
+                    </div>
+                </div>
+                <a href="/products" className={styles.ctaButton}>
                     Browse Products →
                 </a>
             </div>
