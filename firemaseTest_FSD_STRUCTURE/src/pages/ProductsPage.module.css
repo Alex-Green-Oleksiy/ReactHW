@@ -1,39 +1,55 @@
 .page {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem 1rem;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    text-align: center;
 }
 
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 
 .title {
-  font-size: 2.5rem;
-  font-weight: bold;
-  color: #2c3e50;
-  margin: 0;
+    font-size: 2.5rem;
+    font-weight: bold;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0;
 }
 
 .filterSection {
   margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
 }
 
 .filterInput {
   width: 100%;
   max-width: 400px;
-  padding: 0.75rem;
-  border: 2px solid #ddd;
-  border-radius: 6px;
+  padding: 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
   font-size: 1rem;
-  transition: border-color 0.2s ease;
+  background: rgba(255, 255, 255, 0.1);
+  color: #1a1a1a;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.filterInput::placeholder {
+  color: rgba(26, 26, 26, 0.6);
 }
 
 .filterInput:focus {
   outline: none;
-  border-color: #3498db;
-  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
-} 
+  border-color: #667eea;
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.2);
+}

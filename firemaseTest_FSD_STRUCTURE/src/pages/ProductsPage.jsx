@@ -9,7 +9,7 @@ export default function ProductsPage() {
     const [page, setPage] = useState(1);
     const [cursors, setCursors] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
-    const perPage = 6;
+    const perPage = 4;
 
     // Логіка запиту даних
     const { data, isLoading } = useGetProductsQuery({ page, perPage, cursors });
@@ -38,7 +38,7 @@ export default function ProductsPage() {
     return (
         <div className={styles.page}>
             <div className={styles.header}>
-                <h2 className={styles.title}>Products List</h2>
+                <h2 className={styles.title}>Products List (4 per page)</h2>
                 <AddProductButton />
             </div>
 
