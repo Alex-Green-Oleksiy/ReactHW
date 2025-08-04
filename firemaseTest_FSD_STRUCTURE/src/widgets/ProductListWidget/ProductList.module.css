@@ -54,6 +54,17 @@
     max-width: 400px;
   }
 }
+@media (max-width: 541px) {
+  .container {
+    padding: 0;
+  }
+  .productsGrid {
+    grid-template-columns: 1fr;
+    width: 300px;
+    padding: 0;
+    margin: 0 auto;
+  }
+}
 
 .noProducts {
   grid-column: 1 / -1;
