@@ -28,7 +28,24 @@ export const dreamsApi = createApi({
                         });
                     return { data: { data, cursor, hasMore, totalPages } };
                 } catch (error) {
-                    return { error: { status: 500, message: error.message } };
+                    console.error("Dreams API error:", error);
+                    
+                    // Спеціальна обробка помилки 429
+                    if (error.message?.includes('ліміт запитів')) {
+                        return { 
+                            error: { 
+                                status: 429, 
+                                message: "Перевищено ліміт запитів до Firebase. Спробуйте пізніше." 
+                            } 
+                        };
+                    }
+                    
+                    return { 
+                        error: { 
+                            status: 500, 
+                            message: error.message || "Помилка завантаження мрій" 
+                        } 
+                    };
                 }
             },
             providesTags: ["Dream"]

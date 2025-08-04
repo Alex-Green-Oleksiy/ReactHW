@@ -2,13 +2,18 @@ import { useState, useEffect, useMemo } from "react";
 import { useGetDreamsQuery } from "@/entities/dream";
 import { DreamList } from "@/widgets/DreamListWidget";
 import { AddDreamButton } from "@/features/dream";
+import { ErrorMessage } from "@/shared/ui/ErrorMessage";
 import styles from "@/pages/DreamsPage.module.css";
 export default function DreamsPage() {
     const [page, setPage] = useState(1);
     const [cursors, setCursors] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
     const [perPage, setPerPage] = useState(6);
-    const { data, isLoading } = useGetDreamsQuery({ page, perPage, cursors });
+    const { data, isLoading, error, refetch } = useGetDreamsQuery({
+        page,
+        perPage,
+        cursors
+    });
     const allDreams = data?.data || []; // Якщо даних немає, використовуємо порожній масив
     const hasMore = data?.hasMore; // Чи є ще дані для завантаження
     const totalPages = data?.totalPages || 1; // Загальна кількість сторінок
@@ -30,6 +35,21 @@ export default function DreamsPage() {
         setCursors([]);
         setPage(1);
     }, [perPage]);
+    // Обробка помилок
+    if (error) {
+        return (
+            <div className={styles.dreamsPage}>
+                <div className={styles.header}>
+                    <h1 className={styles.title}>Мої мрії</h1>
+                </div>
+                <div className={styles.addButtonContainer}>
+                    <AddDreamButton />
+                </div>
+                <ErrorMessage error={error} onRetry={() => refetch()} />
+            </div>
+        );
+    }
+
     return (
         <div className={styles.dreamsPage}>
             <div className={styles.header}>
