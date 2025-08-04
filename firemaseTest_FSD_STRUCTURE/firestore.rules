@@ -1,0 +1,26 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Правила для колекції products
+    match /products/{productId} {
+      // Дозволяємо читати всім
+      allow read: if true;
+      
+      // Дозволяємо записувати тільки авторизованим користувачам
+      // Для розробки дозволяємо всім
+      allow write: if true;
+      
+      // Для продакшену використовуйте:
+      // allow write: if request.auth != null;
+    }
+    
+    // Правила для інших колекцій
+    match /{document=**} {
+      // Базові правила - дозволяємо все для розробки
+      allow read, write: if true;
+      
+      // Для продакшену закоментуйте вище і використовуйте:
+      // allow read, write: if request.auth != null;
+    }
+  }
+} 

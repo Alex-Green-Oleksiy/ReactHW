@@ -1,0 +1,1 @@
+export { ProductEditFormWidget } from './ui' 

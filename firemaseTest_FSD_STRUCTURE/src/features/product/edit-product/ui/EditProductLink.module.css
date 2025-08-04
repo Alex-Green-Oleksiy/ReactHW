@@ -1,0 +1,22 @@
+.editLink {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  background-color: #d1ecf1;
+  color: #0c5460;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.15s ease;
+  font-size: 0.875rem;
+}
+
+.editLink:hover {
+  background-color: #bee5eb;
+  color: #0c5460;
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+
+.editLink:active {
+  transform: translateY(0);
+} 

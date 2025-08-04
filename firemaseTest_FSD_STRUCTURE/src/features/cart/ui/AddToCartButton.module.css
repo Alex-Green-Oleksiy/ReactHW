@@ -1,0 +1,20 @@
+.addToCartButton {
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  background-color: #d4edda;
+  color: #155724;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-size: 0.875rem;
+}
+
+.addToCartButton:hover {
+  background-color: #c3e6cb;
+  transform: translateY(-1px);
+}
+
+.addToCartButton:active {
+  transform: translateY(0);
+} 
