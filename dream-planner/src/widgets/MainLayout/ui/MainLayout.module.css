@@ -1,0 +1,360 @@
+.layout {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    background: rgba(250, 249, 249, 0.829);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 1rem 0;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 400;
+}
+
+.headerContent {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    color: #131414;
+    font-weight: 700;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.logo:hover {
+    color: #ff6b9d;
+    transform: translateY(-1px);
+}
+
+.logoIcon {
+    width: 2rem;
+    height: 2rem;
+    color: #e04f16;
+}
+
+.logoText {
+    background: linear-gradient(135deg, #ff6b9d, #202222);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.navLink {
+    text-decoration: none;
+    color: #4a5568;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    position: relative;
+    /* background: rgba(255, 255, 255, 0.856); */
+}
+
+.navLink:hover {
+    color: #ff6b9c1e;
+    background: rgba(255, 107, 157, 0.1);
+    transform: translateY(-1px);
+}
+
+.navLink.active {
+    color: #ff6b9d;
+    background: rgba(255, 107, 156, 0.212);
+}
+
+.navLink.active::after {
+    content: "";
+    position: absolute;
+    bottom: -0.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6rem;
+    height: 2px;
+    background: linear-gradient(135deg, #ff6b9d, #4ecdc4);
+    border-radius: 2px;
+}
+
+.main {
+    flex: 1;
+    padding: 2rem 0;
+}
+
+.mainContent {
+    max-width: 1600px;
+    /* border: 1px solid #000; */
+
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.footer {
+    background: rgba(255, 255, 255, 0.233);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 1.5rem 0;
+    margin-top: auto;
+}
+
+.footerContent {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    text-align: center;
+    color: #4a5568;
+    font-size: 0.875rem;
+}
+
+.footerText {
+    margin: 0;
+}
+
+.footerLink {
+    color: #ff6b9d;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.footerLink:hover {
+    color: #4ecdc4;
+}
+
+/* Mobile menu */
+.mobileMenuButton {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.75rem;
+    border-radius: 0.75rem;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 450;
+}
+
+.mobileMenuButton:hover {
+    background: rgba(255, 107, 157, 0.1);
+    transform: scale(1.05);
+}
+
+.mobileMenuIcon {
+    width: 1.75rem;
+    height: 1.75rem;
+    color: #bd0d746e;
+    transition: all 0.3s ease;
+    transform-origin: center;
+}
+
+.mobileMenuButton:hover .mobileMenuIcon {
+    color: #ff6b9d;
+    transform: scale(1.1);
+}
+
+.mobileMenu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(135deg, #ffffff, #b85e7eec);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 350;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 7rem;
+    overflow: hidden;
+    clip-path: polygon(0 5rem, 100% 5rem, 100% 100%, 0% 100%);
+
+    /* Нульова ширина скролбару */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+/* Нульова ширина скролбару для WebKit браузерів (Chrome, Safari) */
+.mobileMenu::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+.mobileMenu.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.mobileNav {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 400px;
+    padding: 1rem;
+    overflow-y: auto;
+    max-height: 100vh;
+
+    /* Нульова ширина скролбару */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+/* Нульова ширина скролбару для WebKit браузерів (Chrome, Safari) */
+.mobileNav::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+.mobileNavLink {
+    text-decoration: none;
+    color: #2d3748;
+    font-weight: 700;
+    font-size: 1.5rem;
+    padding: 1.25rem 2rem;
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    width: 100%;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.mobileNavLink.active {
+    color: #b85e7e;
+    background: rgba(255, 255, 255, 0.95);
+    border-color: rgba(184, 94, 126, 0.5);
+    box-shadow: 0 12px 40px rgba(184, 94, 126, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .nav {
+        display: none;
+    }
+
+    .mobileMenuButton {
+        display: block;
+    }
+
+    .headerContent {
+        padding: 0 1rem;
+    }
+
+    .mainContent {
+        padding: 0 1rem;
+    }
+
+    .logo {
+        font-size: 1.25rem;
+    }
+
+    .logoIcon {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+
+    .mobileNavLink {
+        font-size: 1.25rem;
+        padding: 1rem 1.5rem;
+    }
+
+    .mobileMenu {
+        margin-top: 1.55rem;
+        padding-top: 4rem;
+        clip-path: polygon(0 4rem, 100% 4rem, 100% 100%, 0% 100%);
+    }
+}
+
+@media (max-width: 480px) {
+    .headerContent {
+        padding: 0 0.75rem;
+    }
+
+    .mainContent {
+        padding: 0 0.75rem;
+    }
+
+    .logo {
+        font-size: 1.125rem;
+    }
+
+    .logoIcon {
+        width: 1.25rem;
+        height: 1.25rem;
+    }
+
+    .mobileMenuButton {
+        padding: 0.5rem;
+    }
+
+    .mobileMenuIcon {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+
+    .mobileNavLink {
+        font-size: 1.125rem;
+        padding: 0.875rem 1.25rem;
+    }
+
+    .mobileMenu {
+        padding-top: 3.5rem;
+        clip-path: polygon(0 3.5rem, 100% 3.5rem, 100% 100%, 0% 100%);
+    }
+}
+
+/* Додаткові стилі для дуже малих екранів */
+@media (max-width: 360px) {
+    .logo {
+        font-size: 1rem;
+    }
+
+    .logoIcon {
+        width: 1rem;
+        height: 1rem;
+    }
+
+    .mobileNavLink {
+        font-size: 1rem;
+        padding: 0.75rem 1rem;
+    }
+
+    .mobileMenu {
+        padding-top: 3rem;
+        clip-path: polygon(0 3rem, 100% 3rem, 100% 100%, 0% 100%);
+    }
+}

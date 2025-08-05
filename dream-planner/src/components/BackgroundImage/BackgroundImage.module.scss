@@ -15,3 +15,34 @@
     background-repeat: no-repeat !important;
     background-attachment: fixed !important;
 }
+
+// Оптимізація для мобільних пристроїв
+@media (max-width: 768px) {
+    .background {
+        background-attachment: scroll !important; // Краща продуктивність на мобільних
+        background-size: cover !important;
+    }
+}
+
+// Оптимізація для планшетів
+@media (min-width: 769px) and (max-width: 1024px) {
+    .background {
+        background-attachment: scroll !important;
+        background-size: cover !important;
+    }
+}
+
+// Оптимізація для великих екранів
+@media (min-width: 1025px) {
+    .background {
+        background-attachment: fixed !important;
+        background-size: cover !important;
+    }
+}
+
+// Оптимізація для екранів з високою щільністю пікселів
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .background {
+        background-size: cover !important;
+    }
+}

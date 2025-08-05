@@ -6,15 +6,48 @@ const BackgroundImage = ({ theme }) => {
     const [imagesLoaded, setImagesLoaded] = useState(false);
     const [cachedImages, setCachedImages] = useState({});
     const [hasError, setHasError] = useState(false);
+    const [currentImage, setCurrentImage] = useState(null);
     const backgroundRef = useRef(null);
+
+    // Функція для визначення розміру екрану
+    const getImageForScreenSize = () => {
+        const width = window.innerWidth;
+
+        if (width <= 768) {
+            return "mobile";
+        } else if (width <= 1024) {
+            return "tablet";
+        } else {
+            return "desktop";
+        }
+    };
+
+    // Функція для отримання поточного зображення
+    const getCurrentImage = () => {
+        const screenSize = getImageForScreenSize();
+        const themeImagesSet =
+            theme === "dark" ? themeImages.dark : themeImages.light;
+
+        // Перевіряємо підтримку WebP
+        if (screenSize === "mobile" && themeImagesSet.mobile) {
+            return themeImagesSet.mobile;
+        } else if (screenSize === "tablet" && themeImagesSet.tablet) {
+            return themeImagesSet.tablet;
+        } else {
+            return themeImagesSet.desktop;
+        }
+    };
 
     // Попереднє завантаження зображень в кеш
     useEffect(() => {
         const preloadImages = () => {
             const imagePromises = [];
-            const imageUrls = [themeImages.dark, themeImages.light];
+            const allImages = [
+                ...Object.values(themeImages.light),
+                ...Object.values(themeImages.dark)
+            ];
 
-            imageUrls.forEach((url) => {
+            allImages.forEach((url) => {
                 const promise = new Promise((resolve, reject) => {
                     const img = new Image();
                     img.onload = () => {
@@ -25,7 +58,11 @@ const BackgroundImage = ({ theme }) => {
                         resolve(img);
                     };
                     img.onerror = (error) => {
-                        console.error("Помилка завантаження зображення:", url, error);
+                        console.error(
+                            "Помилка завантаження зображення:",
+                            url,
+                            error
+                        );
                         reject(error);
                     };
                     img.src = url;
@@ -48,23 +85,23 @@ const BackgroundImage = ({ theme }) => {
         preloadImages();
     }, []);
 
-    // Оновлюємо фон при зміні теми
+    // Оновлюємо фон при зміні теми або розміру екрану
     useEffect(() => {
         if (imagesLoaded && backgroundRef.current) {
-            const backgroundImage =
-                theme === "dark" ? themeImages.dark : themeImages.light;
+            const newImage = getCurrentImage();
+            setCurrentImage(newImage);
 
             // Якщо зображення вже в кеші, використовуємо його
-            if (cachedImages[backgroundImage]) {
+            if (cachedImages[newImage]) {
                 backgroundRef.current.style.setProperty(
                     "background-image",
-                    `url(${backgroundImage})`,
+                    `url(${newImage})`,
                     "important"
                 );
             } else if (!hasError) {
                 // Fallback з timestamp для уникнення кешування
                 const timestamp = Date.now();
-                const imageUrl = `${backgroundImage}?t=${timestamp}`;
+                const imageUrl = `${newImage}?t=${timestamp}`;
                 backgroundRef.current.style.setProperty(
                     "background-image",
                     `url(${imageUrl})`,
@@ -73,6 +110,26 @@ const BackgroundImage = ({ theme }) => {
             }
         }
     }, [theme, imagesLoaded, cachedImages, hasError]);
+
+    // Слухаємо зміни розміру вікна
+    useEffect(() => {
+        const handleResize = () => {
+            if (imagesLoaded && backgroundRef.current) {
+                const newImage = getCurrentImage();
+                if (newImage !== currentImage) {
+                    setCurrentImage(newImage);
+                    backgroundRef.current.style.setProperty(
+                        "background-image",
+                        `url(${newImage})`,
+                        "important"
+                    );
+                }
+            }
+        };
+
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, [imagesLoaded, currentImage]);
 
     // Рендеримо компонент тільки після завантаження зображень
     if (!imagesLoaded) {
@@ -88,10 +145,14 @@ const BackgroundImage = ({ theme }) => {
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
                 backgroundAttachment: "fixed",
-                backgroundImage: hasError ? "none" : `url(${
-                    theme === "dark" ? themeImages.dark : themeImages.light
-                })`,
-                backgroundColor: hasError ? (theme === "dark" ? "#1a1a1a" : "#f5f5f5") : "transparent"
+                backgroundImage: hasError
+                    ? "none"
+                    : `url(${currentImage || getCurrentImage()})`,
+                backgroundColor: hasError
+                    ? theme === "dark"
+                        ? "#1a1a1a"
+                        : "#f5f5f5"
+                    : "transparent"
             }}
         />
     );
