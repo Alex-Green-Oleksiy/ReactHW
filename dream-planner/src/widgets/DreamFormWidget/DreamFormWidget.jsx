@@ -1,6 +1,6 @@
 import { DreamForm, useDreamForm } from "@/features/dream";
 import { useAddDream, useEditDream } from "@/features/dream";
-import styles from "@/widgets/DreamFormWidget/DreamFormWidget.module.css";
+import styles from "@/widgets/DreamFormWidget/DreamFormWidget.module.scss";
 export const DreamFormWidget = ({ dreamId }) => {
     const isNew = !dreamId;
     const {

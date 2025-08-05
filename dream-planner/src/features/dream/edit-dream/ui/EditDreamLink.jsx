@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import styles from "@/features/dream/edit-dream/ui/EditDreamLink.module.css";
+import styles from "@/features/dream/edit-dream/ui/EditDreamLink.module.scss";
 export const EditDreamLink = ({ dreamId }) => (
     <Link to={`/dreams/edit/${dreamId}`} className={styles.editLink}>
         <svg

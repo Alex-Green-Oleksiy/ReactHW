@@ -1,0 +1,77 @@
+@use '@/shared/styles/variables' as *;
+@use '@/shared/styles/mixins' as *;
+
+.errorContainer {
+  @include flex-column;
+  align-items: center;
+  justify-content: center;
+  padding: $space-xl;
+  text-align: center;
+  background: $bg-secondary;
+  border-radius: $radius-lg;
+  border: 1px solid rgba($primary-color, 0.2);
+  margin: $space-lg 0;
+}
+
+.errorIcon {
+  font-size: $font-size-4xl;
+  margin-bottom: $space-md;
+  opacity: 0.7;
+}
+
+.errorTitle {
+  color: $text-primary;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-semibold;
+  margin-bottom: $space-sm;
+}
+
+.errorMessage {
+  color: $text-secondary;
+  font-size: $font-size-base;
+  margin-bottom: $space-md;
+  max-width: 400px;
+}
+
+.rateLimitInfo {
+  background: rgba($warning-color, 0.1);
+  border: 1px solid rgba($warning-color, 0.3);
+  border-radius: $radius-md;
+  padding: $space-md;
+  margin: $space-md 0;
+  max-width: 400px;
+  
+  p {
+    color: $text-secondary;
+    font-size: $font-size-sm;
+    margin: $space-xs 0;
+  }
+}
+
+.retryButton {
+  @include button-primary;
+  margin-top: $space-md;
+  
+  &:disabled {
+    background: $text-light;
+    cursor: not-allowed;
+    opacity: 0.6;
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+@include mobile {
+  .errorContainer {
+    padding: $space-lg;
+    margin: $space-md 0;
+  }
+
+  .errorIcon {
+    font-size: $font-size-3xl;
+  }
+
+  .errorTitle {
+    font-size: $font-size-lg;
+  }
+} 

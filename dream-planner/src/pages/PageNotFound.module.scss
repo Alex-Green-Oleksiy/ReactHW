@@ -1,0 +1,83 @@
+@use "@/shared/styles/variables" as *;
+@use "@/shared/styles/mixins" as *;
+
+.container {
+    max-width: 64rem;
+    margin: 0 auto;
+    text-align: center;
+    padding: $space-3xl $space-md;
+    position: relative;
+
+    @include mobile {
+        padding: $space-xl $space-md;
+    }
+}
+
+.themeToggleContainer {
+    position: absolute;
+    top: $space-xl;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    width: 6rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: auto;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 0;
+    margin: 0;
+}
+
+.emoji {
+    font-size: $font-size-5xl;
+    margin-bottom: $space-md;
+}
+
+.title {
+    font-size: $font-size-4xl;
+    font-weight: $font-weight-bold;
+    color: $text-primary;
+    margin-bottom: $space-md;
+
+    @include mobile {
+        font-size: $font-size-3xl;
+    }
+}
+
+.description {
+    font-size: $font-size-xl;
+    color: $text-secondary;
+    margin-bottom: $space-xl;
+
+    @include mobile {
+        font-size: $font-size-lg;
+    }
+}
+
+.homeLink {
+    @include button-base;
+    background: linear-gradient(135deg, #d8850898, #0c0e0da1, #c98b0459);
+    color: $text-white;
+    font-weight: $font-weight-semibold;
+    padding: $space-lg $space-xl;
+    border-radius: $radius-md;
+    text-decoration: none;
+    transition: all $transition-base;
+    box-shadow: 0 4px 15px rgba(59, 55, 50, 0.3);
+
+    &:hover {
+        color: #000000;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(231, 142, 8, 0.4);
+    }
+
+    @include mobile {
+        padding: $space-md $space-lg;
+        font-size: $font-size-sm;
+    }
+}

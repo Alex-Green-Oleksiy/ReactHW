@@ -1,0 +1,201 @@
+@use "@/shared/styles/variables" as *;
+@use "@/shared/styles/mixins" as *;
+
+.homePage {
+    min-height: 80vh;
+    @include flex-center;
+    text-align: center;
+    position: relative;
+}
+
+.themeToggleContainer {
+    position: absolute;
+    top: $space-xl;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    width: 6rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: auto;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 0;
+    margin: 0;
+}
+
+.hero {
+    width: 1400px;
+    margin: 120px auto 0 auto;
+    padding: $space-2xl $space-xl;
+    @include glass-effect(0.1, 15px);
+    border-radius: $radius-xl;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: $shadow-xl;
+}
+
+.title {
+    font-size: $font-size-5xl;
+    font-weight: $font-weight-extrabold;
+    margin-bottom: $space-lg;
+    @include gradient-text(
+        linear-gradient(135deg, #050505ab, #d8530686, #0000009f)
+    );
+    line-height: 1.1;
+    font-family: $font-family-great-vibes;
+    padding: 20px 10px;
+}
+
+.subtitle {
+    font-size: $font-size-2xl;
+    color: #0f1013;
+    margin-bottom: $space-xl;
+    line-height: 1.6;
+    font-family: $font-family-dancing;
+    font-weight: $font-weight-medium;
+}
+
+.description {
+    font-size: $font-size-lg;
+    color: $text-primary;
+    margin-bottom: $space-2xl;
+    line-height: 1.7;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.features {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: $space-xl;
+    margin: $space-2xl 0;
+}
+
+.feature {
+    max-width: 300px;
+    padding: $space-xl;
+    background: rgba(189, 109, 5, 0.116);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border-radius: $radius-lg;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: all $transition-base;
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        background: rgba(255, 255, 255, 0);
+        backdrop-filter: blur(0px);
+    }
+}
+
+.featureIcon {
+    width: 3rem;
+    height: 3rem;
+    margin: 0 auto $space-md;
+    color: #d16309b0;
+}
+
+.featureTitle {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+    color: $text-primary;
+    margin-bottom: 0.75rem;
+    font-family: $font-family-dancing;
+    font-weight: $font-weight-semibold;
+}
+
+.featureText {
+    color: #030303;
+    line-height: 1.6;
+}
+
+.ctaSection {
+    margin-top: $space-2xl;
+}
+
+.ctaButton,
+.secondaryButton {
+    @include button-base;
+    gap: 0.75rem;
+    padding: 1.25rem 2.5rem;
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+    border-radius: 3rem;
+    background: linear-gradient(135deg, #da450b75, #2b262888);
+    color: $text-white;
+    box-shadow: 0 10px 30px rgba(255, 166, 107, 0.3);
+
+    &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 40px rgba(167, 50, 3, 0.616);
+        color: #312d2d;
+    }
+}
+
+.ctaButtonIcon {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.secondaryButtonIcon {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.buttonGroup {
+    @include flex-center;
+    gap: $space-md;
+    flex-wrap: wrap;
+}
+
+@include mobile {
+    .homePage {
+        padding: $space-md 0;
+    }
+
+    .hero {
+        padding: $space-xl $space-md;
+        margin: $space-md;
+    }
+
+    .title {
+        font-size: $font-size-3xl;
+    }
+
+    .subtitle {
+        font-size: $font-size-xl;
+    }
+
+    .description {
+        font-size: $font-size-base;
+    }
+
+    .features {
+        grid-template-columns: 1fr;
+        gap: $space-lg;
+    }
+
+    .feature {
+        padding: $space-lg;
+    }
+
+    .buttonGroup {
+        flex-direction: column;
+        gap: $space-md;
+    }
+
+    .ctaButton,
+    .secondaryButton {
+        width: 100%;
+        justify-content: center;
+        margin-left: 0;
+    }
+}

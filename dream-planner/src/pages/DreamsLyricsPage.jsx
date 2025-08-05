@@ -1,8 +1,12 @@
 import React from "react";
-import styles from "./DreamsLyricsPage.module.css";
+import { ThemeToggle } from "@/shared/ui/ThemeToggle";
+import styles from "./DreamsLyricsPage.module.scss";
 const DreamsLyricsPage = () => {
     return (
         <div className={styles.container}>
+            <div className={styles.themeToggleContainer}>
+                <ThemeToggle />
+            </div>
             <div className={styles.content}>
                 <h1 className={styles.title}>Dream On</h1>
                 <div className={styles.lyrics}>

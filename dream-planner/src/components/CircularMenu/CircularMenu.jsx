@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router';
 import { routes } from '@/app/router';
-import styles from './CircularMenu.module.css';
+import styles from './CircularMenu.module.scss';
 const getMenuItems = () => {
     return routes[0].children
         .filter((r) => r?.meta?.label)

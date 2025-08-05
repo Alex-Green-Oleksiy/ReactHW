@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import styles from "@/entities/dream/ui/DreamCard.module.css";
+import styles from "@/entities/dream/ui/DreamCard.module.scss";
 export function DreamCard({ dream, actions }) {
     const formatDate = (dateString) => {
         return new Date(dateString).toLocaleDateString("uk-UA", {

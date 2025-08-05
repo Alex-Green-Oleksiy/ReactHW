@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './ErrorMessage.module.css';
+import styles from './ErrorMessage.module.scss';
 
 export const ErrorMessage = ({ error, onRetry }) => {
     const isRateLimitError = error?.status === 429 || 

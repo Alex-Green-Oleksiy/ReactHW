@@ -1,0 +1,33 @@
+@use "@/shared/styles/variables" as *;
+@use "@/shared/styles/mixins" as *;
+
+.container {
+    max-width: 42rem;
+    margin: 0 auto;
+    padding: $space-xl $space-md;
+    position: relative;
+
+    @include mobile {
+        padding: $space-lg $space-md;
+    }
+}
+
+.themeToggleContainer {
+    position: absolute;
+    top: $space-xl;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    width: 6rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: auto;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 0;
+    margin: 0;
+}

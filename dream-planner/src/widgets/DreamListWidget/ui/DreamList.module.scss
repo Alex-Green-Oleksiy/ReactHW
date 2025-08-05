@@ -1,0 +1,336 @@
+@use "@/shared/styles/variables" as *;
+@use "@/shared/styles/mixins" as *;
+
+.dreamList {
+    padding: $space-xl 0;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: $space-2xl;
+}
+
+.title {
+    font-size: $font-size-5xl;
+    font-weight: $font-weight-bold;
+    margin-bottom: $space-md;
+    @include gradient-text($gradient-primary);
+}
+
+.subtitle {
+    font-size: $font-size-xl;
+    color: $text-secondary;
+    margin-bottom: $space-xl;
+}
+
+.searchContainer {
+    max-width: 600px;
+    margin: 0 auto $space-xl;
+    position: relative;
+}
+
+.searchInput {
+    @include input-base;
+    padding: $space-md $space-lg $space-md 3rem;
+    font-size: $font-size-lg;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: $radius-xl;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    color: $text-primary;
+
+    &:focus {
+        outline: none;
+        border-color: $primary-color;
+        box-shadow: 0 0 0 3px rgba($primary-color, 0.1);
+        background: rgba(255, 255, 255, 1);
+    }
+}
+
+.searchIcon {
+    position: absolute;
+    left: $space-md;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1.5rem;
+    height: 1.5rem;
+    color: $primary-color;
+    pointer-events: none;
+}
+
+.addButtonContainer {
+    text-align: center;
+    margin-bottom: $space-xl;
+}
+
+.addButton {
+    @include button-primary;
+    gap: $space-sm;
+    padding: $space-md $space-xl;
+    font-size: $font-size-lg;
+    font-weight: $font-weight-bold;
+    border-radius: $radius-xl;
+}
+
+.addButtonIcon {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.grid {
+    @include grid-responsive(350px);
+    margin-bottom: $space-2xl;
+    gap: $space-xl;
+    padding: $space-lg;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: $radius-xl;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+
+    [data-theme="dark"] & {
+        background: rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+}
+
+.emptyState {
+    text-align: center;
+    padding: $space-3xl $space-xl;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: $radius-xl;
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    margin: $space-xl 0;
+
+    [data-theme="dark"] & {
+        background: rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+}
+
+.emptyIcon {
+    width: 4rem;
+    height: 4rem;
+    color: #667eea;
+    margin: 0 auto $space-lg;
+    transition: all 0.3s ease;
+
+    [data-theme="dark"] & {
+        color: #f093fb;
+    }
+
+    .emptyState:hover & {
+        transform: scale(1.1);
+    }
+}
+
+.emptyTitle {
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-bold;
+    color: $text-primary;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: $radius-lg;
+    padding: $space-md;
+    margin-bottom: $space-md;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    [data-theme="dark"] & {
+        color: rgba(255, 255, 255, 0.9);
+        background: rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+}
+
+.emptyText {
+    font-size: $font-size-lg;
+    color: $text-secondary;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: $radius-lg;
+    padding: $space-md;
+    margin-bottom: $space-xl;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+
+    [data-theme="dark"] & {
+        color: rgba(255, 255, 255, 0.7);
+        background: rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+}
+
+.loadingState {
+    text-align: center;
+    padding: $space-3xl $space-xl;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: $radius-xl;
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+
+    [data-theme="dark"] & {
+        background: rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+}
+
+.loadingSpinner {
+    width: 3rem;
+    height: 3rem;
+    border: 3px solid rgba(102, 126, 234, 0.2);
+    border-top: 3px solid #667eea;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto $space-lg;
+
+    [data-theme="dark"] & {
+        border: 3px solid rgba(240, 147, 251, 0.2);
+        border-top: 3px solid #f093fb;
+    }
+}
+
+.loadingText {
+    font-size: $font-size-lg;
+    color: $text-secondary;
+    font-weight: $font-weight-medium;
+
+    [data-theme="dark"] & {
+        color: rgba(255, 255, 255, 0.7);
+    }
+}
+
+@include keyframes(spin) {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.errorState {
+    text-align: center;
+    padding: $space-xl;
+    background: rgba(239, 68, 68, 0.1);
+    border-radius: $radius-xl;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+
+    [data-theme="dark"] & {
+        background: rgba(239, 68, 68, 0.2);
+        border: 1px solid rgba(239, 68, 68, 0.3);
+    }
+}
+
+.errorIcon {
+    width: 3rem;
+    height: 3rem;
+    color: #ef4444;
+    margin: 0 auto $space-md;
+}
+
+.errorTitle {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+    color: #ef4444;
+    margin-bottom: $space-sm;
+}
+
+.errorText {
+    color: #ef4444;
+    margin-bottom: $space-md;
+    font-weight: $font-weight-medium;
+
+    [data-theme="dark"] & {
+        color: #fca5a5;
+    }
+}
+
+.retryButton {
+    @include button-base;
+    gap: $space-sm;
+    padding: 0.75rem $space-lg;
+    font-size: $font-size-base;
+    font-weight: $font-weight-semibold;
+    border-radius: $radius-lg;
+    background: #ef4444;
+    color: $text-white;
+    transition: all 0.3s ease;
+
+    &:hover {
+        background: #dc2626;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+    }
+
+    [data-theme="dark"] & {
+        background: #dc2626;
+
+        &:hover {
+            background: #b91c1c;
+        }
+    }
+}
+
+.paginationContainer {
+    margin-top: $space-xl;
+    display: flex;
+    justify-content: center;
+    padding: $space-lg;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: $radius-xl;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+
+    [data-theme="dark"] & {
+        background: rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+}
+
+@include mobile {
+    .dreamList {
+        padding: $space-md 0;
+    }
+
+    .title {
+        font-size: $font-size-3xl;
+    }
+
+    .subtitle {
+        font-size: $font-size-base;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+        gap: $space-lg;
+        padding: $space-md;
+    }
+
+    .searchInput {
+        padding: 0.875rem 1.25rem 0.875rem 2.5rem;
+        font-size: $font-size-base;
+    }
+
+    .searchIcon {
+        left: 0.875rem;
+        width: 1.25rem;
+        height: 1.25rem;
+    }
+
+    .addButton {
+        padding: 0.875rem $space-lg;
+        font-size: $font-size-base;
+    }
+
+    .emptyState,
+    .loadingState {
+        padding: $space-xl $space-md;
+        margin: $space-lg 0;
+    }
+
+    .paginationContainer {
+        padding: $space-md;
+        margin: $space-lg 0;
+    }
+}

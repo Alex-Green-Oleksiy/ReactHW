@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router";
 import { routes } from "@/app/router";
-import styles from "./MobileMenu.module.css";
+import styles from "./MobileMenu.module.scss";
 const MobileMenu = () => {
     const [isOpen, setIsOpen] = useState(false);
     const handleLinkClick = () => {

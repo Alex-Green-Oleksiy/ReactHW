@@ -1,0 +1,333 @@
+@use "./variables" as *;
+@use "./mixins" as *;
+@use "sass:color";
+@use "./dark-theme" as *;
+
+// Global styles
+* {
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+    }
+}
+
+body {
+    margin: 0;
+    font-family: $font-family-base;
+    line-height: 1.6;
+    color: $text-primary;
+    min-height: 100vh;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "kern" 1;
+    font-kerning: normal;
+}
+
+// CSS custom properties for theme switching
+:root {
+    --dark-bg-image: none;
+    --light-bg-image: none;
+}
+
+// Ensure consistent spacing and sizing
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+// Prevent layout shifts
+input,
+button,
+textarea,
+select {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+// Typography
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: $space-md;
+}
+
+h1 {
+    font-size: $font-size-4xl;
+    font-family: $font-family-great-vibes;
+    color: $primary-color;
+}
+h2 {
+    font-size: $font-size-3xl;
+    font-family: $font-family-dancing;
+    color: $text-primary;
+}
+h3 {
+    font-size: $font-size-2xl;
+    font-family: $font-family-playfair;
+}
+h4 {
+    font-size: $font-size-xl;
+    font-family: $font-family-crimson;
+}
+h5 {
+    font-size: $font-size-lg;
+    font-family: $font-family-alegreya;
+}
+h6 {
+    font-size: $font-size-base;
+    font-family: $font-family-base;
+}
+
+p {
+    margin-bottom: $space-md;
+}
+
+a {
+    color: $primary-color;
+    text-decoration: none;
+    transition: color $transition-fast;
+
+    &:hover {
+        color: color.adjust($primary-color, $lightness: -10%);
+    }
+}
+
+// Utility classes
+.text-center {
+    text-align: center;
+}
+.text-left {
+    text-align: left;
+}
+.text-right {
+    text-align: right;
+}
+
+.mb-0 {
+    margin-bottom: 0;
+}
+.mb-1 {
+    margin-bottom: $space-sm;
+}
+.mb-2 {
+    margin-bottom: $space-md;
+}
+.mb-3 {
+    margin-bottom: $space-lg;
+}
+.mb-4 {
+    margin-bottom: $space-xl;
+}
+.mb-5 {
+    margin-bottom: $space-2xl;
+}
+
+.mt-0 {
+    margin-top: 0;
+}
+.mt-1 {
+    margin-top: $space-sm;
+}
+.mt-2 {
+    margin-top: $space-md;
+}
+.mt-3 {
+    margin-top: $space-lg;
+}
+.mt-4 {
+    margin-top: $space-xl;
+}
+.mt-5 {
+    margin-top: $space-2xl;
+}
+
+.p-0 {
+    padding: 0;
+}
+.p-1 {
+    padding: $space-sm;
+}
+.p-2 {
+    padding: $space-md;
+}
+.p-3 {
+    padding: $space-lg;
+}
+.p-4 {
+    padding: $space-xl;
+}
+.p-5 {
+    padding: $space-2xl;
+}
+
+.w-full {
+    width: 100%;
+}
+.h-full {
+    height: 100%;
+}
+
+.d-flex {
+    display: flex;
+}
+.d-grid {
+    display: grid;
+}
+.d-block {
+    display: block;
+}
+.d-none {
+    display: none;
+}
+
+.flex-center {
+    @include flex-center;
+}
+.flex-between {
+    @include flex-between;
+}
+.flex-column {
+    @include flex-column;
+}
+
+.rounded {
+    border-radius: $radius-md;
+}
+.rounded-lg {
+    border-radius: $radius-lg;
+}
+.rounded-xl {
+    border-radius: $radius-xl;
+}
+.rounded-full {
+    border-radius: $radius-full;
+}
+
+.shadow {
+    box-shadow: $shadow-sm;
+}
+.shadow-md {
+    box-shadow: $shadow-md;
+}
+.shadow-lg {
+    box-shadow: $shadow-lg;
+}
+.shadow-xl {
+    box-shadow: $shadow-xl;
+}
+
+// Additional utility classes
+.text-primary {
+    color: $primary-color;
+}
+.text-secondary {
+    color: $secondary-color;
+}
+.text-accent {
+    color: $accent-color;
+}
+.text-gray {
+    color: $text-secondary;
+}
+.text-light {
+    color: $text-light;
+}
+.text-white {
+    color: $text-white;
+}
+
+.font-bold {
+    font-weight: $font-weight-bold;
+}
+.font-semibold {
+    font-weight: $font-weight-semibold;
+}
+.font-medium {
+    font-weight: $font-weight-medium;
+}
+
+// Font family utilities
+.font-base {
+    font-family: $font-family-base;
+}
+.font-alegreya {
+    font-family: $font-family-alegreya;
+}
+.font-georgia {
+    font-family: $font-family-georgia;
+}
+.font-dancing {
+    font-family: $font-family-dancing;
+}
+.font-great-vibes {
+    font-family: $font-family-great-vibes;
+}
+.font-playfair {
+    font-family: $font-family-playfair;
+}
+.font-crimson {
+    font-family: $font-family-crimson;
+}
+
+.text-sm {
+    font-size: $font-size-sm;
+}
+.text-base {
+    font-size: $font-size-base;
+}
+.text-lg {
+    font-size: $font-size-lg;
+}
+.text-xl {
+    font-size: $font-size-xl;
+}
+.text-2xl {
+    font-size: $font-size-2xl;
+}
+
+.line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+// Responsive utilities
+@include mobile {
+    .grid-cols-2,
+    .grid-cols-3,
+    .grid-cols-4 {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    h1 {
+        font-size: $font-size-2xl;
+    }
+    h2 {
+        font-size: $font-size-xl;
+    }
+    h3 {
+        font-size: $font-size-lg;
+    }
+}
+
+// Hide scrollbars for cleaner look (already included in * selector above)

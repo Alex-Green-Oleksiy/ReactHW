@@ -1,4 +1,4 @@
-import styles from "@/features/dream/dream-form/ui/DreamForm.module.css";
+import styles from "@/features/dream/dream-form/ui/DreamForm.module.scss";
 const generateYears = (count = 20) => {
     const currentYear = new Date().getFullYear();
     return Array.from({ length: count }, (_, i) => currentYear + i);

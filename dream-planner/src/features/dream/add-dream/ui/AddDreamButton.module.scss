@@ -1,0 +1,37 @@
+@use '@/shared/styles/variables' as *;
+@use '@/shared/styles/mixins' as *;
+
+.addButton {
+  @include button-base;
+  gap: 0.75rem;
+  padding: 1.25rem 2.5rem;
+  font-size: $font-size-xl;
+  background: linear-gradient(135deg, #da450b75, #2b262888);
+  color: $text-white;
+  box-shadow: 0 10px 30px rgba(255, 166, 107, 0.3);
+  transition: all 0.5s ease;
+  
+  &:hover {
+    box-shadow: 0 8px 25px rgba(175, 96, 6, 0.336);
+    background: linear-gradient(135deg, #2b262888, #da450b75);
+    @include glass-effect;
+    color: #fcfcfc;
+  }
+}
+
+.addButtonIcon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+@include mobile {
+  .addButton {
+    padding: 0.875rem 1.5rem;
+    font-size: $font-size-base;
+  }
+  
+  .addButtonIcon {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+} 

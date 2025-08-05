@@ -1,0 +1,323 @@
+@use "@/shared/styles/variables" as *;
+@use "@/shared/styles/mixins" as *;
+
+.dreamsPage {
+    min-height: 100vh;
+    padding: $space-xl;
+    position: relative;
+    z-index: 1;
+}
+
+.themeToggleContainer {
+    position: fixed;
+    top: $space-lg;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    width: 200px;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: $space-2xl;
+    padding: $space-xl;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: $radius-xl;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    margin: 0 auto $space-2xl auto;
+    max-width: 800px;
+}
+
+.title {
+    font-size: $font-size-3xl;
+    font-weight: $font-weight-bold;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-family: "Playfair Display", serif;
+}
+
+.subtitle {
+    font-size: $font-size-xl;
+    color: #2f333b;
+    margin-bottom: $space-xl;
+}
+
+.searchContainer {
+    position: relative;
+    margin-bottom: $space-xl;
+    max-width: 600px;
+    margin: 0 auto $space-xl auto;
+    padding: $space-lg;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: $radius-xl;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.searchInput {
+    width: 100%;
+    padding: $space-md $space-lg $space-md $space-2xl;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: $radius-lg;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    color: $text-primary;
+    font-size: $font-size-base;
+    transition: all 0.3s ease;
+
+    &::placeholder {
+        color: rgba(255, 255, 255, 0.6);
+    }
+
+    &:focus {
+        outline: none;
+        border-color: #667eea;
+        background: rgba(255, 255, 255, 0.15);
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+
+    [data-theme="dark"] & {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: rgba(255, 255, 255, 0.2);
+        color: rgba(255, 255, 255, 0.9);
+
+        &:focus {
+            border-color: #f093fb;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 0 3px rgba(240, 147, 251, 0.1);
+        }
+    }
+}
+
+.searchIcon {
+    position: absolute;
+    left: $space-xl;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1.5rem;
+    height: 1.5rem;
+    color: rgba(255, 255, 255, 0.6);
+    transition: color 0.3s ease;
+    pointer-events: none;
+
+    .searchContainer:focus-within & {
+        color: #667eea;
+    }
+
+    [data-theme="dark"] .searchContainer:focus-within & {
+        color: #f093fb;
+    }
+}
+
+.addButtonContainer {
+    text-align: center;
+    margin-bottom: $space-xl;
+    padding: $space-lg;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: $radius-xl;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 0 auto $space-xl auto;
+}
+
+.controlsContainer {
+    display: flex;
+    gap: $space-xl;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: $space-xl;
+    flex-wrap: wrap;
+    max-width: 800px;
+    margin: 0 auto $space-xl auto;
+    padding: $space-lg;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: $radius-xl;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.perPageContainer,
+.sortContainer {
+    display: flex;
+    align-items: center;
+    gap: $space-md;
+    flex-wrap: wrap;
+}
+
+.perPageLabel,
+.sortLabel {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    color: $text-primary;
+    white-space: nowrap;
+
+    [data-theme="dark"] & {
+        color: rgba(255, 255, 255, 0.9);
+    }
+}
+
+.perPageSelect,
+.sortSelect {
+    padding: $space-sm $space-md;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: $radius-md;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    color: $text-primary;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    min-width: 140px;
+
+    &:hover {
+        border-color: #667eea;
+        background: rgba(255, 255, 255, 0.25);
+    }
+
+    &:focus {
+        outline: none;
+        border-color: #667eea;
+        background: rgba(255, 255, 255, 0.25);
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+
+    &:active {
+        transform: translateY(1px);
+    }
+
+    option {
+        background: rgba(255, 255, 255, 0.9);
+        color: $text-primary;
+        padding: $space-sm;
+    }
+
+    [data-theme="dark"] & {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.2);
+        color: rgba(255, 255, 255, 0.9);
+
+        &:hover {
+            border-color: #f093fb;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        &:focus {
+            border-color: #f093fb;
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 0 3px rgba(240, 147, 251, 0.1);
+        }
+
+        option {
+            background: rgba(0, 0, 0, 0.9);
+            color: rgba(255, 255, 255, 0.9);
+        }
+    }
+}
+
+.content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: $space-lg;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: $radius-xl;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+// Мобільна адаптивність
+@media (max-width: $breakpoint-md) {
+    .dreamsPage {
+        padding: $space-lg;
+    }
+
+    .header {
+        padding: $space-lg;
+        margin-bottom: $space-xl;
+    }
+
+    .title {
+        font-size: $font-size-2xl;
+    }
+
+    .addButtonContainer {
+        padding: $space-md;
+        margin-bottom: $space-lg;
+    }
+
+    .searchContainer {
+        padding: $space-md;
+        margin-bottom: $space-lg;
+    }
+
+    .controlsContainer {
+        flex-direction: column;
+        gap: $space-lg;
+        padding: $space-md;
+        margin-bottom: $space-lg;
+    }
+
+    .perPageContainer,
+    .sortContainer {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .perPageSelect,
+    .sortSelect {
+        min-width: 120px;
+    }
+
+    .content {
+        padding: $space-md;
+    }
+}
+
+@media (max-width: $breakpoint-sm) {
+    .dreamsPage {
+        padding: $space-md;
+    }
+
+    .header {
+        padding: $space-md;
+    }
+
+    .title {
+        font-size: $font-size-xl;
+    }
+
+    .searchInput {
+        padding: $space-sm $space-md $space-sm $space-xl;
+        font-size: $font-size-sm;
+    }
+
+    .searchIcon {
+        width: 1.25rem;
+        height: 1.25rem;
+        left: $space-lg;
+    }
+
+    .perPageLabel,
+    .sortLabel {
+        font-size: $font-size-xs;
+    }
+
+    .perPageSelect,
+    .sortSelect {
+        font-size: $font-size-xs;
+        padding: $space-xs $space-sm;
+        min-width: 100px;
+    }
+}

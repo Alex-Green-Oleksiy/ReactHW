@@ -1,0 +1,205 @@
+@use "sass:color";
+@use "./variables" as *;
+
+// Glass morphism effect
+@mixin glass-effect($opacity: 0.1, $blur: 10px) {
+    background: rgba(255, 255, 255, $opacity);
+    backdrop-filter: blur($blur);
+    -webkit-backdrop-filter: blur($blur);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+// Gradient text
+@mixin gradient-text($gradient: $gradient-primary) {
+    background: $gradient;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+// Button styles
+@mixin button-base {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: $space-sm;
+    padding: $space-md $space-xl;
+    font-size: $font-size-lg;
+    font-weight: $font-weight-bold;
+    border: none;
+    border-radius: $radius-xl;
+    cursor: pointer;
+    transition: all $transition-base;
+    text-decoration: none;
+    outline: none;
+
+    &:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba($primary-color, 0.1);
+    }
+}
+
+@mixin button-primary {
+    @include button-base;
+    background: $gradient-primary;
+    color: $text-white;
+    box-shadow: $shadow-primary;
+
+    &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 35px rgba($primary-color, 0.4);
+    }
+}
+
+@mixin button-secondary {
+    @include button-base;
+    background: $bg-secondary;
+    color: $text-primary;
+    border: 2px solid rgba($primary-color, 0.3);
+
+    &:hover {
+        background: $bg-primary;
+        border-color: $primary-color;
+        transform: translateY(-2px);
+    }
+}
+
+@mixin button-ghost {
+    @include button-base;
+    background: transparent;
+    color: $text-primary;
+    border: 2px solid transparent;
+
+    &:hover {
+        background: rgba($primary-color, 0.1);
+        border-color: $primary-color;
+    }
+}
+
+// Card styles
+@mixin card-base {
+    background: $bg-primary;
+    border-radius: $radius-lg;
+    box-shadow: $shadow-lg;
+    transition: all $transition-base;
+    overflow: hidden;
+}
+
+@mixin card-hover {
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: $shadow-xl;
+    }
+}
+
+@mixin card-glass {
+    @include glass-effect;
+    border-radius: $radius-lg;
+    box-shadow: $shadow-lg;
+    transition: all $transition-base;
+}
+
+// Input styles
+@mixin input-base {
+    width: 100%;
+    padding: $space-md $space-lg;
+    font-size: $font-size-base;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: $radius-xl;
+    background: $bg-secondary;
+    color: $text-primary;
+    transition: all $transition-base;
+
+    &:focus {
+        outline: none;
+        border-color: $primary-color;
+        box-shadow: 0 0 0 3px rgba($primary-color, 0.1);
+        background: $bg-primary;
+    }
+
+    &::placeholder {
+        color: $text-light;
+    }
+}
+
+// Flexbox utilities
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin flex-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@mixin flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+// Grid utilities
+@mixin grid-responsive($min-width: 350px) {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax($min-width, 1fr));
+    gap: $space-xl;
+}
+
+// Text truncation
+@mixin text-truncate($lines: 1) {
+    @if $lines == 1 {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    } @else {
+        display: -webkit-box;
+        -webkit-line-clamp: $lines;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+}
+
+// Responsive breakpoints
+@mixin mobile {
+    @media (max-width: #{$breakpoint-md - 1px}) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media (min-width: $breakpoint-md) and (max-width: #{$breakpoint-lg - 1px}) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media (min-width: $breakpoint-lg) {
+        @content;
+    }
+}
+
+// Animation keyframes
+@mixin keyframes($name) {
+    @keyframes #{$name} {
+        @content;
+    }
+}
+
+// Hover effects
+@mixin hover-lift {
+    transition: transform $transition-base;
+
+    &:hover {
+        transform: translateY(-3px);
+    }
+}
+
+@mixin hover-scale($scale: 1.05) {
+    transition: transform $transition-base;
+
+    &:hover {
+        transform: scale($scale);
+    }
+}

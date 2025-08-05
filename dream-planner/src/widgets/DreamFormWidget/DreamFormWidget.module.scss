@@ -1,0 +1,42 @@
+@use "@/shared/styles/variables" as *;
+@use "@/shared/styles/mixins" as *;
+
+.loadingContainer {
+    @include flex-center;
+    height: 10rem;
+}
+
+.loadingContent {
+    text-align: center;
+}
+
+.spinner {
+    animation: spin 1s linear infinite;
+    border-radius: 50%;
+    height: 3rem;
+    width: 3rem;
+    border-bottom: 2px solid $primary-color;
+    margin: 0 auto $space-md;
+
+    [data-theme="dark"] & {
+        border-bottom-color: $dark-accent-color;
+    }
+}
+
+.loadingText {
+    font-size: $font-size-lg;
+    color: $text-secondary;
+
+    [data-theme="dark"] & {
+        color: $dark-text-secondary;
+    }
+}
+
+@include keyframes(spin) {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

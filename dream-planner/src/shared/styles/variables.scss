@@ -1,0 +1,109 @@
+$primary-color: #ff6b9d;
+$secondary-color: #4ecdc4;
+$accent-color: #f7d200;
+$success-color: #51cf66;
+$warning-color: #ffd43b;
+$error-color: #ff6b6b;
+
+$dark-primary-color: #ff8ab3;
+$dark-secondary-color: #6ee7b7;
+$dark-accent-color: #fbbf24;
+$dark-success-color: #86efac;
+$dark-warning-color: #fde047;
+$dark-error-color: #fca5a5;
+
+$text-primary: #2d3748;
+$text-secondary: #4a5568;
+$text-light: #718096;
+$text-white: #ffffff;
+
+$dark-text-primary: #f7fafc;
+$dark-text-secondary: #e2e8f0;
+$dark-text-light: #cbd5e0;
+$dark-text-white: #ffffff;
+
+$bg-primary: #ffffff;
+$bg-secondary: rgba(255, 255, 255, 0.9);
+$bg-glass: rgba(255, 255, 255, 0.1);
+$bg-overlay: rgba(255, 255, 255, 0.062);
+
+$dark-bg-primary: #0f172a;
+$dark-bg-secondary: rgba(15, 23, 42, 0.9);
+$dark-bg-glass: rgba(15, 23, 42, 0.1);
+$dark-bg-overlay: rgba(15, 23, 42, 0.062);
+
+$gradient-primary: linear-gradient(135deg, $primary-color, #ff8ab3);
+$gradient-secondary: linear-gradient(135deg, $secondary-color, #6ee7b7);
+$gradient-accent: linear-gradient(135deg, $accent-color, #fbbf24);
+
+$dark-gradient-primary: linear-gradient(135deg, $dark-primary-color, #ffa7c4);
+$dark-gradient-secondary: linear-gradient(
+    135deg,
+    $dark-secondary-color,
+    #a7f3d0
+);
+$dark-gradient-accent: linear-gradient(135deg, $dark-accent-color, #fcd34d);
+
+$space-xs: 0.25rem;
+$space-sm: 0.5rem;
+$space-md: 1rem;
+$space-lg: 1.5rem;
+$space-xl: 2rem;
+$space-2xl: 3rem;
+$space-3xl: 4rem;
+
+$radius-sm: 0.5rem;
+$radius-md: 1rem;
+$radius-lg: 1.5rem;
+$radius-xl: 2rem;
+$radius-full: 9999px;
+
+$shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+$shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+$shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+$shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.1);
+$shadow-primary: 0 8px 25px rgba(255, 107, 157, 0.3);
+
+$font-size-xs: 0.75rem;
+$font-size-sm: 0.875rem;
+$font-size-base: 1rem;
+$font-size-lg: 1.125rem;
+$font-size-xl: 1.25rem;
+$font-size-2xl: 1.5rem;
+$font-size-3xl: 2rem;
+$font-size-4xl: 3rem;
+$font-size-5xl: 4rem;
+
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+$font-weight-extrabold: 800;
+
+$font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+$font-family-alegreya: "Alegreya Sans", sans-serif;
+$font-family-georgia: "Georgia", serif;
+$font-family-dancing: "Dancing Script", cursive;
+$font-family-great-vibes: "Great Vibes", cursive;
+$font-family-playfair: "Playfair Display", serif;
+$font-family-crimson: "Crimson Text", serif;
+
+$transition-fast: 0.15s ease;
+$transition-base: 0.3s ease;
+$transition-slow: 0.5s ease;
+
+$z-dropdown: 1000;
+$z-sticky: 1020;
+$z-fixed: 1030;
+$z-modal-backdrop: 1040;
+$z-modal: 1050;
+$z-popover: 1060;
+$z-tooltip: 1070;
+
+$breakpoint-sm: 640px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;
+$breakpoint-xl: 1280px;
+$breakpoint-2xl: 1536px;

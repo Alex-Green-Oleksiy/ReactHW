@@ -1,0 +1,32 @@
+@use '@/shared/styles/variables' as *;
+@use '@/shared/styles/mixins' as *;
+
+.deleteButton {
+    @include button-base;
+    gap: 0.25rem;
+    padding: $space-sm $space-md;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    border-radius: $radius-sm;
+    background: rgba($error-color, 0.3);
+    color: $text-white;
+    flex: 1;
+    min-width: 0;
+    transition: all 0.2s ease;
+
+    &:hover {
+        background: rgba($error-color, 0.4);
+        transform: translateY(-1px);
+    }
+}
+
+.deleteIcon {
+    width: 1rem;
+    height: 1rem;
+}
+
+@include mobile {
+    .deleteButton {
+        width: 100%;
+    }
+}

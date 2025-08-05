@@ -1,8 +1,9 @@
 import { createRoot } from "react-dom/client";
-import "./index.css";
+import "@/shared/styles/index.scss";
 import { Provider } from "react-redux";
 import { RouterProvider } from "react-router";
 import { store, router } from "@/app";
+import { ThemeProvider } from "@/shared/context/ThemeContext";
 
 // Перевірка Firebase конфігурації при запуску
 if (import.meta.env.PROD) {
@@ -31,6 +32,8 @@ if (import.meta.env.PROD) {
 
 createRoot(document.getElementById("root")).render(
     <Provider store={store}>
-        <RouterProvider router={router} />
+        <ThemeProvider>
+            <RouterProvider router={router} />
+        </ThemeProvider>
     </Provider>
 );

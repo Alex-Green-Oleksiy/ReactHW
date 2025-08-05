@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router";
-import styles from "@/features/dream/add-dream/ui/AddDreamButton.module.css";
+import styles from "@/features/dream/add-dream/ui/AddDreamButton.module.scss";
 export const AddDreamButton = ({ className }) => {
     return (
         <Link

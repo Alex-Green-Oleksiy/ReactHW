@@ -1,0 +1,270 @@
+@use "sass:color";
+@use "./variables" as *;
+
+[data-theme="dark"] {
+    * {
+        color-scheme: dark;
+    }
+
+    body {
+        background: transparent;
+        color: $dark-text-primary;
+        position: relative;
+        transition: all 0.5s ease-in-out;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        color: $dark-text-primary;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    p,
+    span,
+    div {
+        color: $dark-text-secondary;
+    }
+
+    a {
+        color: $dark-accent-color;
+        text-decoration: none;
+        transition: color 0.3s ease;
+
+        &:hover {
+            color: color.adjust($dark-accent-color, $lightness: 10%);
+        }
+    }
+
+    .glass-effect {
+        background: rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    .card {
+        background: rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+
+        &:hover {
+            background: rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+        }
+    }
+
+    .btn {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: rgba(255, 255, 255, 0.9);
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: $dark-accent-color;
+            color: $dark-accent-color;
+        }
+
+        &.btn-primary {
+            background: linear-gradient(
+                135deg,
+                $dark-accent-color,
+                color.adjust($dark-accent-color, $lightness: -10%)
+            );
+            border-color: $dark-accent-color;
+            color: $text-white;
+
+            &:hover {
+                background: linear-gradient(
+                    135deg,
+                    color.adjust($dark-accent-color, $lightness: 10%),
+                    $dark-accent-color
+                );
+            }
+        }
+    }
+
+    input,
+    textarea,
+    select {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: rgba(255, 255, 255, 0.9);
+
+        &::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        &:focus {
+            border-color: $dark-accent-color;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 0 3px rgba($dark-accent-color, 0.1);
+        }
+    }
+
+    .nav {
+        background: rgba(0, 0, 0, 0.2);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.8);
+
+            &:hover,
+            &.active {
+                color: $dark-accent-color;
+            }
+        }
+    }
+
+    .modal {
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(10px);
+
+        .modal-content {
+            background: rgba(0, 0, 0, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    }
+
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.3);
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 4px;
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+    }
+
+    .text-muted {
+        color: rgba(255, 255, 255, 0.6) !important;
+    }
+
+    .bg-light {
+        background: rgba(255, 255, 255, 0.05) !important;
+    }
+
+    .border {
+        border-color: rgba(255, 255, 255, 0.1) !important;
+    }
+
+    .shadow {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+    }
+
+    .cosmic-bg {
+        // background: linear-gradient(
+        //     135deg,
+        //     rgba(0, 0, 0, 0.8) 0%,
+        //     rgba(20, 20, 40, 0.9) 50%,
+        //     rgba(0, 0, 0, 0.8) 100%
+        // );
+        position: relative;
+        overflow: hidden;
+    }
+
+    .star-field {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: radial-gradient(
+                2px 2px at 20px 30px,
+                rgba(255, 255, 255, 0.3),
+                transparent
+            ),
+            radial-gradient(
+                2px 2px at 40px 70px,
+                rgba(255, 255, 255, 0.2),
+                transparent
+            ),
+            radial-gradient(
+                1px 1px at 90px 40px,
+                rgba(255, 255, 255, 0.4),
+                transparent
+            ),
+            radial-gradient(
+                1px 1px at 130px 80px,
+                rgba(255, 255, 255, 0.3),
+                transparent
+            ),
+            radial-gradient(
+                2px 2px at 160px 30px,
+                rgba(255, 255, 255, 0.2),
+                transparent
+            );
+        background-repeat: repeat;
+        background-size: 200px 100px;
+        animation: twinkle 4s ease-in-out infinite alternate;
+        opacity: 0.6;
+    }
+
+    @keyframes twinkle {
+        0% {
+            opacity: 0.3;
+        }
+        100% {
+            opacity: 0.8;
+        }
+    }
+
+    .enhanced-glass {
+        background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+
+    .cosmic-glow {
+        position: relative;
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(
+                45deg,
+                rgba(240, 147, 251, 0.3),
+                rgba(245, 87, 108, 0.3),
+                rgba(240, 147, 251, 0.3)
+            );
+            border-radius: inherit;
+            z-index: -1;
+            animation: cosmic-pulse 3s ease-in-out infinite;
+        }
+    }
+
+    @keyframes cosmic-pulse {
+        0%,
+        100% {
+            opacity: 0.3;
+            transform: scale(1);
+        }
+        50% {
+            opacity: 0.6;
+            transform: scale(1.02);
+        }
+    }
+}
+
+[data-theme="light"] {
+    body {
+        background: transparent;
+    }
+}

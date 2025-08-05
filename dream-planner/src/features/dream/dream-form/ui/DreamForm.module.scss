@@ -1,0 +1,247 @@
+@use "@/shared/styles/variables" as *;
+@use "@/shared/styles/mixins" as *;
+
+.form {
+    border-radius: $radius-lg;
+    padding: $space-xl;
+    box-shadow: $shadow-xl;
+    border: 1px solid rgba(228, 119, 18, 0.726);
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: $radius-lg;
+        z-index: 1;
+    }
+}
+
+.formContent {
+    position: relative;
+    z-index: 2;
+}
+
+.title {
+    font-size: $font-size-3xl;
+    font-weight: $font-weight-bold;
+    color: $text-primary;
+    text-align: center;
+    margin-bottom: $space-xl;
+    @include gradient-text(linear-gradient(135deg, #000000, #b98106));
+
+    [data-theme="dark"] & {
+        @include gradient-text(linear-gradient(135deg, #ffffff, #fbbf24));
+    }
+}
+
+.formGroup {
+    margin-bottom: $space-lg;
+
+    input::placeholder,
+    textarea::placeholder {
+        color: $text-light;
+
+        [data-theme="dark"] & {
+            color: rgba(255, 255, 255, 0.6);
+        }
+    }
+}
+
+.label {
+    display: block;
+    font-size: $font-size-base;
+    font-weight: $font-weight-semibold;
+    color: $text-primary;
+    margin-bottom: $space-sm;
+
+    [data-theme="dark"] & {
+        color: $dark-text-primary;
+    }
+}
+
+.input,
+.textarea,
+.select {
+    @include input-base;
+    border: 2px solid #e785054b;
+    background: rgba(255, 254, 253, 0);
+    color: $text-primary;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(0px);
+
+    &:focus {
+        outline: none;
+        border-color: $primary-color;
+        box-shadow: 0 0 0 3px rgba($primary-color, 0.1);
+        background: rgba(255, 254, 253, 0.726);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        transform: translateY(-1px);
+        color: $text-primary;
+    }
+
+    [data-theme="dark"] & {
+        color: $dark-text-primary;
+        background: rgba(0, 0, 0, 0.1);
+        border-color: rgba(255, 255, 255, 0.2);
+
+        &:focus {
+            border-color: $dark-accent-color;
+            box-shadow: 0 0 0 3px rgba($dark-accent-color, 0.1);
+            background: rgba(0, 0, 0, 0.2);
+            color: $dark-text-primary;
+        }
+    }
+}
+
+.textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.select {
+    cursor: pointer;
+}
+
+.buttonGroup {
+    display: flex;
+    gap: $space-md;
+    margin-top: $space-xl;
+    flex-wrap: wrap;
+}
+
+.submitButton {
+    @include button-base;
+    flex: 1;
+    min-width: 200px;
+    background: linear-gradient(135deg, #252424b6, #dd9103c5);
+    color: $text-white;
+    box-shadow: 0 4px 15px rgba(211, 127, 1, 0.185);
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(184, 116, 39, 0.4);
+    }
+
+    &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: 0 4px 15px rgba(255, 107, 157, 0.2);
+    }
+
+    [data-theme="dark"] & {
+        background: linear-gradient(
+            135deg,
+            $dark-primary-color,
+            $dark-secondary-color
+        );
+        color: $dark-text-white;
+        box-shadow: 0 4px 15px rgba($dark-primary-color, 0.3);
+
+        &:hover {
+            box-shadow: 0 8px 25px rgba($dark-primary-color, 0.5);
+        }
+    }
+}
+
+.cancelButton {
+    @include button-base;
+    flex: 1;
+    min-width: 200px;
+    border: 2px solid #feffff;
+    background: transparent;
+    color: $text-primary;
+
+    &:hover {
+        background: #4ecdc534;
+        color: $text-white;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(78, 205, 196, 0.3);
+    }
+
+    [data-theme="dark"] & {
+        border-color: rgba(255, 255, 255, 0.3);
+        color: $dark-text-primary;
+
+        &:hover {
+            background: rgba($dark-accent-color, 0.2);
+            color: $dark-text-white;
+            box-shadow: 0 8px 25px rgba($dark-accent-color, 0.3);
+        }
+    }
+}
+
+.loadingButton {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.loadingSpinner {
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 2px solid transparent;
+    border-top: 2px solid currentColor;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@include keyframes(spin) {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.error {
+    color: $error-color;
+    font-size: $font-size-sm;
+    margin-top: $space-sm;
+    padding: $space-sm;
+    background: rgba($error-color, 0.1);
+    border-radius: $radius-sm;
+    border-left: 3px solid $error-color;
+
+    [data-theme="dark"] & {
+        background: rgba($error-color, 0.2);
+    }
+}
+
+.success {
+    color: $success-color;
+    font-size: $font-size-sm;
+    margin-top: $space-sm;
+    padding: $space-sm;
+    background: rgba($success-color, 0.1);
+    border-radius: $radius-sm;
+    border-left: 3px solid $success-color;
+
+    [data-theme="dark"] & {
+        background: rgba($success-color, 0.2);
+    }
+}
+
+@include mobile {
+    .form {
+        padding: $space-lg;
+        margin: $space-md;
+    }
+
+    .title {
+        font-size: $font-size-2xl;
+    }
+
+    .buttonGroup {
+        flex-direction: column;
+    }
+
+    .submitButton,
+    .cancelButton {
+        width: 100%;
+        min-width: auto;
+    }
+}

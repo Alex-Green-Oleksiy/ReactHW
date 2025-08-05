@@ -1,7 +1,7 @@
 import { DreamCard } from "@/entities/dream";
 import { EditDreamLink, DeleteDreamButton } from "@/features/dream";
 import { Pagination } from "@/widgets/DreamListWidget/ui";
-import styles from "@/widgets/DreamListWidget/ui/DreamList.module.css";
+import styles from "@/widgets/DreamListWidget/ui/DreamList.module.scss";
 export const DreamList = ({ dreams, page, setPage, hasMore, isLoading, totalPages = 1 }) => {
     return (
         <div className={styles.dreamList}>

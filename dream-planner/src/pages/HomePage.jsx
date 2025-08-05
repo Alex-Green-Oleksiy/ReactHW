@@ -1,5 +1,6 @@
 import { Link } from "react-router";
-import styles from "@/pages/HomePage.module.css";
+import { ThemeToggle } from "@/shared/ui/ThemeToggle";
+import styles from "@/pages/HomePage.module.scss";
 const EditIcon = ({ className }) => (
     <svg
         className={className}
@@ -62,14 +63,17 @@ const StarIcon = ({ className }) => (
 );
 export default function HomePage() {
     return (
-        <div className={styles.homePage}>
-            <div className={styles.hero}>
+        <div className={`${styles.homePage} cosmic-bg`}>
+            <div className={styles.themeToggleContainer}>
+                <ThemeToggle />
+            </div>
+            <div className={`${styles.hero} glass-dark`}>
                 <h1 className={styles.title}>🌟 Планувальник мрій</h1>
                 <p className={styles.subtitle}>
                     Мрій, доки живий, і нехай в тебе збудеться все!!!
                 </p>
                 <div className={styles.features}>
-                    <div className={styles.feature}>
+                    <div className={`${styles.feature} glass-dark`}>
                         <EditIcon className={styles.featureIcon} />
                         <h3 className={styles.featureTitle}>
                             Запиши свою мрію
@@ -78,7 +82,7 @@ export default function HomePage() {
                             Опиши свою мрію, ні в чому себе не обмежуй!
                         </p>
                     </div>
-                    <div className={styles.feature}>
+                    <div className={`${styles.feature} glass-dark`}>
                         <UserGroupIcon className={styles.featureIcon} />
                         <h3 className={styles.featureTitle}>Ти не один</h3>
                         <p className={styles.featureText}>

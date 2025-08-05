@@ -1,5 +1,5 @@
 import { useDeleteDream } from "@/features/dream/delete-dream/model/useDeleteDream";
-import styles from "@/features/dream/delete-dream/ui/DeleteDreamButton.module.css";
+import styles from "@/features/dream/delete-dream/ui/DeleteDreamButton.module.scss";
 export const DeleteDreamButton = ({ dreamId, className, onDeleted }) => {
     const { handleDeleteDream, isLoading } = useDeleteDream();
     const handleClick = async () => {
