@@ -5,6 +5,7 @@ import styles from "./BackgroundImage.module.scss";
 const BackgroundImage = ({ theme }) => {
     const [imagesLoaded, setImagesLoaded] = useState(false);
     const [cachedImages, setCachedImages] = useState({});
+    const [hasError, setHasError] = useState(false);
     const backgroundRef = useRef(null);
 
     // Попереднє завантаження зображень в кеш
@@ -23,7 +24,10 @@ const BackgroundImage = ({ theme }) => {
                         }));
                         resolve(img);
                     };
-                    img.onerror = reject;
+                    img.onerror = (error) => {
+                        console.error("Помилка завантаження зображення:", url, error);
+                        reject(error);
+                    };
                     img.src = url;
                 });
                 imagePromises.push(promise);
@@ -32,9 +36,11 @@ const BackgroundImage = ({ theme }) => {
             Promise.all(imagePromises)
                 .then(() => {
                     setImagesLoaded(true);
+                    setHasError(false);
                 })
                 .catch((error) => {
                     console.error("Помилка завантаження зображень:", error);
+                    setHasError(true);
                     setImagesLoaded(true); // Все одно показуємо компонент
                 });
         };
@@ -55,7 +61,7 @@ const BackgroundImage = ({ theme }) => {
                     `url(${backgroundImage})`,
                     "important"
                 );
-            } else {
+            } else if (!hasError) {
                 // Fallback з timestamp для уникнення кешування
                 const timestamp = Date.now();
                 const imageUrl = `${backgroundImage}?t=${timestamp}`;
@@ -66,7 +72,7 @@ const BackgroundImage = ({ theme }) => {
                 );
             }
         }
-    }, [theme, imagesLoaded, cachedImages]);
+    }, [theme, imagesLoaded, cachedImages, hasError]);
 
     // Рендеримо компонент тільки після завантаження зображень
     if (!imagesLoaded) {
@@ -82,9 +88,10 @@ const BackgroundImage = ({ theme }) => {
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
                 backgroundAttachment: "fixed",
-                backgroundImage: `url(${
+                backgroundImage: hasError ? "none" : `url(${
                     theme === "dark" ? themeImages.dark : themeImages.light
-                })`
+                })`,
+                backgroundColor: hasError ? (theme === "dark" ? "#1a1a1a" : "#f5f5f5") : "transparent"
             }}
         />
     );

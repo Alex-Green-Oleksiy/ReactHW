@@ -1,4 +1,7 @@
+import darkImage from "@/assets/images/dark.webp";
+import lightImage from "@/assets/images/11.webp";
+
 export const themeImages = {
-    dark: "/src/assets/images/dark.webp",
-    light: "/src/assets/images/11.webp"
+    dark: darkImage,
+    light: lightImage
 };
