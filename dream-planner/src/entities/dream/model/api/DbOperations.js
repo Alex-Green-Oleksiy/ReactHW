@@ -16,28 +16,44 @@ class DbOperations {
     constructor(name) {
         this.collectionRef = collection(db, name);
     }
-    async getAllPaginated({ page = 1, perPage = 6, cursors = [] }) {
+    async getAllPaginated({
+        page = 1,
+        perPage = 6,
+        cursors = [],
+        sortBy = "date-desc"
+    }) {
         try {
             let q;
             const realLimit = perPage + 1;
-            
+            let orderField = "createdAt";
+            let orderDirection = "desc";
+            if (sortBy === "date-asc") {
+                orderDirection = "asc";
+            } else if (sortBy === "alpha-asc" || sortBy === "alpha-desc") {
+                orderField = "description";
+                orderDirection = sortBy === "alpha-asc" ? "asc" : "desc";
+            }
             if (page === 1) {
                 q = query(
                     this.collectionRef,
-                    orderBy("createdAt", "desc"),
+                    orderBy(orderField, orderDirection),
                     limit(realLimit)
                 );
             } else {
-                const cursor = cursors[page - 2];
-                if (!cursor) throw new Error("Cursor not found");
+                const cursorId = cursors[page - 2];
+                if (!cursorId) throw new Error("Cursor not found");
+                const cursorDoc = await getDoc(
+                    doc(this.collectionRef, cursorId)
+                );
+                if (!cursorDoc.exists())
+                    throw new Error("Cursor document not found");
                 q = query(
                     this.collectionRef,
-                    orderBy("createdAt", "desc"),
-                    startAfter(cursor),
+                    orderBy(orderField, orderDirection),
+                    startAfter(cursorDoc),
                     limit(realLimit)
                 );
             }
-            
             const snapshot = await getDocs(q);
             const docs = snapshot.docs;
             const hasMore = docs.length > perPage;
@@ -45,21 +61,22 @@ class DbOperations {
                 .slice(0, perPage)
                 .map((doc) => ({ id: doc.id, ...doc.data() }));
             const lastVisible = docs[docs.length - 2] || null;
-            
-            // Оптимізуємо: не робимо додатковий запит для підрахунку
-            // Використовуємо приблизний розрахунок на основі hasMore
+            const lastVisibleId = lastVisible ? lastVisible.id : null;
             const totalPages = hasMore ? page + 1 : page;
-            
-            return { data, cursor: lastVisible, hasMore, totalPages };
-            
+            return { data, cursor: lastVisibleId, hasMore, totalPages };
         } catch (error) {
             console.error("Firestore query error:", error);
-            
+
             // Обробка помилки 429 (Too Many Requests)
-            if (error.code === 'resource-exhausted' || error.message?.includes('429')) {
-                throw new Error("Перевищено ліміт запитів до Firebase. Спробуйте пізніше.");
+            if (
+                error.code === "resource-exhausted" ||
+                error.message?.includes("429")
+            ) {
+                throw new Error(
+                    "Перевищено ліміт запитів до Firebase. Спробуйте пізніше."
+                );
             }
-            
+
             // Інші помилки
             throw new Error(`Помилка завантаження даних: ${error.message}`);
         }
@@ -76,7 +93,7 @@ class DbOperations {
             throw new Error(`Помилка отримання мрії: ${error.message}`);
         }
     }
-    
+
     async add(data) {
         try {
             const dreamData = {
@@ -91,7 +108,7 @@ class DbOperations {
             throw new Error(`Помилка додавання мрії: ${error.message}`);
         }
     }
-    
+
     async update(id, data) {
         try {
             const updateData = {
@@ -105,7 +122,7 @@ class DbOperations {
             throw new Error(`Помилка оновлення мрії: ${error.message}`);
         }
     }
-    
+
     async delete(id) {
         try {
             await deleteDoc(doc(this.collectionRef, id));

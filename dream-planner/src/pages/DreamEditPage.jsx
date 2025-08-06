@@ -7,9 +7,6 @@ export default function DreamEditPage() {
     const { id } = useParams();
     return (
         <div className={styles.container}>
-            <div className={styles.themeToggleContainer}>
-                <ThemeToggle />
-            </div>
             <DreamFormWidget dreamId={id} />
         </div>
     );

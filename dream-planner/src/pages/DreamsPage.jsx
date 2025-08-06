@@ -16,41 +16,24 @@ export default function DreamsPage() {
     const { data, isLoading, error, refetch } = useGetDreamsQuery({
         page,
         perPage,
-        cursors
+        cursors,
+        sortBy // Додаємо sortBy у запит
     });
 
     const allDreams = data?.data || []; // Якщо даних немає, використовуємо порожній масив
     const hasMore = data?.hasMore; // Чи є ще дані для завантаження
     const totalPages = data?.totalPages || 1; // Загальна кількість сторінок
 
-    const filteredAndSortedDreams = useMemo(() => {
-        let filtered = allDreams;
-        
-        // Фільтрація за пошуком
+    const filteredDreams = useMemo(() => {
         if (searchTerm.trim()) {
-            filtered = allDreams.filter((dream) =>
-                dream.description.toLowerCase().includes(searchTerm.toLowerCase())
+            return allDreams.filter((dream) =>
+                dream.description
+                    .toLowerCase()
+                    .includes(searchTerm.toLowerCase())
             );
         }
-
-        // Сортування
-        const sorted = [...filtered].sort((a, b) => {
-            switch (sortBy) {
-                case "date-asc":
-                    return new Date(a.createdAt) - new Date(b.createdAt);
-                case "date-desc":
-                    return new Date(b.createdAt) - new Date(a.createdAt);
-                case "alpha-asc":
-                    return a.description.localeCompare(b.description, 'uk');
-                case "alpha-desc":
-                    return b.description.localeCompare(a.description, 'uk');
-                default:
-                    return 0;
-            }
-        });
-
-        return sorted;
-    }, [allDreams, searchTerm, sortBy]);
+        return allDreams;
+    }, [allDreams, searchTerm]);
 
     useEffect(() => {
         if (data?.cursor && cursors.length < page) {
@@ -83,9 +66,6 @@ export default function DreamsPage() {
 
     return (
         <div className={`${styles.dreamsPage} cosmic-bg`}>
-            <div className={styles.themeToggleContainer}>
-                <ThemeToggle />
-            </div>
             <div className={styles.header}>
                 <h1 className={styles.title}>Мої мрії</h1>
             </div>
@@ -141,8 +121,12 @@ export default function DreamsPage() {
                         onChange={(e) => setSortBy(e.target.value)}
                         className={styles.sortSelect}
                     >
-                        <option value="date-desc">Дата (новіші спочатку)</option>
-                        <option value="date-asc">Дата (старіші спочатку)</option>
+                        <option value="date-desc">
+                            Дата (новіші спочатку)
+                        </option>
+                        <option value="date-asc">
+                            Дата (старіші спочатку)
+                        </option>
                         <option value="alpha-asc">Алфавіт (А-Я)</option>
                         <option value="alpha-desc">Алфавіт (Я-А)</option>
                     </select>
@@ -150,7 +134,7 @@ export default function DreamsPage() {
             </div>
             <div className={styles.content}>
                 <DreamList
-                    dreams={filteredAndSortedDreams}
+                    dreams={filteredDreams}
                     page={page}
                     setPage={setPage}
                     hasMore={hasMore}

@@ -18,33 +18,41 @@ export const dreamsApi = createApi({
             providesTags: ["Dream"] // Цей запит надає тег "Dream"
         }),
         getDreams: builder.query({
-            async queryFn({ page = 1, perPage = 6, cursors = [] }) {
+            async queryFn({
+                page = 1,
+                perPage = 6,
+                cursors = [],
+                sortBy = "date-desc"
+            }) {
                 try {
                     const { data, cursor, hasMore, totalPages } =
                         await db.getAllPaginated({
                             page,
                             perPage,
-                            cursors
+                            cursors,
+                            sortBy // Додаємо sortBy у виклик
                         });
                     return { data: { data, cursor, hasMore, totalPages } };
                 } catch (error) {
                     console.error("Dreams API error:", error);
-                    
+
                     // Спеціальна обробка помилки 429
-                    if (error.message?.includes('ліміт запитів')) {
-                        return { 
-                            error: { 
-                                status: 429, 
-                                message: "Перевищено ліміт запитів до Firebase. Спробуйте пізніше." 
-                            } 
+                    if (error.message?.includes("ліміт запитів")) {
+                        return {
+                            error: {
+                                status: 429,
+                                message:
+                                    "Перевищено ліміт запитів до Firebase. Спробуйте пізніше."
+                            }
                         };
                     }
-                    
-                    return { 
-                        error: { 
-                            status: 500, 
-                            message: error.message || "Помилка завантаження мрій" 
-                        } 
+
+                    return {
+                        error: {
+                            status: 500,
+                            message:
+                                error.message || "Помилка завантаження мрій"
+                        }
                     };
                 }
             },
