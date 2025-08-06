@@ -2,20 +2,19 @@
     max-width: 600px;
     margin: 0 auto;
     padding: 2rem;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(20px);
+    background: #23242b;
     border-radius: 20px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(33, 150, 243, 0.13);
+    border: none;
 }
 
 .formTitle {
     font-size: 2rem;
     font-weight: 700;
-    color: #1a1a1a;
+    color: #ffb347;
     margin-bottom: 2rem;
     text-align: center;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #2196f3 0%, #e63946 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -28,7 +27,7 @@
 .formLabel {
     display: block;
     font-weight: 600;
-    color: #1a1a1a;
+    color: #2196f3;
     margin-bottom: 0.5rem;
     font-size: 1rem;
 }
@@ -36,36 +35,34 @@
 .formInput {
     width: 100%;
     padding: 1rem;
-    border: 2px solid rgba(102, 126, 234, 0.2);
+    border: 2px solid #2196f3;
     border-radius: 12px;
     font-size: 1rem;
-    background: rgba(255, 255, 255, 0.8);
-    color: #1a1a1a;
-    backdrop-filter: blur(10px);
+    background: #18191f;
+    color: #fff;
     transition: all 0.3s ease;
     box-sizing: border-box;
 }
 
 .formInput::placeholder {
-    color: rgba(26, 26, 26, 0.6);
+    color: #ffb347;
 }
 
 .formInput:focus {
     outline: none;
-    border-color: #667eea;
-    background: rgba(255, 255, 255, 0.95);
-    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+    border-color: #e63946;
+    background: #23242b;
+    box-shadow: 0 0 0 4px rgba(255, 179, 71, 0.18);
 }
 
 .formTextarea {
     width: 100%;
     padding: 1rem;
-    border: 2px solid rgba(102, 126, 234, 0.2);
+    border: 2px solid #2196f3;
     border-radius: 12px;
     font-size: 1rem;
-    background: rgba(255, 255, 255, 0.8);
-    color: #1a1a1a;
-    backdrop-filter: blur(10px);
+    background: #18191f;
+    color: #fff;
     transition: all 0.3s ease;
     box-sizing: border-box;
     min-height: 120px;
@@ -74,14 +71,14 @@
 }
 
 .formTextarea::placeholder {
-    color: rgba(26, 26, 26, 0.6);
+    color: #ffb347;
 }
 
 .formTextarea:focus {
     outline: none;
-    border-color: #667eea;
-    background: rgba(255, 255, 255, 0.95);
-    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+    border-color: #e63946;
+    background: #23242b;
+    box-shadow: 0 0 0 4px rgba(255, 179, 71, 0.18);
 }
 
 .formActions {
@@ -94,27 +91,32 @@
 
 .submitButton {
     padding: 1rem 2rem;
-    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
-    color: white;
+    background: linear-gradient(135deg, #ffb347 0%, #2196f3 100%);
+    color: #18191f;
     border: none;
     border-radius: 12px;
     font-size: 1.125rem;
     font-weight: 700;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
+    box-shadow: 0 4px 15px rgba(33, 150, 243, 0.18);
     position: relative;
     overflow: hidden;
 }
 
 .submitButton::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
     transition: left 0.5s;
 }
 
@@ -123,9 +125,10 @@
 }
 
 .submitButton:hover {
-    background: linear-gradient(135deg, #20c997 0%, #17a2b8 100%);
+    background: linear-gradient(135deg, #e63946 0%, #2196f3 100%);
+    color: #fff;
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(40, 167, 69, 0.6);
+    box-shadow: 0 8px 25px rgba(33, 150, 243, 0.22);
 }
 
 .submitButton:active {
@@ -133,7 +136,8 @@
 }
 
 .submitButton:disabled {
-    background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+    background: linear-gradient(135deg, #adb5bd 0%, #495057 100%);
+    color: #fff;
     cursor: not-allowed;
     transform: none;
     box-shadow: none;
@@ -141,15 +145,15 @@
 
 .cancelButton {
     padding: 1rem 2rem;
-    background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
-    color: white;
+    background: linear-gradient(135deg, #e63946 0%, #ffb347 100%);
+    color: #18191f;
     border: none;
     border-radius: 12px;
     font-size: 1.125rem;
     font-weight: 700;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 4px 15px rgba(108, 117, 125, 0.4);
+    box-shadow: 0 4px 15px rgba(230, 57, 70, 0.18);
     position: relative;
     overflow: hidden;
     text-decoration: none;
@@ -157,13 +161,18 @@
 }
 
 .cancelButton::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
     transition: left 0.5s;
 }
 
@@ -172,11 +181,10 @@
 }
 
 .cancelButton:hover {
-    background: linear-gradient(135deg, #495057 0%, #343a40 100%);
+    background: linear-gradient(135deg, #2196f3 0%, #e63946 100%);
+    color: #fff;
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(108, 117, 125, 0.6);
-    color: white;
-    text-decoration: none;
+    box-shadow: 0 8px 25px rgba(230, 57, 70, 0.22);
 }
 
 .cancelButton:active {
@@ -209,15 +217,15 @@
         padding: 1.5rem;
         margin: 1rem;
     }
-    
+
     .formTitle {
         font-size: 1.75rem;
     }
-    
+
     .formActions {
         flex-direction: column;
     }
-    
+
     .submitButton,
     .cancelButton {
         width: 100%;
@@ -230,14 +238,14 @@
         padding: 1rem;
         margin: 0.5rem;
     }
-    
+
     .formTitle {
         font-size: 1.5rem;
     }
-    
+
     .formInput,
     .formTextarea {
         padding: 0.875rem;
         font-size: 0.95rem;
     }
-} 
+}

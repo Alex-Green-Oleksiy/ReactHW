@@ -1,2 +1,8 @@
-export { addToCart, clearCart } from './cartSlice'
-export { default as cartReducer } from './cartSlice' 
+export {
+    addToCart,
+    clearCart,
+    increaseCount,
+    decreaseCount,
+    removeFromCart
+} from "./cartSlice";
+export { default as cartReducer } from "./cartSlice";

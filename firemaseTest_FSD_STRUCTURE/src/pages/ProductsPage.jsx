@@ -9,10 +9,18 @@ export default function ProductsPage() {
     const [page, setPage] = useState(1);
     const [cursors, setCursors] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
+    const [sortField, setSortField] = useState("title");
+    const [sortDirection, setSortDirection] = useState("asc");
     const perPage = 4;
 
     // Логіка запиту даних
-    const { data, isLoading } = useGetProductsQuery({ page, perPage, cursors });
+    const { data, isLoading } = useGetProductsQuery({
+        page,
+        perPage,
+        cursors,
+        orderByField: sortField,
+        orderDirection: sortDirection
+    });
 
     // Фільтрація продуктів за назвою
     const filteredProducts = useMemo(() => {
@@ -46,6 +54,10 @@ export default function ProductsPage() {
                 <ProductFilter
                     searchTerm={searchTerm}
                     onSearchChange={setSearchTerm}
+                    sortField={sortField}
+                    setSortField={setSortField}
+                    sortDirection={sortDirection}
+                    setSortDirection={setSortDirection}
                 />
             </div>
 

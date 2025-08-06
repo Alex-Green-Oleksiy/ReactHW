@@ -1,34 +1,120 @@
 .filterContainer {
-  margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #23242b;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(33, 150, 243, 0.13);
+    padding: 2rem 2rem 1.5rem 2rem;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    width: 100%;
+    gap: 1.5rem;
 }
 
 .inputWrapper {
-  position: relative;
+    position: relative;
+    width: 100%;
 }
 
 .searchInput {
-  width: 100%;
-  padding: 0.75rem 1rem 0.75rem 2.5rem;
-  border: 2px solid #ddd;
-  border-radius: 6px;
-  font-size: 1rem;
-  transition: border-color 0.2s ease;
-  background-color: white;
+    width: 100%;
+    padding: 0.85rem 1.2rem 0.85rem 2.8rem;
+    border: 2px solid #2196f3;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    background-color: #18191f;
+    color: #fff;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 8px rgba(33, 150, 243, 0.04);
 }
 
 .searchInput:focus {
-  outline: none;
-  border-color: #3498db;
-  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+    outline: none;
+    border-color: #e63946;
+    box-shadow: 0 0 0 3px rgba(255, 179, 71, 0.18);
 }
 
 .searchIcon {
-  position: absolute;
-  left: 0.75rem;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 1.25rem;
-  height: 1.25rem;
-  color: #6c757d;
-  pointer-events: none;
-} 
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1.4rem;
+    height: 1.4rem;
+    color: #2196f3;
+    opacity: 0.8;
+    pointer-events: none;
+}
+
+.sortWrapper {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    width: 100%;
+}
+
+.sortLabel {
+    font-size: 1.08rem;
+    color: #ffb347;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.sortSelect {
+    margin-left: 0.5rem;
+    padding: 0.7rem 2.2rem 0.7rem 1.2rem;
+    border-radius: 10px;
+    border: 2px solid #2196f3;
+    font-size: 1.13rem;
+    background: #18191f;
+    color: #fff;
+    font-weight: 600;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 8px rgba(33, 150, 243, 0.08);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    position: relative;
+    cursor: pointer;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23ffb347" height="20" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M5.516 7.548a1 1 0 0 1 1.415 0L10 10.617l3.07-3.07a1 1 0 1 1 1.415 1.415l-3.777 3.778a1 1 0 0 1-1.415 0L5.516 8.963a1 1 0 0 1 0-1.415z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1.2rem;
+}
+
+.sortSelect:focus {
+    outline: none;
+    border-color: #e63946;
+    box-shadow: 0 0 0 2px rgba(255, 179, 71, 0.18);
+}
+
+.sortSelect option {
+    background: #23242b;
+    color: #ffb347;
+    font-weight: 600;
+    font-size: 1.08rem;
+    padding: 0.7rem 1.2rem;
+    border: none;
+    cursor: pointer;
+}
+
+.sortSelect option:checked,
+.sortSelect option:hover {
+    background: #2196f3;
+    color: #fff;
+}
+
+@media (max-width: 600px) {
+    .filterContainer {
+        padding: 1.2rem 0.5rem 1rem 0.5rem;
+        max-width: 100%;
+    }
+    .sortWrapper {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: stretch;
+    }
+}
