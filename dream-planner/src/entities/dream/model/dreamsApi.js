@@ -22,7 +22,8 @@ export const dreamsApi = createApi({
                 page = 1,
                 perPage = 6,
                 cursors = [],
-                sortBy = "date-desc"
+                sortBy = "date-desc",
+                searchTerm = ""
             }) {
                 try {
                     const { data, cursor, hasMore, totalPages } =
@@ -30,7 +31,8 @@ export const dreamsApi = createApi({
                             page,
                             perPage,
                             cursors,
-                            sortBy // Додаємо sortBy у виклик
+                            sortBy,
+                            searchTerm // Додаємо searchTerm у виклик
                         });
                     return { data: { data, cursor, hasMore, totalPages } };
                 } catch (error) {

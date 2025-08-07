@@ -20,7 +20,8 @@ class DbOperations {
         page = 1,
         perPage = 6,
         cursors = [],
-        sortBy = "date-desc"
+        sortBy = "date-desc",
+        searchTerm = ""
     }) {
         try {
             let q;
@@ -33,10 +34,25 @@ class DbOperations {
                 orderField = "description";
                 orderDirection = sortBy === "alpha-asc" ? "asc" : "desc";
             }
+            const filters = [];
+            if (searchTerm && searchTerm.trim()) {
+                // Firestore не підтримує contains, але можна >= і < для префіксного пошуку
+                const searchLower = searchTerm.toLowerCase();
+                const searchUpper = searchLower.replace(/.$/, (c) =>
+                    String.fromCharCode(c.charCodeAt(0) + 1)
+                );
+                filters.push(
+                    orderBy("description")
+                    // >= searchLower
+                    // < searchUpper
+                );
+            }
             if (page === 1) {
                 q = query(
                     this.collectionRef,
-                    orderBy(orderField, orderDirection),
+                    ...(filters.length
+                        ? filters
+                        : [orderBy(orderField, orderDirection)]),
                     limit(realLimit)
                 );
             } else {
@@ -49,13 +65,24 @@ class DbOperations {
                     throw new Error("Cursor document not found");
                 q = query(
                     this.collectionRef,
-                    orderBy(orderField, orderDirection),
+                    ...(filters.length
+                        ? filters
+                        : [orderBy(orderField, orderDirection)]),
                     startAfter(cursorDoc),
                     limit(realLimit)
                 );
             }
             const snapshot = await getDocs(q);
-            const docs = snapshot.docs;
+            let docs = snapshot.docs;
+            // Firestore не підтримує contains, тому додатково фільтруємо тут, якщо searchTerm є
+            if (searchTerm && searchTerm.trim()) {
+                docs = docs.filter((doc) =>
+                    doc
+                        .data()
+                        .description?.toLowerCase()
+                        .includes(searchTerm.toLowerCase())
+                );
+            }
             const hasMore = docs.length > perPage;
             const data = docs
                 .slice(0, perPage)

@@ -1,9 +1,8 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import { useGetDreamsQuery } from "@/entities/dream";
 import { DreamList } from "@/widgets/DreamListWidget";
 import { AddDreamButton } from "@/features/dream";
 import { ErrorMessage } from "@/shared/ui/ErrorMessage";
-import { ThemeToggle } from "@/shared/ui/ThemeToggle";
 import styles from "@/pages/DreamsPage.module.scss";
 
 export default function DreamsPage() {
@@ -17,23 +16,15 @@ export default function DreamsPage() {
         page,
         perPage,
         cursors,
-        sortBy // Додаємо sortBy у запит
+        sortBy, // Додаємо sortBy у запит
+        searchTerm // Додаємо searchTerm у запит
     });
 
     const allDreams = data?.data || []; // Якщо даних немає, використовуємо порожній масив
     const hasMore = data?.hasMore; // Чи є ще дані для завантаження
     const totalPages = data?.totalPages || 1; // Загальна кількість сторінок
 
-    const filteredDreams = useMemo(() => {
-        if (searchTerm.trim()) {
-            return allDreams.filter((dream) =>
-                dream.description
-                    .toLowerCase()
-                    .includes(searchTerm.toLowerCase())
-            );
-        }
-        return allDreams;
-    }, [allDreams, searchTerm]);
+    // useMemo для фільтрації більше не потрібен, бо фільтрація на бекенді
 
     useEffect(() => {
         if (data?.cursor && cursors.length < page) {
@@ -134,7 +125,7 @@ export default function DreamsPage() {
             </div>
             <div className={styles.content}>
                 <DreamList
-                    dreams={filteredDreams}
+                    dreams={allDreams}
                     page={page}
                     setPage={setPage}
                     hasMore={hasMore}
