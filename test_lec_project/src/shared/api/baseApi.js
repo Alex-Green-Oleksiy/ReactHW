@@ -4,7 +4,8 @@ import { apiRoutes } from '../config/routes/apiRoutes'
 import { frontRoutes } from '../config/routes/frontRoutes'
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: 'http://localhost:4000/api/',
+  // Use Vite env var for backend base URL, fallback to localhost for dev
+  baseUrl: `${import.meta.env.VITE_API_URL || 'http://localhost:4000'}/api/`,
   credentials: 'include',
   prepareHeaders: (headers, { getState }) => {
     const token = getState().auth?.accessToken
