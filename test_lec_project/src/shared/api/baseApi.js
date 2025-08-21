@@ -21,7 +21,7 @@ const baseQuery = fetchBaseQuery({
 const baseQueryWithReauth = async (args, api, extraOptions) => {
   let result = await baseQuery(args, api, extraOptions)
 
-  if (result?.error?.status === 401 && extraOptions) {
+  if (result?.error?.status === 401) {
     // Access token закінчився, пробуємо оновити
     const refreshResult = await baseQuery(
       { url: apiRoutes.auth.refresh, method: 'POST' },
