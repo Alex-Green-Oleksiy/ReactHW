@@ -1,0 +1,15 @@
+.main-menu {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.main-menu-link {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.main-menu-link:hover {
+  color: #bfdbfe;
+}

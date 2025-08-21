@@ -1,0 +1,19 @@
+.comment-item {
+  border-bottom: 1px solid #ddd;
+  padding: 0.5rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.comment-content {
+  flex: 1;
+}
+
+.comment-author {
+  font-weight: bold;
+}
+
+.comment-text {
+  margin-left: 0.5rem;
+}
