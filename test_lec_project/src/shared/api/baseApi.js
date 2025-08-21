@@ -3,9 +3,12 @@ import { setCredentials, logout } from '@/features/auth/api/authSlice'
 import { apiRoutes } from '../config/routes/apiRoutes'
 import { frontRoutes } from '../config/routes/frontRoutes'
 
+// Визначаємо базовий URL API:
+// - якщо VITE_API_URL задано — використовуємо його
+// - інакше — відносний шлях "/api/" (щоб працювало з проксі на Vercel і у Vite dev)
+const apiHost = (import.meta.env.VITE_API_URL ?? '').trim()
 const baseQuery = fetchBaseQuery({
-  // Use Vite env var for backend base URL, fallback to localhost for dev
-  baseUrl: `${import.meta.env.VITE_API_URL || 'http://localhost:4000'}/api/`,
+  baseUrl: apiHost ? `${apiHost}/api/` : '/api/',
   credentials: 'include',
   prepareHeaders: (headers, { getState }) => {
     const token = getState().auth?.accessToken

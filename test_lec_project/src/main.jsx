@@ -1,4 +1,5 @@
 import { createRoot } from 'react-dom/client'
+import { Suspense } from 'react'
 import './index.css'
 
 import { RouterProvider } from 'react-router'
@@ -10,6 +11,8 @@ import { AppInit } from './app/init/AppInit'
 createRoot(document.getElementById('root')).render(
   <Provider store={store}>
     <AppInit />
-    <RouterProvider router={router} />
+    <Suspense fallback={<div />}> 
+      <RouterProvider router={router} fallbackElement={<div />} />
+    </Suspense>
   </Provider>
 )
