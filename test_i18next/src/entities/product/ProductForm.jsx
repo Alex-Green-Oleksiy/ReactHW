@@ -12,6 +12,7 @@ export default function ProductForm({ initialValue, onSubmit }) {
       price: ''
     }
   )
+  const [imageFile, setImageFile] = useState(null)
 
   const handleChangeText = (field, lang) => (e) => {
     const value = e.target.value
@@ -34,6 +35,7 @@ export default function ProductForm({ initialValue, onSubmit }) {
     const payload = {
       ...form,
       price: Number(form.price) || 0,
+      imageFile,
     }
     onSubmit?.(payload)
   }
@@ -85,6 +87,16 @@ export default function ProductForm({ initialValue, onSubmit }) {
             onChange={handleChangePrice}
           />
         </div>
+      </div>
+
+      <div className={styles.row}>
+        <label>{t('product.fields.image') || 'Image'}</label>
+        <input
+          className={styles.input}
+          type="file"
+          accept="image/*"
+          onChange={(e) => setImageFile(e.target.files?.[0] || null)}
+        />
       </div>
 
       <div className={styles.actions}>

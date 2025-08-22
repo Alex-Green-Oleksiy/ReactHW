@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { signUp } from '@/shared/firebase/firebase'
 import { db } from '@/shared/firebase/firebase'
 import { doc, setDoc } from 'firebase/firestore'
+import styles from '@/shared/ui/Form.module.css'
 
 export default function RegisterPage() {
   const navigate = useNavigate()
@@ -31,25 +32,33 @@ export default function RegisterPage() {
   }
 
   return (
-    <div>
+    <div className={styles.formContainer}>
       <h2>Register</h2>
       <form onSubmit={handleRegister}>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Email"
-          required
-        />
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-          required
-        />
-        <button type="submit">Register</button>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
+        <div className={styles.formGroup}>
+          <label htmlFor="email">Email</label>
+          <input
+            id="email"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email"
+            required
+          />
+        </div>
+        <div className={styles.formGroup}>
+          <label htmlFor="password">Password</label>
+          <input
+            id="password"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+            required
+          />
+        </div>
+        <button type="submit" className={styles.formButton}>Register</button>
+        {error && <p className={styles.errorMessage}>{error}</p>}
       </form>
     </div>
   )

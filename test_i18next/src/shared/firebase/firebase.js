@@ -11,6 +11,7 @@ import {
   signInWithEmailAndPassword,
   signOut as firebaseSignOut,
 } from 'firebase/auth'
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -25,6 +26,7 @@ const app = initializeApp(firebaseConfig)
 
 export const db = getFirestore(app)
 export const auth = getAuth(app)
+export const storage = getStorage(app)
 
 // Optional: offline persistence (best effort)
 try {
@@ -44,4 +46,11 @@ export const getProducts = async () => {
   const productSnapshot = await getDocs(productsCol)
   const productList = productSnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
   return productList
+}
+
+// Storage helpers
+export const uploadProductImage = async (file, path) => {
+  const fileRef = ref(storage, path)
+  await uploadBytes(fileRef, file)
+  return await getDownloadURL(fileRef)
 }
