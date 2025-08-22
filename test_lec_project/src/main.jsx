@@ -2,7 +2,7 @@ import { createRoot } from 'react-dom/client'
 import { Suspense } from 'react'
 import './index.css'
 
-import { RouterProvider } from 'react-router'
+import { RouterProvider } from 'react-router-dom'
 import { router } from './app/router/router'
 import { Provider } from 'react-redux'
 import { store } from './app/store/store'

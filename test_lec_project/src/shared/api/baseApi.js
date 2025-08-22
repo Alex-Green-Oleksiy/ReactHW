@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { setCredentials, logout } from '@/features/auth/api/authSlice'
 import { apiRoutes } from '../config/routes/apiRoutes'
-import { frontRoutes } from '../config/routes/frontRoutes'
+// import { frontRoutes } from '../config/routes/frontRoutes'
 
 // Визначаємо базовий URL API:
 // - якщо VITE_API_URL задано — використовуємо його
@@ -37,7 +37,8 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
     } else {
       // Оновлення токена не вдалось — логаут
       api.dispatch(logout())
-      window.location.href = frontRoutes.pages.LoginPage.navigationPath // Перенаправлення
+      // Уникаємо жорсткого редіректу, щоб не спричиняти повне перезавантаження/зациклення
+      // Роутинг на сторінку логіну краще виконати у лоадері/guard або в UI після перевірки стейту
     }
   }
 

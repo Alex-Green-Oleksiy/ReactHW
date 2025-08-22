@@ -1,2 +1,2 @@
-export * from './ui/CommentForm'
-export * from './ui/DeleteCommentButton'
+export * from '../commentAdd'
+export * from '../commentDelete'

@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 import { selectAuthUser } from '@/features/auth'
 
 import { CommentList } from '@/entities/comment'
-import { CommentForm } from '@/features/comments'
+import { CommentForm } from '@/features/commentAdd'
 import './PostCard.css'
 
 export function PostCard({ post, onEdit, onDelete }) {

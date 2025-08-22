@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router'
+import { createBrowserRouter } from 'react-router-dom'
 import { appRouterRoutes } from './appRouterRoutes'
 import { Mutex } from 'async-mutex'
 import { authCheckLoader } from './authCheckLoader'
