@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { collection, onSnapshot } from 'firebase/firestore';
 import { db } from '@/shared/firebase/firebase';
-import { useAppState } from '@/app/providers/AppState';
+import { useAppState } from '@/app/providers/AppStateContext';
 import styles from './ProductsPage.module.css';
 
 export default function ProductsPage() {
