@@ -23,8 +23,7 @@ export const frontRoutes = {
     meta: {
       title: 'cart',
       isInMenu: true,
-      requireAuth: true,
-      roles: ['user', 'admin'],
+      requireAuth: false,
     },
   },
   FavoritesPage: {
@@ -33,8 +32,7 @@ export const frontRoutes = {
     meta: {
       title: 'favorites',
       isInMenu: true,
-      requireAuth: true,
-      roles: ['user', 'admin'],
+      requireAuth: false,
     },
   },
   UserEditPage: {
@@ -43,8 +41,7 @@ export const frontRoutes = {
     meta: {
       title: 'user',
       isInMenu: true,
-      requireAuth: true,
-      roles: ['user', 'admin'],
+      requireAuth: false,
     },
   },
   ProductEditPage: {
@@ -53,37 +50,7 @@ export const frontRoutes = {
     meta: {
       title: 'product',
       isInMenu: true,
-      requireAuth: true,
-      roles: ['admin'],
-    },
-  },
-  ProductsPage: {
-    path: 'products',
-    navigationPath: '/products',
-    meta: {
-      title: 'products',
-      isInMenu: true,
       requireAuth: false,
-    },
-  },
-  LoginPage: {
-    path: 'login',
-    navigationPath: '/login',
-    meta: {
-      title: 'login',
-      isInMenu: false,
-      requireAuth: false,
-      guestOnly: true,
-    },
-  },
-  RegisterPage: {
-    path: 'register',
-    navigationPath: '/register',
-    meta: {
-      title: 'register',
-      isInMenu: false,
-      requireAuth: false,
-      guestOnly: true,
     },
   },
 }

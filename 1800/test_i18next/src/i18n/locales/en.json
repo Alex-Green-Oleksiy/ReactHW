@@ -1,0 +1,58 @@
+{
+  "home": {
+    "title": "Welcome !",
+    "button": "Click me",
+    "description": "This is a simple example of i18next in React.",
+    "menuLabel": "Home"
+  },
+  "about": {
+    "title": "About",
+    "text": "This is the about page.",
+    "menuLabel": "About"
+  },
+  "common": {
+    "save": "Save",
+    "remove": "Remove"
+  },
+  "user": {
+    "menuLabel": "User",
+    "editTitle": "Edit User",
+    "saved": "User saved!",
+    "name": "Name",
+    "email": "Email",
+    "role": "Role",
+    "roles": {
+      "user": "User",
+      "admin": "Admin"
+    }
+  },
+  "cart": {
+    "menuLabel": "Cart",
+    "title": "Cart",
+    "addDemo": "Add demo item",
+    "empty": "Your cart is empty",
+    "price": "Price",
+    "qty": "Qty"
+  },
+  "favorites": {
+    "menuLabel": "Favorites",
+    "title": "Favorites",
+    "empty": "No favorites yet",
+    "add": "Add to favorites",
+    "remove": "Remove from favorites"
+  },
+  "product": {
+    "menuLabel": "Product",
+    "editTitle": "Edit Product",
+    "fields": {
+      "title": "Title",
+      "description": "Description",
+      "price": "Price"
+    },
+    "tabs": {
+      "en": "English",
+      "ua": "Ukrainian"
+    },
+    "saved": "Product saved!"
+  }
+}

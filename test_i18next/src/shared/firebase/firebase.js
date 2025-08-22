@@ -1,6 +1,16 @@
 import { initializeApp } from 'firebase/app'
-import { getFirestore, enableIndexedDbPersistence } from 'firebase/firestore'
-import { getAuth, signInAnonymously, onAuthStateChanged } from 'firebase/auth'
+import {
+  getFirestore,
+  enableIndexedDbPersistence,
+  collection,
+  getDocs,
+} from 'firebase/firestore'
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut as firebaseSignOut,
+} from 'firebase/auth'
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -23,16 +33,15 @@ try {
   // ignore offline persistence errors (e.g., multiple tabs)
 }
 
-// Ensure we have an auth user (anonymous) for security rules
-onAuthStateChanged(auth, (u) => {
-  // TEMP: log current uid to verify auth works
-  // Remove after verification
-  // eslint-disable-next-line no-console
-  console.log('[Auth] current user uid:', u?.uid)
-  if (!u) {
-    signInAnonymously(auth).catch((e) => {
-      // eslint-disable-next-line no-console
-      console.warn('[Auth] anonymous sign-in failed:', e?.message || e)
-    })
-  }
-})
+// Auth functions
+export const signUp = (email, password) => createUserWithEmailAndPassword(auth, email, password)
+export const signIn = (email, password) => signInWithEmailAndPassword(auth, email, password)
+export const signOut = () => firebaseSignOut(auth)
+
+// Firestore functions
+export const getProducts = async () => {
+  const productsCol = collection(db, 'products')
+  const productSnapshot = await getDocs(productsCol)
+  const productList = productSnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+  return productList
+}

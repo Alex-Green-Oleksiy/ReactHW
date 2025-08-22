@@ -17,10 +17,34 @@
   min-width: 18px;
   height: 18px;
   padding: 0 6px;
-  margin-left: 6px;
+  margin-left: 8px;
   border-radius: 9px;
   background: #ff4757;
   color: #fff;
   font-size: 12px;
   line-height: 1;
+}
+
+.authControls {
+  display: flex;
+  align-items: center;
+  margin-left: auto; /* Pushes auth controls to the right */
+}
+
+.userEmail {
+  margin-right: 16px;
+  font-style: italic;
+}
+
+.authControls .link {
+  margin-left: 16px;
+}
+
+.authControls button.link {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: inherit;
+  font: inherit;
 }

@@ -5,9 +5,10 @@ import { onAuthStateChanged } from 'firebase/auth'
 import { AppStateContext } from './AppStateContext'
 
 export function AppStateProvider({ children }) {
-  const [user, setUser] = useState(null) // null for guest, user object for logged in
+  const [user, setUser] = useState({ id: 'u1', name: 'John Doe', email: 'john@example.com', role: 'user' })
   const [cartItems, setCartItems] = useState([]) // [{id, title, price, qty}]
   const [favoriteItems, setFavoriteItems] = useState([]) // [{id, title, price}]
+  const [firebaseUid, setFirebaseUid] = useState(null)
 
   // Hydrate favorites from localStorage
   useEffect(() => {
@@ -31,40 +32,30 @@ export function AppStateProvider({ children }) {
     }
   }, [favoriteItems])
 
-  // Listen for Firebase Auth state changes
+  // Listen for Firebase Auth user (anonymous ensured in firebase.js)
   useEffect(() => {
-    const unsub = onAuthStateChanged(auth, async (authUser) => {
-      if (authUser) {
-        // User is signed in, fetch their data from Firestore
-        const userDocRef = doc(db, 'users', authUser.uid)
-        const unsubDoc = onSnapshot(userDocRef, (docSnap) => {
-          if (docSnap.exists()) {
-            setUser({ id: authUser.uid, ...docSnap.data() })
-          } else {
-            // This case might happen briefly during registration
-            setUser({ id: authUser.uid, email: authUser.email, role: 'user' })
-          }
-        })
-        return () => unsubDoc()
-      } else {
-        // User is signed out
-        setUser(null)
-        setFavoriteItems([]) // Clear favorites on logout
-      }
+    const unsub = onAuthStateChanged(auth, (u) => {
+      setFirebaseUid(u?.uid || null)
+      // TEMP: log uid changes for verification
+      // Remove after verification
+      console.log('[Auth] firebaseUid set to:', u?.uid || null)
     })
     return () => unsub()
   }, [])
 
   // Subscribe to Firestore favorites for this user
   useEffect(() => {
-    if (!user?.id) return
-    const colRef = collection(db, 'users', user.id, 'favorites')
+    if (!firebaseUid) return
+    const colRef = collection(db, 'users', firebaseUid, 'favorites')
     const unsub = onSnapshot(colRef, (snap) => {
       const items = snap.docs.map((d) => d.data())
+      // TEMP: log favorites snapshot for verification
+      // Remove after verification
+      console.log('[Firestore] favorites snapshot items:', items)
       setFavoriteItems(items)
     })
     return () => unsub()
-  }, [user?.id])
+  }, [firebaseUid])
 
   // Cart actions
   const addToCart = useCallback((item) => {
@@ -91,9 +82,9 @@ export function AppStateProvider({ children }) {
       // Only allow users with role 'user' to add/toggle favorites
       if (user?.role !== 'user') return
 
-      // If a user is logged in, write to Firestore (real-time sync will update state)
-      if (user?.id) {
-        const docRef = doc(db, 'users', user.id, 'favorites', String(item.id))
+      // If Firebase UID exists, write to Firestore (real-time sync will update state)
+      if (firebaseUid) {
+        const docRef = doc(db, 'users', firebaseUid, 'favorites', String(item.id))
         const exists = favoriteItems.some((i) => i.id === item.id)
         if (exists) {
           deleteDoc(docRef).catch(() => {})
@@ -110,7 +101,7 @@ export function AppStateProvider({ children }) {
         return [...prev, item]
       })
     },
-    [user, favoriteItems]
+    [user?.role, firebaseUid, favoriteItems]
   )
 
   const value = useMemo(

@@ -1,16 +1,23 @@
-import { frontRoutes } from '@/shared/config/frontRoutes'
+import { lazy } from 'react';
+import { ProtectedRoute } from './ProtectedRoute';
+import { frontRoutes } from '@/shared/config/frontRoutes';
 
 // Pre-bundle all pages for safe lazy-loading in Vite
 // This avoids runtime URL imports that break on production (e.g., Vercel)
-const pages = import.meta.glob('../../pages/*.jsx')
+const pages = import.meta.glob('../../pages/*.jsx');
 
 export const routes = Object.entries(frontRoutes).map(([page, route]) => {
-  const key = `../../pages/${page}.jsx`
+  const key = `../../pages/${page}.jsx`;
+  const PageComponent = lazy(() => pages[key]());
+
+  const element = (
+    <ProtectedRoute route={route}>
+      <PageComponent />
+    </ProtectedRoute>
+  );
 
   return {
     ...route,
-    lazy: async () => ({
-      Component: (await pages[key]()).default,
-    }),
-  }
-})
+    element: element,
+  };
+});
