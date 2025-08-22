@@ -39,17 +39,64 @@
   flex-direction: column;
 }
 
-.card h3 {
-  margin-top: 0;
+.cardImage {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 0.75rem;
+}
+
+.title {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.desc {
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.35;
+  min-height: 2.6em; /* ~2 lines */
 }
 
 .price {
-  margin-top: auto;
-  font-weight: bold;
-  font-size: 1.2rem;
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: #222;
 }
 
+.actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.btn {
+  flex: 1;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.buyBtn {
+  background: #22c55e;
+  color: white;
+}
+.buyBtn:hover { background: #16a34a; }
+
+.favBtn {
+  background: #f59e0b;
+  color: #1f2937;
+}
+.favBtn:hover { background: #d97706; }
+
 .editButton {
-    margin-top: 1rem;
-    align-self: flex-start;
+  margin-top: 0.5rem;
+  align-self: flex-start;
 }

@@ -28,6 +28,8 @@
   border-radius: 6px;
   background: #1a1a1a;
   color: #fff;
+  width: 100%;
+  max-width: 200px;
 }
 .textarea {
   min-height: 80px;

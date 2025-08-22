@@ -6,7 +6,7 @@ import { useAppState } from '@/app/providers/AppStateContext';
 import styles from './ProductsPage.module.css';
 
 export default function ProductsPage() {
-  const { user } = useAppState();
+  const { user, addToCart, toggleFavorite } = useAppState();
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -43,13 +43,35 @@ export default function ProductsPage() {
           products.map(product => (
             <div key={product.id} className={styles.card}>
               {product.imageUrl && (
-                <img src={product.imageUrl} alt={product.title?.en || product.title?.ua || 'Product image'} style={{ width: '100%', borderRadius: 6, marginBottom: 8 }} />
+                <img
+                  className={styles.cardImage}
+                  src={product.imageUrl}
+                  alt={product.title?.ua || product.title?.en || 'Product image'}
+                />
               )}
-              <h3>{product.title?.en || product.title?.ua || 'No title'}</h3>
-              <p>{product.description?.en || product.description?.ua || 'No description'}</p>
-              <p className={styles.price}>${product.price}</p>
+              <h3 className={styles.title}>{product.title?.ua || product.title?.en || 'Без назви'}</h3>
+              <p className={styles.desc}>{product.description?.ua || product.description?.en || 'Без опису'}</p>
+              <div className={styles.price}>${Number(product.price || 0).toFixed(2)}</div>
+              <div className={styles.actions}>
+                <button
+                  className={`${styles.btn} ${styles.buyBtn}`}
+                  onClick={() => addToCart({ id: product.id, title: product.title?.ua || product.title?.en, price: product.price })}
+                  type="button"
+                >
+                  Купити
+                </button>
+                <button
+                  className={`${styles.btn} ${styles.favBtn}`}
+                  onClick={() => toggleFavorite({ id: product.id, title: product.title, price: product.price, imageUrl: product.imageUrl })}
+                  type="button"
+                  disabled={user?.role !== 'user'}
+                  title={user?.role !== 'user' ? 'Доступно лише для ролі Користувач' : 'Додати в обрані'}
+                >
+                  В обране
+                </button>
+              </div>
               {user?.role === 'admin' && (
-                 <Link to={`/product-edit?id=${product.id}`} className={styles.editButton}>Edit</Link>
+                <Link to={`/product-edit?id=${product.id}`} className={styles.editButton}>Edit</Link>
               )}
             </div>
           ))
