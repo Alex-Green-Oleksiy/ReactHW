@@ -6,6 +6,7 @@ import { AppStateContext } from './AppStateContext'
 
 export function AppStateProvider({ children }) {
   const [user, setUser] = useState(null) // null for guest, user object for logged in
+  const [loading, setLoading] = useState(true) // Loading state for auth
   const [cartItems, setCartItems] = useState([]) // [{id, title, price, qty}]
   const [favoriteItems, setFavoriteItems] = useState([]) // [{id, title, price}]
 
@@ -41,15 +42,17 @@ export function AppStateProvider({ children }) {
           if (docSnap.exists()) {
             setUser({ id: authUser.uid, ...docSnap.data() })
           } else {
-            // This case might happen briefly during registration
             setUser({ id: authUser.uid, email: authUser.email, role: 'user' })
           }
+          setLoading(false)
         })
-        return () => unsubDoc()
+        // Set up a cleanup function for the user document listener
+        return unsubDoc
       } else {
         // User is signed out
         setUser(null)
         setFavoriteItems([]) // Clear favorites on logout
+        setLoading(false)
       }
     })
     return () => unsub()
@@ -126,6 +129,10 @@ export function AppStateProvider({ children }) {
     }),
     [user, cartItems, favoriteItems, addToCart, updateCartQty, removeFromCart, toggleFavorite]
   )
+
+  if (loading) {
+    return <div>Loading app...</div> // Or a proper spinner component
+  }
 
   return <AppStateContext.Provider value={value}>{children}</AppStateContext.Provider>
 }

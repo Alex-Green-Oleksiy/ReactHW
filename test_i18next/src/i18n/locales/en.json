@@ -54,5 +54,11 @@
       "ua": "Ukrainian"
     },
     "saved": "Product saved!"
+  },
+  "products": {
+    "menuLabel": "Products"
+  },
+  "auth": {
+    "signOut": "Sign Out"
   }
 }
