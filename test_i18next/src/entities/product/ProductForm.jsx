@@ -13,7 +13,7 @@ export default function ProductForm({ initialValue, onSubmit }) {
       imageUrl: ''
     }
   )
-  const [imageFile, setImageFile] = useState(null)
+  // File upload is disabled for the lesson; use imageUrl instead
 
   const handleChangeText = (field, lang) => (e) => {
     const value = e.target.value
@@ -33,11 +33,7 @@ export default function ProductForm({ initialValue, onSubmit }) {
 
   const submit = (e) => {
     e.preventDefault()
-    const payload = {
-      ...form,
-      price: Number(form.price) || 0,
-      imageFile,
-    }
+    const payload = { ...form, price: Number(form.price) || 0 }
     onSubmit?.(payload)
   }
 
@@ -102,15 +98,7 @@ export default function ProductForm({ initialValue, onSubmit }) {
         <small style={{ opacity: 0.8 }}>Можна вказати URL зовнішнього зображення. Якщо додати і файл, пріоритет матиме файл.</small>
       </div>
 
-      <div className={styles.row}>
-        <label>{t('product.fields.image') || 'Image'}</label>
-        <input
-          className={styles.input}
-          type="file"
-          accept="image/*"
-          onChange={(e) => setImageFile(e.target.files?.[0] || null)}
-        />
-      </div>
+      {/* File upload removed: use Image URL field above */}
 
       <div className={styles.actions}>
         <button type="submit">{t('common.save')}</button>
