@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { collection, onSnapshot } from 'firebase/firestore';
-import { db } from '@/shared/firebase/firebase';
+import { collection, onSnapshot, doc, deleteDoc } from 'firebase/firestore';
+import { db, deleteProductImage } from '@/shared/firebase/firebase';
 import { useAppState } from '@/app/providers/AppStateContext';
 import styles from './ProductsPage.module.css';
 
@@ -23,6 +23,20 @@ export default function ProductsPage() {
 
     return () => unsubscribe();
   }, []);
+
+  const handleDelete = async (product) => {
+    if (!user || user.role !== 'admin') return;
+    const ok = confirm(`Видалити товар "${product.title?.ua || product.title?.en || product.id}"?`);
+    if (!ok) return;
+    try {
+      await deleteDoc(doc(db, 'products', product.id));
+      // спробувати видалити зображення, якщо було завантажене за стандартним шляхом
+      await deleteProductImage(`products/${product.id}.jpg`);
+    } catch (e) {
+      console.error('Delete product failed', e);
+      alert('Не вдалося видалити товар');
+    }
+  };
 
   if (loading) {
     return <div>Loading products...</div>;
@@ -71,7 +85,12 @@ export default function ProductsPage() {
                 </button>
               </div>
               {user?.role === 'admin' && (
-                <Link to={`/product-edit?id=${product.id}`} className={styles.editButton}>Edit</Link>
+                <>
+                  <Link to={`/product-edit?id=${product.id}`} className={styles.editButton}>Edit</Link>
+                  <button type="button" className={styles.deleteBtn} onClick={() => handleDelete(product)}>
+                    Delete
+                  </button>
+                </>
               )}
             </div>
           ))

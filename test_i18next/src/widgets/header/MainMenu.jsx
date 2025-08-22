@@ -7,13 +7,15 @@ import { signOut } from '@/shared/firebase/firebase'
 
 export default function MainMenu() {
   const { t } = useTranslation()
-  const { user, favoriteItems } = useAppState()
+  const { user, favoriteItems, cartItems } = useAppState()
 
   const handleSignOut = () => {
     signOut().catch((e) => console.error('Sign out error', e))
   }
 
   const role = user?.role || 'guest'
+
+  const cartCount = (cartItems || []).reduce((sum, i) => sum + (Number(i.qty) || 0), 0)
 
   const menuItems = Object.values(frontRoutes).filter((route) => {
     if (!route.meta?.isInMenu) return false
@@ -44,6 +46,8 @@ export default function MainMenu() {
           {t(`${route.meta?.title}.menuLabel`)}
           {route.meta?.title === 'favorites' && favoriteItems.length > 0 ? (
             <span className={styles.badge}>{favoriteItems.length}</span>
+          ) : route.meta?.title === 'cart' && cartCount > 0 ? (
+            <span className={styles.badge}>{cartCount}</span>
           ) : null}
         </NavLink>
       ))}

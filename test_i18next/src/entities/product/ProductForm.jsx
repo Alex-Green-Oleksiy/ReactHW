@@ -9,7 +9,8 @@ export default function ProductForm({ initialValue, onSubmit }) {
     initialValue || {
       title: { en: '', ua: '' },
       description: { en: '', ua: '' },
-      price: ''
+      price: '',
+      imageUrl: ''
     }
   )
   const [imageFile, setImageFile] = useState(null)
@@ -87,6 +88,18 @@ export default function ProductForm({ initialValue, onSubmit }) {
             onChange={handleChangePrice}
           />
         </div>
+      </div>
+
+      <div className={styles.row}>
+        <label>{t('product.fields.imageUrl') || 'Image URL'}</label>
+        <input
+          className={styles.input}
+          type="url"
+          placeholder="https://example.com/image.jpg"
+          value={form.imageUrl || ''}
+          onChange={(e) => setForm((p) => ({ ...p, imageUrl: e.target.value }))}
+        />
+        <small style={{ opacity: 0.8 }}>Можна вказати URL зовнішнього зображення. Якщо додати і файл, пріоритет матиме файл.</small>
       </div>
 
       <div className={styles.row}>

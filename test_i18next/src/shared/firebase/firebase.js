@@ -11,7 +11,7 @@ import {
   signInWithEmailAndPassword,
   signOut as firebaseSignOut,
 } from 'firebase/auth'
-import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage'
+import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage'
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -53,4 +53,14 @@ export const uploadProductImage = async (file, path) => {
   const fileRef = ref(storage, path)
   await uploadBytes(fileRef, file)
   return await getDownloadURL(fileRef)
+}
+
+export const deleteProductImage = async (path) => {
+  try {
+    const fileRef = ref(storage, path)
+    await deleteObject(fileRef)
+  } catch (e) {
+    // Ignore if file not found or deletion fails; log for debugging
+    console.warn('deleteProductImage failed:', e?.code || e?.message || e)
+  }
 }

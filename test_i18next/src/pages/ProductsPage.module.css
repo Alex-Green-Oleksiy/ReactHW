@@ -100,3 +100,14 @@
   margin-top: 0.5rem;
   align-self: flex-start;
 }
+
+.deleteBtn {
+  margin-top: 0.5rem;
+  background: #ef4444;
+  color: #fff;
+  padding: 0.4rem 0.65rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.deleteBtn:hover { background: #dc2626; }
