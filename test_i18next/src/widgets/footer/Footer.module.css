@@ -1,0 +1,9 @@
+.footer {
+  width: 100%;
+  background: #111;
+  color: #fff;
+}
+.container {
+  width: 100%;
+  padding: 16px;
+}
