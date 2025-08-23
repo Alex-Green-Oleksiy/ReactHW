@@ -1,6 +1,6 @@
-import { Header } from '../header'
+import { Header } from '@/widgets/header'
 import { Outlet } from 'react-router'
-import { Footer } from '../footer'
+import { Footer } from '@/widgets/footer'
 import styles from './MainLayout.module.css'
 
 export default function MainLayout() {

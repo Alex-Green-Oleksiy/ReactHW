@@ -50,6 +50,9 @@
       "price": "Price",
       "imageUrl": "Image URL"
     },
+    "help": {
+      "imageUrl": "Enter a direct image link (https://...)."
+    },
     "tabs": {
       "en": "English",
       "ua": "Ukrainian"

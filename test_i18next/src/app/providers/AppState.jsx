@@ -1,4 +1,4 @@
-import { useMemo, useState, useCallback, useEffect } from 'react'
+import { useMemo, useState, useCallback, useEffect, useRef } from 'react'
 import { db, auth } from '@/shared/firebase/firebase'
 import { collection, onSnapshot, doc, setDoc, deleteDoc } from 'firebase/firestore'
 import { onAuthStateChanged } from 'firebase/auth'
@@ -9,6 +9,7 @@ export function AppStateProvider({ children }) {
   const [loading, setLoading] = useState(true) // Loading state for auth
   const [cartItems, setCartItems] = useState([]) // [{id, title, price, qty}]
   const [favoriteItems, setFavoriteItems] = useState([]) // [{id, title, price}]
+  const userDocUnsubRef = useRef(null)
 
   // Hydrate favorites from localStorage
   useEffect(() => {
@@ -32,13 +33,22 @@ export function AppStateProvider({ children }) {
     }
   }, [favoriteItems])
 
-  // Listen for Firebase Auth state changes
+  // Listen for Firebase Auth state changes and manage user doc subscription
   useEffect(() => {
-    const unsub = onAuthStateChanged(auth, async (authUser) => {
+    const unsubAuth = onAuthStateChanged(auth, (authUser) => {
+      // Clean previous user doc listener if exists
+      if (userDocUnsubRef.current) {
+        try {
+          userDocUnsubRef.current()
+        } catch (e) {
+          console.warn('Unsubscribe user doc failed', e)
+        }
+        userDocUnsubRef.current = null
+      }
+
       if (authUser) {
-        // User is signed in, fetch their data from Firestore
         const userDocRef = doc(db, 'users', authUser.uid)
-        const unsubDoc = onSnapshot(userDocRef, (docSnap) => {
+        userDocUnsubRef.current = onSnapshot(userDocRef, (docSnap) => {
           if (docSnap.exists()) {
             setUser({ id: authUser.uid, ...docSnap.data() })
           } else {
@@ -46,16 +56,24 @@ export function AppStateProvider({ children }) {
           }
           setLoading(false)
         })
-        // Set up a cleanup function for the user document listener
-        return unsubDoc
       } else {
         // User is signed out
         setUser(null)
-        setFavoriteItems([]) // Clear favorites on logout
+        setFavoriteItems([])
         setLoading(false)
       }
     })
-    return () => unsub()
+
+    return () => {
+      if (userDocUnsubRef.current) {
+        try {
+          userDocUnsubRef.current()
+        } catch (e) {
+          console.warn('Unsubscribe user doc failed (cleanup)', e)
+        }
+      }
+      unsubAuth()
+    }
   }, [])
 
   // Subscribe to Firestore favorites for this user

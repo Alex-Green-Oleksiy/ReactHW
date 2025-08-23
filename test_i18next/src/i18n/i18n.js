@@ -1,7 +1,7 @@
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
-import en from './locales/en.json'
-import ua from './locales/ua.json'
+import en from '@/i18n/locales/en.json'
+import ua from '@/i18n/locales/ua.json'
 
 const savedLang = localStorage.getItem('i18nextLng') || 'en'
 

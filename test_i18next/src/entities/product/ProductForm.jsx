@@ -95,7 +95,7 @@ export default function ProductForm({ initialValue, onSubmit }) {
           value={form.imageUrl || ''}
           onChange={(e) => setForm((p) => ({ ...p, imageUrl: e.target.value }))}
         />
-        <small style={{ opacity: 0.8 }}>Можна вказати URL зовнішнього зображення. Якщо додати і файл, пріоритет матиме файл.</small>
+        <small style={{ opacity: 0.8 }}>{t('product.help.imageUrl')}</small>
       </div>
 
       {/* File upload removed: use Image URL field above */}

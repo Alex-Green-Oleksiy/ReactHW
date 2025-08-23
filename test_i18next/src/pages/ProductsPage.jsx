@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { collection, onSnapshot, doc, deleteDoc } from 'firebase/firestore';
-import { db, deleteProductImage } from '@/shared/firebase/firebase';
+import { collection, onSnapshot } from 'firebase/firestore';
+import { db } from '@/shared/firebase/firebase';
+import { adminDeleteProduct } from '@/shared/firebase/functionsClient';
 import { useAppState } from '@/app/providers/AppStateContext';
 import styles from './ProductsPage.module.css';
 
@@ -32,9 +33,8 @@ export default function ProductsPage() {
     const ok = confirm(t('products.confirmDelete', { name: product.title?.[lang] || product.id }));
     if (!ok) return;
     try {
-      await deleteDoc(doc(db, 'products', product.id));
-      // спробувати видалити зображення, якщо було завантажене за стандартним шляхом
-      await deleteProductImage(`products/${product.id}.jpg`);
+      // Виклик бекенду: хмарна функція сама перевіряє права і видаляє документ та зображення
+      await adminDeleteProduct({ id: product.id, imageUrl: product.imageUrl });
     } catch (e) {
       console.error('Delete product failed', e);
       alert('Не вдалося видалити товар');

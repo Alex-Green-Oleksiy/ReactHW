@@ -1,7 +1,8 @@
 import { initializeApp } from 'firebase/app'
 import {
-  getFirestore,
-  enableIndexedDbPersistence,
+  initializeFirestore,
+  persistentLocalCache,
+  persistentMultipleTabManager,
   collection,
   getDocs,
 } from 'firebase/firestore'
@@ -22,18 +23,15 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_FIREBASE_APP_ID,
 }
 
-const app = initializeApp(firebaseConfig)
+export const app = initializeApp(firebaseConfig)
 
-export const db = getFirestore(app)
+export const db = initializeFirestore(app, {
+  cache: persistentLocalCache({ tabManager: persistentMultipleTabManager() }),
+})
 export const auth = getAuth(app)
 export const storage = getStorage(app)
 
-// Optional: offline persistence (best effort)
-try {
-  enableIndexedDbPersistence(db)
-} catch {
-  // ignore offline persistence errors (e.g., multiple tabs)
-}
+// Offline persistence enabled via initializeFirestore cache settings above
 
 // Auth functions
 export const signUp = (email, password) => createUserWithEmailAndPassword(auth, email, password)
