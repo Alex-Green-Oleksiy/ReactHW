@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { collection, onSnapshot, doc, deleteDoc } from 'firebase/firestore';
 import { db, deleteProductImage } from '@/shared/firebase/firebase';
@@ -7,8 +8,10 @@ import styles from './ProductsPage.module.css';
 
 export default function ProductsPage() {
   const { user, addToCart, toggleFavorite } = useAppState();
+  const { t, i18n } = useTranslation();
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const lang = (i18n.language || 'en').startsWith('ua') ? 'ua' : 'en';
 
   useEffect(() => {
     const productsColRef = collection(db, 'products');
@@ -26,7 +29,7 @@ export default function ProductsPage() {
 
   const handleDelete = async (product) => {
     if (!user || user.role !== 'admin') return;
-    const ok = confirm(`Видалити товар "${product.title?.ua || product.title?.en || product.id}"?`);
+    const ok = confirm(t('products.confirmDelete', { name: product.title?.[lang] || product.id }));
     if (!ok) return;
     try {
       await deleteDoc(doc(db, 'products', product.id));
@@ -39,16 +42,16 @@ export default function ProductsPage() {
   };
 
   if (loading) {
-    return <div>Loading products...</div>;
+    return <div>{t('products.loading')}</div>;
   }
 
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h1>Products</h1>
+        <h1>{t('products.title')}</h1>
         {user?.role === 'admin' && (
           <Link to="/product-edit" className={styles.addButton}>
-            Add New Product
+            {t('products.addNew')}
           </Link>
         )}
       </div>
@@ -63,8 +66,8 @@ export default function ProductsPage() {
                   alt={product.title?.ua || product.title?.en || 'Product image'}
                 />
               )}
-              <h3 className={styles.title}>{product.title?.ua || product.title?.en || 'Без назви'}</h3>
-              <p className={styles.desc}>{product.description?.ua || product.description?.en || 'Без опису'}</p>
+              <h3 className={styles.title}>{product.title?.[lang] || product.title?.en || product.title?.ua || '—'}</h3>
+              <p className={styles.desc}>{product.description?.[lang] || product.description?.en || product.description?.ua || ''}</p>
               <div className={styles.price}>${Number(product.price || 0).toFixed(2)}</div>
               <div className={styles.actions}>
                 <button
@@ -72,30 +75,30 @@ export default function ProductsPage() {
                   onClick={() => addToCart({ id: product.id, title: product.title?.ua || product.title?.en, price: product.price })}
                   type="button"
                 >
-                  Купити
+                  {t('products.buy')}
                 </button>
                 <button
                   className={`${styles.btn} ${styles.favBtn}`}
                   onClick={() => toggleFavorite({ id: product.id, title: product.title, price: product.price, imageUrl: product.imageUrl })}
                   type="button"
                   disabled={user?.role !== 'user'}
-                  title={user?.role !== 'user' ? 'Доступно лише для ролі Користувач' : 'Додати в обрані'}
+                  title={user?.role !== 'user' ? t('favorites.onlyForUser') : t('favorites.add')}
                 >
-                  В обране
+                  {t('favorites.add')}
                 </button>
               </div>
               {user?.role === 'admin' && (
                 <>
-                  <Link to={`/product-edit?id=${product.id}`} className={styles.editButton}>Edit</Link>
+                  <Link to={`/product-edit?id=${product.id}`} className={styles.editButton}>{t('products.edit')}</Link>
                   <button type="button" className={styles.deleteBtn} onClick={() => handleDelete(product)}>
-                    Delete
+                    {t('common.remove')}
                   </button>
                 </>
               )}
             </div>
           ))
         ) : (
-          <p>No products found.</p>
+          <p>{t('products.empty')}</p>
         )}
       </div>
     </div>

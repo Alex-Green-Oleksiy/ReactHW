@@ -47,7 +47,8 @@
     "fields": {
       "title": "Title",
       "description": "Description",
-      "price": "Price"
+      "price": "Price",
+      "imageUrl": "Image URL"
     },
     "tabs": {
       "en": "English",
@@ -56,7 +57,14 @@
     "saved": "Product saved!"
   },
   "products": {
-    "menuLabel": "Products"
+    "menuLabel": "Products",
+    "title": "Products",
+    "addNew": "Add New Product",
+    "buy": "Buy",
+    "edit": "Edit",
+    "loading": "Loading products...",
+    "empty": "No products found.",
+    "confirmDelete": "Delete product \"{{name}}\"?"
   },
   "auth": {
     "signIn": "Sign In",
