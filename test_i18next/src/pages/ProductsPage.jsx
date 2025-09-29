@@ -7,6 +7,7 @@ import { useAppState } from '@/app/providers/AppStateContext';
 import ImageWithFallback from '@/shared/ui/ImageWithFallback';
 import SearchAndFilter from '@/shared/ui/SearchAndFilter';
 import Pagination from '@/shared/ui/Pagination';
+import { safeUnsubscribe, handleFirestoreError } from '@/shared/utils/firebaseErrors';
 import styles from './ProductsPage.module.css';
 
 export default function ProductsPage() {
@@ -27,11 +28,13 @@ export default function ProductsPage() {
       setProducts(productList);
       setLoading(false);
     }, (error) => {
-      console.error("Error fetching products: ", error);
+      handleFirestoreError(error, 'fetching products');
       setLoading(false);
     });
 
-    return () => unsubscribe();
+    return () => {
+      safeUnsubscribe(unsubscribe, 'products');
+    };
   }, []);
 
   const handleDelete = async (product) => {

@@ -3,6 +3,7 @@ import { db, auth } from '@/shared/firebase/firebase'
 import { collection, onSnapshot, doc, setDoc, deleteDoc } from 'firebase/firestore'
 import { onAuthStateChanged } from 'firebase/auth'
 import { AppStateContext } from './AppStateContext'
+import { safeUnsubscribe, handleFirestoreError } from '@/shared/utils/firebaseErrors'
 
 export function AppStateProvider({ children }) {
   const [user, setUser] = useState(null) // null for guest, user object for logged in
@@ -39,11 +40,7 @@ export function AppStateProvider({ children }) {
     const unsubAuth = onAuthStateChanged(auth, (authUser) => {
       // Clean previous user doc listener if exists
       if (userDocUnsubRef.current) {
-        try {
-          userDocUnsubRef.current()
-        } catch (e) {
-          console.warn('Unsubscribe user doc failed', e)
-        }
+        safeUnsubscribe(userDocUnsubRef.current, 'user document')
         userDocUnsubRef.current = null
       }
 
@@ -57,12 +54,12 @@ export function AppStateProvider({ children }) {
           }
           setLoading(false)
         }, (error) => {
-          console.error('Error fetching user document:', error)
+          handleFirestoreError(error, 'fetching user document')
           setUser({ id: authUser.uid, email: authUser.email, role: 'user' })
           setLoading(false)
         })
       } else {
-        // User is signed out
+        // User is signed out - clear all state
         setUser(null)
         setFavoriteItems([])
         setLoading(false)
@@ -70,28 +67,30 @@ export function AppStateProvider({ children }) {
     })
 
     return () => {
+      // Cleanup function - handle unsubscribe safely
       if (userDocUnsubRef.current) {
-        try {
-          userDocUnsubRef.current()
-        } catch (e) {
-          console.warn('Unsubscribe user doc failed (cleanup)', e)
-        }
+        safeUnsubscribe(userDocUnsubRef.current, 'user document')
+        userDocUnsubRef.current = null
       }
-      unsubAuth()
+      safeUnsubscribe(unsubAuth, 'auth state')
     }
   }, [])
 
   // Subscribe to Firestore favorites for this user
   useEffect(() => {
     if (!user?.id) return
+    
     const colRef = collection(db, 'users', user.id, 'favorites')
     const unsub = onSnapshot(colRef, (snap) => {
       const items = snap.docs.map((d) => d.data())
       setFavoriteItems(items)
     }, (error) => {
-      console.error('Error fetching favorites:', error)
+      handleFirestoreError(error, 'fetching favorites')
     })
-    return () => unsub()
+    
+    return () => {
+      safeUnsubscribe(unsub, 'favorites')
+    }
   }, [user?.id])
 
   // Cart actions
@@ -149,14 +148,14 @@ export function AppStateProvider({ children }) {
         if (exists) {
           setFavoriteItems(prev => prev.filter(i => i.id !== item.id))
           deleteDoc(docRef).catch((error) => {
-            console.error('Failed to remove favorite:', error)
+            handleFirestoreError(error, 'removing favorite')
             // Rollback optimistic update
             setFavoriteItems(prev => [...prev, item])
           })
         } else {
           setFavoriteItems(prev => [...prev, item])
           setDoc(docRef, item).catch((error) => {
-            console.error('Failed to add favorite:', error)
+            handleFirestoreError(error, 'adding favorite')
             // Rollback optimistic update
             setFavoriteItems(prev => prev.filter(i => i.id !== item.id))
           })

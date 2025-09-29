@@ -27,6 +27,7 @@ export const app = initializeApp(firebaseConfig)
 
 export const db = initializeFirestore(app, {
   cache: persistentLocalCache({ tabManager: persistentMultipleTabManager() }),
+  ignoreUndefinedProperties: true, // Ignore undefined properties to prevent errors
 })
 export const auth = getAuth(app)
 export const storage = getStorage(app)
