@@ -6,8 +6,8 @@ export const apiRoutes = {
     profile: '/auth/profile',
   },
   users: '/users',
+  profile: '/users/profile',
   posts: '/posts',
   comments: '/comments',
   getCommentsByPostId: '/comments',
-  //   getCommentsByPostId: (postId) => `/comments?postId=${postId}`,
 }
