@@ -48,9 +48,14 @@ export const getProducts = async () => {
 
 // Storage helpers
 export const uploadProductImage = async (file, path) => {
-  const fileRef = ref(storage, path)
-  await uploadBytes(fileRef, file)
-  return await getDownloadURL(fileRef)
+  try {
+    const fileRef = ref(storage, path)
+    await uploadBytes(fileRef, file)
+    return await getDownloadURL(fileRef)
+  } catch (error) {
+    console.error('Error uploading image:', error)
+    throw new Error('Failed to upload image')
+  }
 }
 
 export const deleteProductImage = async (path) => {
@@ -61,4 +66,27 @@ export const deleteProductImage = async (path) => {
     // Ignore if file not found or deletion fails; log for debugging
     console.warn('deleteProductImage failed:', e?.code || e?.message || e)
   }
+}
+
+// Validate image file
+export const validateImageFile = (file) => {
+  const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp']
+  const maxSize = 5 * 1024 * 1024 // 5MB
+  
+  if (!allowedTypes.includes(file.type)) {
+    throw new Error('Invalid file type. Please upload JPEG, PNG, or WebP images.')
+  }
+  
+  if (file.size > maxSize) {
+    throw new Error('File size too large. Please upload images smaller than 5MB.')
+  }
+  
+  return true
+}
+
+// Generate unique file path
+export const generateImagePath = (productId, fileName) => {
+  const timestamp = Date.now()
+  const extension = fileName.split('.').pop()
+  return `products/${productId}/${timestamp}.${extension}`
 }

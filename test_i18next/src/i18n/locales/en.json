@@ -32,7 +32,13 @@
     "addDemo": "Add demo item",
     "empty": "Your cart is empty",
     "price": "Price",
-    "qty": "Qty"
+    "qty": "Qty",
+    "total": "Total",
+    "itemsCount": "{{count}} item(s)",
+    "clear": "Clear Cart",
+    "checkout": "Checkout",
+    "checkoutDemo": "Checkout demo - Cart cleared!",
+    "loginRequired": "Please log in to proceed with checkout"
   },
   "favorites": {
     "menuLabel": "Favorites",
@@ -67,11 +73,62 @@
     "edit": "Edit",
     "loading": "Loading products...",
     "empty": "No products found.",
-    "confirmDelete": "Delete product \"{{name}}\"?"
+    "noResults": "No products match your search.",
+    "confirmDelete": "Delete product \"{{name}}\"?",
+    "deleteError": "Failed to delete product",
+    "searchPlaceholder": "Search products...",
+    "sort": {
+      "priceAsc": "Price: Low to High",
+      "priceDesc": "Price: High to Low",
+      "titleAsc": "Name: A to Z",
+      "titleDesc": "Name: Z to A"
+    }
+  },
+  "filters": {
+    "all": "All",
+    "sortBy": "Sort by",
+    "clear": "Clear filters"
+  },
+  "pagination": {
+    "showing": "Showing {{start}} to {{end}} of {{total}} results",
+    "previous": "Previous",
+    "next": "Next"
   },
   "auth": {
     "signIn": "Sign In",
     "signUp": "Sign Up",
-    "signOut": "Sign Out"
+    "signOut": "Sign Out",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "emailPlaceholder": "Enter your email",
+    "passwordPlaceholder": "Enter your password",
+    "confirmPasswordPlaceholder": "Confirm your password",
+    "loading": "Loading...",
+    "login": {
+      "title": "Sign In",
+      "button": "Sign In",
+      "noAccount": "Don't have an account?",
+      "registerLink": "Sign Up"
+    },
+    "loginSuccess": "Successfully logged in",
+    "register": {
+      "title": "Sign Up",
+      "button": "Sign Up",
+      "haveAccount": "Already have an account?",
+      "loginLink": "Sign In"
+    },
+    "errors": {
+      "userNotFound": "No account found with this email",
+      "wrongPassword": "Incorrect password",
+      "invalidEmail": "Invalid email address",
+      "tooManyRequests": "Too many failed attempts. Please try again later",
+      "emailInUse": "An account with this email already exists",
+      "weakPassword": "Password should be at least 6 characters",
+      "passwordMismatch": "Passwords do not match",
+      "passwordTooShort": "Password must be at least 6 characters long",
+      "registerFailed": "Registration failed. Please try again",
+      "generic": "An error occurred. Please try again"
+    }
   }
 }

@@ -43,6 +43,77 @@
 
 .errorMessage {
   color: #dc3545;
+  font-size: 14px;
+  margin-top: 10px;
+  padding: 0.5rem;
+  background: #f8d7da;
+  border: 1px solid #f5c6cb;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.linkText {
   margin-top: 1rem;
   text-align: center;
+  color: #666;
+}
+
+.link {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.formButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.formGroup input:disabled,
+.formGroup textarea:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background-color: #f8f9fa;
+}
+
+/* Accessibility improvements */
+.formGroup input:focus,
+.formGroup textarea:focus,
+.formButton:focus {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+}
+
+.formGroup input[aria-invalid="true"] {
+  border-color: #dc3545;
+  box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.25);
+}
+
+.formButton:focus:not(:disabled) {
+  background-color: #0056b3;
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .formContainer {
+    border: 2px solid #000;
+  }
+  
+  .formGroup input,
+  .formButton {
+    border: 2px solid #000;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .formButton {
+    transition: none;
+  }
 }
