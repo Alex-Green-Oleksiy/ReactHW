@@ -129,6 +129,7 @@
       "passwordTooShort": "Password must be at least 6 characters long",
       "registerFailed": "Registration failed. Please try again",
       "generic": "An error occurred. Please try again"
-    }
+    },
+    "loginRequired": "Please log in to add to favorites"
   }
 }

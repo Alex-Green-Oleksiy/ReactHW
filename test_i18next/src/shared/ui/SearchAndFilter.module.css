@@ -1,11 +1,13 @@
 .container {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.5rem;
   margin-bottom: 2rem;
-  padding: 1rem;
-  background: #f8f9fa;
-  border-radius: 8px;
+  padding: 1.5rem;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }
 
 .search {
@@ -14,17 +16,20 @@
 
 .searchInput {
   width: 100%;
-  padding: 0.75rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  padding: 0.875rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
   font-size: 1rem;
   box-sizing: border-box;
+  color: #1a1a1a;
+  background-color: #ffffff;
+  transition: all 0.2s ease;
 }
 
 .searchInput:focus {
   outline: none;
-  border-color: #007bff;
-  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
 .filters {
@@ -36,33 +41,41 @@
 
 .filterSelect,
 .sortSelect {
-  padding: 0.5rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 0.9rem;
-  background: white;
-  min-width: 120px;
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background: #ffffff;
+  color: #1a1a1a;
+  min-width: 140px;
+  transition: all 0.2s ease;
 }
 
 .filterSelect:focus,
 .sortSelect:focus {
   outline: none;
-  border-color: #007bff;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
 .clearButton {
-  padding: 0.5rem 1rem;
-  background: #6c757d;
+  padding: 0.75rem 1.5rem;
+  background: #6b7280;
   color: white;
-  border: none;
-  border-radius: 4px;
+  border: 1px solid #6b7280;
+  border-radius: 8px;
   cursor: pointer;
-  font-size: 0.9rem;
-  transition: background-color 0.2s;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 }
 
 .clearButton:hover {
-  background: #5a6268;
+  background: #4b5563;
+  border-color: #4b5563;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px -1px rgba(107, 114, 128, 0.3);
 }
 
 @media (max-width: 768px) {

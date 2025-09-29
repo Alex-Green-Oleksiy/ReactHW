@@ -134,11 +134,11 @@ export function AppStateProvider({ children }) {
     return cartItems.reduce((total, item) => total + item.qty, 0)
   }, [cartItems])
 
-  // Favorites actions (only role 'user' can add)
+  // Favorites actions (any logged in user can add)
   const toggleFavorite = useCallback(
     (item) => {
-      // Only allow users with role 'user' to add/toggle favorites
-      if (user?.role !== 'user') return
+      // Only allow logged in users to add/toggle favorites
+      if (!user) return
 
       // If a user is logged in, write to Firestore with optimistic update
       if (user?.id) {

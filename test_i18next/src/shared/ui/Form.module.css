@@ -2,9 +2,10 @@
   max-width: 500px;
   margin: 2rem auto;
   padding: 2rem;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  background-color: #f9f9f9;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 .formGroup {
@@ -14,57 +15,80 @@
 .formGroup label {
   display: block;
   margin-bottom: 0.5rem;
-  font-weight: bold;
+  font-weight: 600;
+  color: #1a1a1a;
+  font-size: 0.95rem;
 }
 
-.formGroup input {
+.formGroup input,
+.formGroup textarea {
   width: 100%;
   padding: 0.75rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box; /* Ensures padding doesn't affect width */
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  box-sizing: border-box;
+  font-size: 1rem;
+  color: #1a1a1a;
+  background-color: #ffffff;
+  transition: all 0.2s ease;
+}
+
+.formGroup input:focus,
+.formGroup textarea:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
 .formButton {
   width: 100%;
-  padding: 0.75rem;
-  border: none;
-  border-radius: 4px;
-  background-color: #007bff;
+  padding: 0.875rem;
+  border: 1px solid #2563eb;
+  border-radius: 8px;
+  background-color: #2563eb;
   color: white;
   font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 }
 
 .formButton:hover {
-  background-color: #0056b3;
+  background-color: #1d4ed8;
+  border-color: #1d4ed8;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
 .errorMessage {
-  color: #dc3545;
-  font-size: 14px;
-  margin-top: 10px;
-  padding: 0.5rem;
-  background: #f8d7da;
-  border: 1px solid #f5c6cb;
-  border-radius: 4px;
+  color: #dc2626;
+  font-size: 0.9rem;
+  margin-top: 0.75rem;
+  padding: 0.75rem;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
   text-align: center;
-}
-
-.linkText {
-  margin-top: 1rem;
-  text-align: center;
-  color: #666;
-}
-
-.link {
-  color: #007bff;
-  text-decoration: none;
   font-weight: 500;
 }
 
+.linkText {
+  margin-top: 1.5rem;
+  text-align: center;
+  color: #6b7280;
+  font-size: 0.95rem;
+}
+
+.link {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
 .link:hover {
+  color: #1d4ed8;
   text-decoration: underline;
 }
 

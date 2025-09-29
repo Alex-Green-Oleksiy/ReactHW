@@ -160,8 +160,8 @@ export default function ProductsPage() {
                   className={`${styles.btn} ${styles.favBtn}`}
                   onClick={() => toggleFavorite({ id: product.id, title: product.title, price: product.price, imageUrl: product.imageUrl })}
                   type="button"
-                  disabled={user?.role !== 'user'}
-                  title={user?.role !== 'user' ? t('favorites.onlyForUser') : t('favorites.add')}
+                  disabled={!user}
+                  title={!user ? t('auth.loginRequired') : t('favorites.add')}
                 >
                   {t('favorites.add')}
                 </button>
