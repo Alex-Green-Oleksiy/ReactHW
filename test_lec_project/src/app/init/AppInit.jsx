@@ -11,9 +11,12 @@ export function AppInit() {
     const init = async () => {
       try {
         await refresh().unwrap()
-      } catch {
+      } catch (error) {
         // 401 без refresh cookie — очікувано при холодному старті, ігноруємо
-        // інші помилки можна залогувати за потреби
+        // Логуємо тільки неочікувані помилки
+        if (error?.status !== 401) {
+          console.warn('Неочікувана помилка при ініціалізації:', error)
+        }
       }
     }
     init()

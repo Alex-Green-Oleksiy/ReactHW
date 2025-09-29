@@ -4,8 +4,9 @@ import { apiRoutes } from '@/shared/config/routes/apiRoutes'
 export const userApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     getUsers: build.query({
-      query: () => ({
+      query: ({ page, limit }) => ({
         url: apiRoutes.users,
+        params: { page, limit },
       }),
       providesTags: ['User'],
     }),

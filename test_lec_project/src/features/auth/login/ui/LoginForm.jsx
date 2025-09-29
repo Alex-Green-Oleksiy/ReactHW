@@ -29,6 +29,7 @@ export function LoginForm() {
             placeholder="Введіть email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            autoComplete="email"
             required
             className="form-input"
           />
@@ -42,6 +43,7 @@ export function LoginForm() {
             placeholder="Введіть пароль"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            autoComplete="current-password"
             required
             className="form-input"
           />

@@ -17,7 +17,7 @@ export function UserList() {
   if (isLoading) return <div className="loading-message">Завантаження користувачів...</div>
   if (error) return <div className="error-message">Помилка: {error.toString()}</div>
 
-  const users = data?.users || []
+  const users = data?.items || []
   const totalPages = data?.totalPages || 1
 
   return (

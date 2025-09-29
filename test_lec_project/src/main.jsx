@@ -11,8 +11,12 @@ import { AppInit } from './app/init/AppInit'
 createRoot(document.getElementById('root')).render(
   <Provider store={store}>
     <AppInit />
-    <Suspense fallback={<div />}> 
-      <RouterProvider router={router} fallbackElement={<div />} />
+    <Suspense fallback={<div>Завантаження...</div>}> 
+      <RouterProvider 
+        router={router} 
+        fallbackElement={<div>Завантаження...</div>}
+        HydrateFallback={<div>Завантаження...</div>}
+      />
     </Suspense>
   </Provider>
 )
